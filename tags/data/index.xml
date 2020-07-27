@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data on Toy&#39;s Blogs</title>
+    <link>http://keltoy.github.io/tags/data/</link>
+    <description>Recent content in data on Toy&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 24 Jul 2020 17:54:40 +0000</lastBuildDate>
+    
+	<atom:link href="http://keltoy.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sequence Parquet And Avro</title>
+      <link>http://keltoy.github.io/posts/sequence-parquet-and-avro/</link>
+      <pubDate>Fri, 24 Jul 2020 17:54:40 +0000</pubDate>
+      
+      <guid>http://keltoy.github.io/posts/sequence-parquet-and-avro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>大数据框架</title>
+      <link>http://keltoy.github.io/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Wed, 01 Jul 2020 10:40:25 +0000</pubDate>
+      
+      <guid>http://keltoy.github.io/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/</guid>
+      <description>大数据框架 [toc]
+背景 做数据处理不能只是出报表，有很多东西还需要去处理，比如用户画像，比如数据分析，比如推荐系统，比如数据仓库。
+现在处理数据不像原来，只需要处理离线数据，这样报表也只能出T-1天的数据，很多时候，我们希望能看到实时数据。这样就会出现一些问题：
+更新频率，一天、一小时更新，这样可以不使用实时处理，可能体现不了实时的意义；如果都改成流数据处理，更新频率可以到达分钟，秒级，但是数据量不全，缺少历史数据，可能不能保证准确性。因此需要设计一种架构技能满足实时处理，又要保证历史数据准确。
+Lambda 框架 Lambda架构的设计为了处理大规模数据时，同时发挥流数据处理和批处理的优势。通过离线批处理提供全面、准确的数据；通过实时流处理提供低延迟的数据，达到平衡延迟、吞吐量和容错性的目的。
+Lambda架构包含3层Batch Layer， Speed Layer，Serving Layer
+ Batch Layer: 批处理层，对离线的历史数据进行预结算，为了下游能够快速查询想要的结果。由于批处理基于完整的历史数据集因此准确性可以得到保证。批处理可以用Hadoop/Spark/Flink等框架计算 Speed Layer: 加速处理层，处理实时的增量数据，这一层重点在于低延迟。加速层的数据不如批处理那样完整和准确，但是可以填补批处理高延迟导致的数据的空白。加速层可以使用 Storm/Spark streaming/Flink等计算框架 Serving Layer: 合并服务层 合并层将批处理和加速层的的数据合并，输出出来或者提供给下游来分析  IBM 使用的一套Lambda
+Lambda 的出现，很好地解决了离线与实时处理二者都能发挥出功效，离线批处理 和 实时数据 都体现了各自的优势，晚上可以跑离线任务，而实时任务一般也是集中在白天，让实时成本可控，且错开了高峰时间
+不过随着时代的发展，Lambda 面对当前复杂的业务分析需求逐渐力不从心，暴露出了以下几个问题：
+ 实时与批量计算结果不一致引起的数据口径不一致 批量计算在晚上计算窗口内无法完成 开发和维护复杂，烟囱式开发没份数据需要至少处理2次 服务器内存大  Kappa框架 Kappa架构 简化了Lambda架构。Kappa架构系统是删除了批处理系统的架构。要取代批处理，数据只需通过流式传输系统快速提供：
+那如何用流计算系统对全量数据进行重新计算，步骤如下：
+  用Kafka或类似的分布式队列保存数据，需要几天数据量就保存几天。
+  当需要全量计算时，重新起一个流计算实例，从头开始读取数据进行处理，并输出到一个结果存储中。
+  当新的实例完成后，停止老的流计算实例，并把老的一引起结果删除。
+  和Lambda架构相比，在Kappa架构下，只有在有必要的时候才会对历史数据进行重复计算，并且实时计算和批处理过程使用的是同一份代码。或许有些人会质疑流式处理对于历史数据的高吞吐量会力不从心，但是这可以通过控制新实例的并发数进行改善。
+Kappa架构的核心思想包括以下三点：
+  用Kafka或者类似的分布式队列系统保存数据，你需要几天的数据量就保存几天。
+  当需要全量重新计算时，重新起一个流计算实例，从头开始读取数据进行处理，并输出到一个新的结果存储中。
+  当新的实例做完后，停止老的流计算实例，并把老的一些结果删除。
+  Iota 框架 在IOT大潮下，智能手机、PC、智能硬件设备的计算能力越来越强，而业务需求要求数据实时响应需求能力也越来越强，过去传统的中心化、非实时化数据处理的思路已经不适应现在的大数据分析需求，我提出新一代的大数据IOTA架构来解决上述问题，整体思路是设定标准数据模型，通过边缘计算技术把所有的计算过程分散在数据产生、计算和查询过程当中，以统一的数据模型贯穿始终，从而提高整体的预算效率，同时满足即时计算的需要，可以使用各种Ad-hoc Query来查询底层数据</description>
+    </item>
+    
+  </channel>
+</rss>
