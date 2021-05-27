@@ -27,12 +27,12 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
     type="text/css">
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c46cbca46fa76c0fcd3da8313ecf4adee5fb3ffb0288c0902d7e90aead220d79.css">
 
 
 
@@ -47,16 +47,10 @@ option 命令：
  -q 不输出类名，jar名和传入main方法的参数 -m 输出传入main方法的参数 -l 输出main类或者Jar的权限名 -v 输出传入JVM的参数  jmap（查看内存，对象） 可以输出所有内存中对象的工具，甚至是将VM 中的heap，以二进制输出成文本；打印出某个java进程(pid)内存中的所有对象的情况
 jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remote-hostname-or-IP 其中：
  option 选项参数 pid 打印配置信息的进程id executable 产生核心dump的java 可执行文件 core 需要打印配置信息的核心文件 server-id 可选唯一id，如果相同的远程主机上运行了多台调试服务器，可以用来标识服务器 remote-hostname-or-IP 远程调试服务器的主机名或ip  option的取值有：
- &lt;none&gt; 查看进程的内存映像信息 -heap 显示java堆详细信息 -histo[:live] 统计java对象堆的直方图 -clstats 打印类加载器信息 -finalizerinfo 显示在F-Queue队列等待Finalizer线程执行finalizer方法的对象 dump:&lt;dump-options&gt; 生成堆转储快照 F: 当-dump没有响应时， 使用 -dump 或者 -histo参数。在这个模式下,live子参数无效.">
-<meta itemprop="datePublished" content="2020-05-21T16:03:03+00:00" />
-<meta itemprop="dateModified" content="2020-05-21T16:03:03+00:00" />
-<meta itemprop="wordCount" content="806">
-<meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-
-
-
+ &lt;none&gt; 查看进程的内存映像信息 -heap 显示java堆详细信息 -histo[:live] 统计java对象堆的直方图 -clstats 打印类加载器信息 -finalizerinfo 显示在F-Queue队列等待Finalizer线程执行finalizer方法的对象 dump:&lt;dump-options&gt; 生成堆转储快照 F: 当-dump没有响应时， 使用 -dump 或者 -histo参数。在这个模式下,live子参数无效."><meta itemprop="datePublished" content="2020-05-21T16:03:03&#43;00:00" />
+<meta itemprop="dateModified" content="2020-05-21T16:03:03&#43;00:00" />
+<meta itemprop="wordCount" content="782"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
 <meta itemprop="keywords" content="java,jmap,jstack," />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
@@ -72,6 +66,7 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
 
 
 
+
     <meta property="og:title" content="jmap jstack jstat" />
 <meta property="og:description" content="[toc]
 jps (Java Virtual Machine Process) 用来输出JVM 进程状态信息
@@ -82,10 +77,10 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
  option 选项参数 pid 打印配置信息的进程id executable 产生核心dump的java 可执行文件 core 需要打印配置信息的核心文件 server-id 可选唯一id，如果相同的远程主机上运行了多台调试服务器，可以用来标识服务器 remote-hostname-or-IP 远程调试服务器的主机名或ip  option的取值有：
  &lt;none&gt; 查看进程的内存映像信息 -heap 显示java堆详细信息 -histo[:live] 统计java对象堆的直方图 -clstats 打印类加载器信息 -finalizerinfo 显示在F-Queue队列等待Finalizer线程执行finalizer方法的对象 dump:&lt;dump-options&gt; 生成堆转储快照 F: 当-dump没有响应时， 使用 -dump 或者 -histo参数。在这个模式下,live子参数无效." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://keltoy.github.io/posts/jmap-jstack-jstat/" />
-<meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta property="article:published_time" content="2020-05-21T16:03:03+00:00" />
-<meta property="article:modified_time" content="2020-05-21T16:03:03+00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+<meta property="og:url" content="http://keltoy.github.io/posts/jmap-jstack-jstat/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-21T16:03:03&#43;00:00" />
+<meta property="article:modified_time" content="2020-05-21T16:03:03&#43;00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+
 
 
 
@@ -103,7 +98,10 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -125,7 +123,7 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://keltoy.github.io/about">About</a></li><li><a href="http://keltoy.github.io/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
     </ul>
 </nav>
 
@@ -136,13 +134,6 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -168,6 +159,10 @@ jmap [option] pid jmap [option] executable core jmap [option] [service-id@]remot
       <h1 class="post-title">
         <a href="http://keltoy.github.io/posts/jmap-jstack-jstat/">jmap jstack jstat</a>
       </h1>
+
+      
+
+      
 
       
 
@@ -361,20 +356,20 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">Loaded</th>
-<th align="center">Bytes</th>
-<th align="center">Unloaded</th>
-<th align="center">Bytes</th>
-<th align="center">Time</th>
+<th style="text-align:center">Loaded</th>
+<th style="text-align:center">Bytes</th>
+<th style="text-align:center">Unloaded</th>
+<th style="text-align:center">Bytes</th>
+<th style="text-align:center">Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">已经装载的类的数量</td>
-<td align="center">装载类所占用的字节数</td>
-<td align="center">已卸载类的数量</td>
-<td align="center">卸载类的字节数</td>
-<td align="center">装载和卸载类所花费的时间</td>
+<td style="text-align:center">已经装载的类的数量</td>
+<td style="text-align:center">装载类所占用的字节数</td>
+<td style="text-align:center">已卸载类的数量</td>
+<td style="text-align:center">卸载类的字节数</td>
+<td style="text-align:center">装载和卸载类所花费的时间</td>
 </tr>
 </tbody>
 </table>
@@ -382,138 +377,207 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">Compiled</th>
-<th align="center">Failed</th>
-<th align="center">Invalid</th>
-<th align="center">Time</th>
-<th align="center">FailedType</th>
-<th align="center">FailedMethod</th>
+<th style="text-align:center">Compiled</th>
+<th style="text-align:center">Failed</th>
+<th style="text-align:center">Invalid</th>
+<th style="text-align:center">Time</th>
+<th style="text-align:center">FailedType</th>
+<th style="text-align:center">FailedMethod</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">编译任务执行的数量</td>
-<td align="center">编译任务执行失败的数量</td>
-<td align="center">编译任务执行无效的数量</td>
-<td align="center">编译任务消耗的时间</td>
-<td align="center">最后一个编译失败任务的类型</td>
-<td align="center">最后一个编译失败所在类及方法</td>
+<td style="text-align:center">编译任务执行的数量</td>
+<td style="text-align:center">编译任务执行失败的数量</td>
+<td style="text-align:center">编译任务执行无效的数量</td>
+<td style="text-align:center">编译任务消耗的时间</td>
+<td style="text-align:center">最后一个编译失败任务的类型</td>
+<td style="text-align:center">最后一个编译失败所在类及方法</td>
 </tr>
 </tbody>
 </table>
 <p>gc: 显示gc相关的堆信息，被查看gc的次数、及时间</p>
-<p>参数略长，转置一下
-| 名称 | 说明 | 备注 |
-|:&mdash;-:|:&mdash;-:|:&mdash;-:|
-|S0C |年轻代中第一个survivor的容量(字节)|from|
-|S1C |年轻代中第二个survivor的容量(字节)|to|
-|S0U |年轻代中第一个survivor目前已使用的空间| |
-|S1U |年轻代中第二个survivor目前已使用的空间| |
-|EC  |年轻代中的Eden的容量| |
-|EU  |年轻代中的Eden目前已使用的容量| |
-|OC  |老年代的容量| |
-|OU  | 老年代已使用空间| |
-|MC  | metaspace的容量| |
-|MU  | metaspace目前已使用空间| |
-|YGC | 从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)| |
-|YGCT | 从应用程序启动到采样时老年代中(full gc)gc所用时间| |
-|FGC | 从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)| |
-|FGCT | 从应用程序启动到采样时年轻代中gc所用时间| |
-|GCT | 从应用程序启动到采样时gc所用时间| |</p>
-<p>gccapacity: 显示 VM内存中堆栈的使用大小和占比大小</p>
+<p>参数略长，转置一下</p>
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">NGCMN</td>
-<td align="center">年轻代中初始化(最小)的大小</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">S0C</td>
+<td style="text-align:center">年轻代中第一个survivor的容量(字节)</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">NGCMX</td>
-<td align="center">年轻代的最大容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor的容量(字节)</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">NGC</td>
-<td align="center">年轻代的当前容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">S0U</td>
+<td style="text-align:center">年轻代中第一个survivor目前已使用的空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">S0C</td>
-<td align="center">年轻代中第一个survivor的容量(字节)</td>
-<td align="center">from</td>
+<td style="text-align:center">S1U</td>
+<td style="text-align:center">年轻代中第二个survivor目前已使用的空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">S1C</td>
-<td align="center">年轻代中第二个survivor的容量(字节)</td>
-<td align="center">to</td>
+<td style="text-align:center">EC</td>
+<td style="text-align:center">年轻代中的Eden的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">EC</td>
-<td align="center">年轻代中的Eden的容量</td>
-<td align="center"></td>
+<td style="text-align:center">EU</td>
+<td style="text-align:center">年轻代中的Eden目前已使用的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OGCMN</td>
-<td align="center">老年代中初始化(最小)的大小</td>
-<td align="center"></td>
+<td style="text-align:center">OC</td>
+<td style="text-align:center">老年代的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OGCMX</td>
-<td align="center">老年代最大容量</td>
-<td align="center"></td>
+<td style="text-align:center">OU</td>
+<td style="text-align:center">老年代已使用空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OGC</td>
-<td align="center">老年代当前新生成的容量</td>
-<td align="center"></td>
+<td style="text-align:center">MC</td>
+<td style="text-align:center">metaspace的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OC</td>
-<td align="center">老年代的容量</td>
-<td align="center"></td>
+<td style="text-align:center">MU</td>
+<td style="text-align:center">metaspace目前已使用空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OU</td>
-<td align="center">老年代已使用空间</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">MC</td>
-<td align="center">metaspace的容量</td>
-<td align="center"></td>
+<td style="text-align:center">YGCT</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSMN</td>
-<td align="center">最小压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSMX</td>
-<td align="center">最大压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSC</td>
-<td align="center">当前压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>gccapacity: 显示 VM内存中堆栈的使用大小和占比大小</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NGCMN</td>
+<td style="text-align:center">年轻代中初始化(最小)的大小</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">NGCMX</td>
+<td style="text-align:center">年轻代的最大容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">NGC</td>
+<td style="text-align:center">年轻代的当前容量</td>
+<td style="text-align:center">单位字节</td>
+</tr>
+<tr>
+<td style="text-align:center">S0C</td>
+<td style="text-align:center">年轻代中第一个survivor的容量(字节)</td>
+<td style="text-align:center">from</td>
+</tr>
+<tr>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor的容量(字节)</td>
+<td style="text-align:center">to</td>
+</tr>
+<tr>
+<td style="text-align:center">EC</td>
+<td style="text-align:center">年轻代中的Eden的容量</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">OGCMN</td>
+<td style="text-align:center">老年代中初始化(最小)的大小</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">OGCMX</td>
+<td style="text-align:center">老年代最大容量</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">OGC</td>
+<td style="text-align:center">老年代当前新生成的容量</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">OC</td>
+<td style="text-align:center">老年代的容量</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">OU</td>
+<td style="text-align:center">老年代已使用空间</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">MC</td>
+<td style="text-align:center">metaspace的容量</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">CCSMN</td>
+<td style="text-align:center">最小压缩类空间大小</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">CCSMX</td>
+<td style="text-align:center">最大压缩类空间大小</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">CCSC</td>
+<td style="text-align:center">当前压缩类空间大小</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -521,61 +585,61 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">MCMN</td>
-<td align="center">最小元数据容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">MCMN</td>
+<td style="text-align:center">最小元数据容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">MCMX</td>
-<td align="center">最大元数据容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">MCMX</td>
+<td style="text-align:center">最大元数据容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">MC</td>
-<td align="center">metaspace的容量</td>
-<td align="center"></td>
+<td style="text-align:center">MC</td>
+<td style="text-align:center">metaspace的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSMN</td>
-<td align="center">最小压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">CCSMN</td>
+<td style="text-align:center">最小压缩类空间大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSMX</td>
-<td align="center">最大压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">CCSMX</td>
+<td style="text-align:center">最大压缩类空间大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSC</td>
-<td align="center">当前压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">CCSC</td>
+<td style="text-align:center">当前压缩类空间大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGCT</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCT</td>
-<td align="center">从应用程序启动到采样时gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -583,66 +647,66 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">S0C</td>
-<td align="center">年轻代中第一个survivor的容量(字节)</td>
-<td align="center">from</td>
+<td style="text-align:center">S0C</td>
+<td style="text-align:center">年轻代中第一个survivor的容量(字节)</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">S1C</td>
-<td align="center">年轻代中第二个survivor的容量(字节)</td>
-<td align="center">to</td>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor的容量(字节)</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">S0U</td>
-<td align="center">年轻代中第一个survivor目前已使用的空间</td>
-<td align="center"></td>
+<td style="text-align:center">S0U</td>
+<td style="text-align:center">年轻代中第一个survivor目前已使用的空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">S1U</td>
-<td align="center">年轻代中第二个survivor目前已使用的空间</td>
-<td align="center"></td>
+<td style="text-align:center">S1U</td>
+<td style="text-align:center">年轻代中第二个survivor目前已使用的空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">TT</td>
-<td align="center">持有次数限制</td>
-<td align="center"></td>
+<td style="text-align:center">TT</td>
+<td style="text-align:center">持有次数限制</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">MTT</td>
-<td align="center">最大持有次数限制</td>
-<td align="center"></td>
+<td style="text-align:center">MTT</td>
+<td style="text-align:center">最大持有次数限制</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">DSS</td>
-<td align="center">期望的survivor大小</td>
-<td align="center"></td>
+<td style="text-align:center">DSS</td>
+<td style="text-align:center">期望的survivor大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">EC</td>
-<td align="center">年轻代中的Eden的容量</td>
-<td align="center"></td>
+<td style="text-align:center">EC</td>
+<td style="text-align:center">年轻代中的Eden的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">EU</td>
-<td align="center">年轻代中的Eden目前已使用的容量</td>
-<td align="center"></td>
+<td style="text-align:center">EU</td>
+<td style="text-align:center">年轻代中的Eden目前已使用的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGCT</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">YGCT</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -650,66 +714,66 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">NGCMN</td>
-<td align="center">年轻代中初始化(最小)的大小</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">NGCMN</td>
+<td style="text-align:center">年轻代中初始化(最小)的大小</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">NGCMX</td>
-<td align="center">年轻代的最大容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">NGCMX</td>
+<td style="text-align:center">年轻代的最大容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">NGC</td>
-<td align="center">年轻代的当前容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">NGC</td>
+<td style="text-align:center">年轻代的当前容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">S0C</td>
-<td align="center">年轻代中第一个survivor的容量(字节)</td>
-<td align="center">from</td>
+<td style="text-align:center">S0C</td>
+<td style="text-align:center">年轻代中第一个survivor的容量(字节)</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">S0CMX</td>
-<td align="center">年轻代中第一个survivor的最大容量(字节)</td>
-<td align="center">from</td>
+<td style="text-align:center">S0CMX</td>
+<td style="text-align:center">年轻代中第一个survivor的最大容量(字节)</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">S1C</td>
-<td align="center">年轻代中第二个survivor的容量(字节)</td>
-<td align="center">to</td>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor的容量(字节)</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">S1CMX</td>
-<td align="center">年轻代中第二个survivor的最大容量(字节)</td>
-<td align="center">to</td>
+<td style="text-align:center">S1CMX</td>
+<td style="text-align:center">年轻代中第二个survivor的最大容量(字节)</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">EC</td>
-<td align="center">年轻代中的Eden的容量</td>
-<td align="center"></td>
+<td style="text-align:center">EC</td>
+<td style="text-align:center">年轻代中的Eden的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">ECMX</td>
-<td align="center">年轻代中的Eden的最大容量</td>
-<td align="center"></td>
+<td style="text-align:center">ECMX</td>
+<td style="text-align:center">年轻代中的Eden的最大容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -717,61 +781,61 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">MC</td>
-<td align="center">metaspace的容量</td>
-<td align="center"></td>
+<td style="text-align:center">MC</td>
+<td style="text-align:center">metaspace的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">MU</td>
-<td align="center">metaspace目前已使用空间</td>
-<td align="center"></td>
+<td style="text-align:center">MU</td>
+<td style="text-align:center">metaspace目前已使用空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSC</td>
-<td align="center">压缩类空间大小</td>
-<td align="center"></td>
+<td style="text-align:center">CCSC</td>
+<td style="text-align:center">压缩类空间大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCSU</td>
-<td align="center">压缩类空间使用大小</td>
-<td align="center"></td>
+<td style="text-align:center">CCSU</td>
+<td style="text-align:center">压缩类空间使用大小</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OC</td>
-<td align="center">老年代的容量</td>
-<td align="center"></td>
+<td style="text-align:center">OC</td>
+<td style="text-align:center">老年代的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">OU</td>
-<td align="center">老年代已使用空间</td>
-<td align="center"></td>
+<td style="text-align:center">OU</td>
+<td style="text-align:center">老年代已使用空间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGCT</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCT</td>
-<td align="center">从应用程序启动到采样时gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -779,51 +843,51 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">OGCMN</td>
-<td align="center">老年代中初始化(最小)的大小</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">OGCMN</td>
+<td style="text-align:center">老年代中初始化(最小)的大小</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">OGCMX</td>
-<td align="center">老年代的最大容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">OGCMX</td>
+<td style="text-align:center">老年代的最大容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">OGC</td>
-<td align="center">老年代代的当前新生成的容量</td>
-<td align="center">单位字节</td>
+<td style="text-align:center">OGC</td>
+<td style="text-align:center">老年代代的当前新生成的容量</td>
+<td style="text-align:center">单位字节</td>
 </tr>
 <tr>
-<td align="center">OC</td>
-<td align="center">老年代的容量</td>
-<td align="center"></td>
+<td style="text-align:center">OC</td>
+<td style="text-align:center">老年代的容量</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGCT</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCT</td>
-<td align="center">从应用程序启动到采样时gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -831,66 +895,66 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">S0</td>
-<td align="center">年轻代中第一个survivor已使用的占当前容量的百分比</td>
-<td align="center">from</td>
+<td style="text-align:center">S0</td>
+<td style="text-align:center">年轻代中第一个survivor已使用的占当前容量的百分比</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">S1C</td>
-<td align="center">年轻代中第二个survivor已使用的占当前容量的百分比</td>
-<td align="center">to</td>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor已使用的占当前容量的百分比</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">E</td>
-<td align="center">年轻代中的Eden已使用的占当前容量百分比</td>
-<td align="center"></td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">年轻代中的Eden已使用的占当前容量百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">O</td>
-<td align="center">老年代已使用的占当前容量的百分比</td>
-<td align="center"></td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">老年代已使用的占当前容量的百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">M</td>
-<td align="center">metaspace已使用的占当前容量的百分比</td>
-<td align="center"></td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">metaspace已使用的占当前容量的百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCS</td>
-<td align="center">压缩类空间已使用的占当前容量百分比</td>
-<td align="center"></td>
+<td style="text-align:center">CCS</td>
+<td style="text-align:center">压缩类空间已使用的占当前容量百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGCT</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">YGCT</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGCT</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCT</td>
-<td align="center">从应用程序启动到采样时gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -898,76 +962,76 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">说明</th>
-<th align="center">备注</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">S0</td>
-<td align="center">年轻代中第一个survivor已使用的占当前容量的百分比</td>
-<td align="center">from</td>
+<td style="text-align:center">S0</td>
+<td style="text-align:center">年轻代中第一个survivor已使用的占当前容量的百分比</td>
+<td style="text-align:center">from</td>
 </tr>
 <tr>
-<td align="center">S1C</td>
-<td align="center">年轻代中第二个survivor已使用的占当前容量的百分比</td>
-<td align="center">to</td>
+<td style="text-align:center">S1C</td>
+<td style="text-align:center">年轻代中第二个survivor已使用的占当前容量的百分比</td>
+<td style="text-align:center">to</td>
 </tr>
 <tr>
-<td align="center">E</td>
-<td align="center">年轻代中的Eden已使用的占当前容量百分比</td>
-<td align="center"></td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">年轻代中的Eden已使用的占当前容量百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">O</td>
-<td align="center">老年代已使用的占当前容量的百分比</td>
-<td align="center"></td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">老年代已使用的占当前容量的百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">M</td>
-<td align="center">metaspace已使用的占当前容量的百分比</td>
-<td align="center"></td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">metaspace已使用的占当前容量的百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">CCS</td>
-<td align="center">压缩类空间已使用的占当前容量百分比</td>
-<td align="center"></td>
+<td style="text-align:center">CCS</td>
+<td style="text-align:center">压缩类空间已使用的占当前容量百分比</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGC</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">YGC</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">YGCT</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">YGCT</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGC</td>
-<td align="center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
-<td align="center"></td>
+<td style="text-align:center">FGC</td>
+<td style="text-align:center">从应用程序启动到采样时老年代中(full gc)gc所用事件(单位: 秒)</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">FGCT</td>
-<td align="center">从应用程序启动到采样时年轻代中gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">FGCT</td>
+<td style="text-align:center">从应用程序启动到采样时年轻代中gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCT</td>
-<td align="center">从应用程序启动到采样时gc所用时间</td>
-<td align="center"></td>
+<td style="text-align:center">GCT</td>
+<td style="text-align:center">从应用程序启动到采样时gc所用时间</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">LGCC</td>
-<td align="center">最后一次GC的原因</td>
-<td align="center"></td>
+<td style="text-align:center">LGCC</td>
+<td style="text-align:center">最后一次GC的原因</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">GCC</td>
-<td align="center">当前GC 原因或没有执行GC(No GC)</td>
-<td align="center"></td>
+<td style="text-align:center">GCC</td>
+<td style="text-align:center">当前GC 原因或没有执行GC(No GC)</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -975,18 +1039,18 @@ jstat -help | -options
 <table>
 <thead>
 <tr>
-<th align="center">Compiled</th>
-<th align="center">Size</th>
-<th align="center">Type</th>
-<th align="center">Method</th>
+<th style="text-align:center">Compiled</th>
+<th style="text-align:center">Size</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Method</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">编译任务的数据</td>
-<td align="center">方法生成字节码的大小</td>
-<td align="center">编译类型</td>
-<td align="center">类名和方法名，用来标识编译的方法，类名使用或作为一个命名空间分隔符。方法名是给定类中的方法，由 -XX:+PrintComplation选项设置的</td>
+<td style="text-align:center">编译任务的数据</td>
+<td style="text-align:center">方法生成字节码的大小</td>
+<td style="text-align:center">编译类型</td>
+<td style="text-align:center">类名和方法名，用来标识编译的方法，类名使用或作为一个命名空间分隔符。方法名是给定类中的方法，由 -XX:+PrintComplation选项设置的</td>
 </tr>
 </tbody>
 </table>
@@ -999,12 +1063,17 @@ jstat -help | -options
     <hr />
 
     <div class="post-info">
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span><span class="tag"><a href="http://keltoy.github.io/tags/jmap/">jmap</a></span><span class="tag"><a href="http://keltoy.github.io/tags/jstack/">jstack</a></span>
-        </p>
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/jmap/">jmap</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/jstack/">jstack</a></span>
+        
+    </p>
+
+      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -1014,7 +1083,7 @@ jstat -help | -options
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        806 Words
+        782 Words
       </p>
 
       <p>
@@ -1024,7 +1093,13 @@ jstat -help | -options
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        2020-05-22 00:03 &#43;0800
+        
+          2020-05-22 00:03 &#43;0800
+        
+
+         
+          
+        
       </p>
     </div>
       <hr />
@@ -1122,34 +1197,35 @@ jstat -help | -options
       </div>
 
     
-      <div class="pagination">
+    <div class="pagination">
         <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
         </div>
 
         <div class="pagination__buttons">
-          
+            
             <span class="button previous">
-              <a href="http://keltoy.github.io/posts/hbase-%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/">
-                <span class="button__icon">←</span>
-                <span class="button__text">HBase 个人总结</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/hbase-%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">HBase 个人总结</span>
+                </a>
             </span>
-          
+            
 
-          
+            
             <span class="button next">
-              <a href="http://keltoy.github.io/posts/spark-shuffle-%E5%92%8C%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C/">
-                <span class="button__text">spark shuffle 和数据倾斜</span>
-                <span class="button__icon">→</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/spark-shuffle-%E5%92%8C%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C/">
+                    <span class="button__text">spark shuffle 和数据倾斜</span>
+                    <span class="button__icon">→</span>
+                </a>
             </span>
-          
+            
         </div>
-      </div>
-    
+    </div>
 
+
+    
 
     
 
@@ -1159,22 +1235,8 @@ jstat -help | -options
 
             
                 <footer class="footer">
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>&copy; 2020</span>
-            
-            
-                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            
-            <span> <a href="http://keltoy.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
-        </div>
-    </div>
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-        </div>
-    </div>
+    
+    
 </footer>
 
             
@@ -1184,8 +1246,7 @@ jstat -help | -options
 
 
 
-
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.599099f1f14b78b657d524b28e10e0c5098e7cd46e9c7aed73d577068a276c3ff1bb234cbf29cb313333e83cf411727b43157c91ce5b809e2ffc81664614608e.js" integrity="sha512-WZCZ8fFLeLZX1SSyjhDgxQmOfNRunHrtc9V3BoonbD/xuyNMvynLMTMz6Dz0EXJ7QxV8kc5bgJ4v/IFmRhRgjg=="></script>
 
 
 

@@ -23,12 +23,12 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
     type="text/css">
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c46cbca46fa76c0fcd3da8313ecf4adee5fb3ffb0288c0902d7e90aead220d79.css">
 
 
 
@@ -39,16 +39,10 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
 <meta itemprop="description" content="maven plugins [toc]
 manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进行检查
 原理 enforcer 配置之后会默认在validate 后执行enforcer:enforce，对项目环境进行检查
-使用 &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt; &lt;version&gt;1.4.1&lt;/version&gt; &lt;executions&gt; &lt;execution&gt; &lt;!-- 执行实例的id --&gt; &lt;id&gt;default-cli&lt;/id&gt; &lt;goals&gt; &lt;!-- 执行的命令 --&gt; &lt;goal&gt;enforce&lt;/goal&gt; &lt;/goals&gt; &lt;!-- 执行的阶段 --&gt; &lt;phase&gt;validate&lt;/phase&gt; &lt;configuration&gt; &lt;!-- 制定的规则 --&gt; &lt;rules&gt; &lt;!-- 制定jdk版本 --&gt; &lt;requireJavaVersion&gt; &lt;!-- 执行失败后的消息提示 --&gt; &lt;message&gt; &lt;![CDATA[You are running an older version of Java. This application requires at least JDK ${java.version}.]]&gt; &lt;/message&gt; &lt;!-- jdk版本规则 --&gt; &lt;version&gt;[${java.version}.0,)&lt;/version&gt; &lt;/requireJavaVersion&gt; &lt;/rules&gt; &lt;/configuration&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;properties&gt; &lt;java.">
-<meta itemprop="datePublished" content="2020-04-15T22:10:16+00:00" />
-<meta itemprop="dateModified" content="2020-04-15T22:10:16+00:00" />
-<meta itemprop="wordCount" content="465">
-<meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-
-
-
+使用 &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt; &lt;version&gt;1.4.1&lt;/version&gt; &lt;executions&gt; &lt;execution&gt; &lt;!-- 执行实例的id --&gt; &lt;id&gt;default-cli&lt;/id&gt; &lt;goals&gt; &lt;!-- 执行的命令 --&gt; &lt;goal&gt;enforce&lt;/goal&gt; &lt;/goals&gt; &lt;!-- 执行的阶段 --&gt; &lt;phase&gt;validate&lt;/phase&gt; &lt;configuration&gt; &lt;!-- 制定的规则 --&gt; &lt;rules&gt; &lt;!-- 制定jdk版本 --&gt; &lt;requireJavaVersion&gt; &lt;!-- 执行失败后的消息提示 --&gt; &lt;message&gt; &lt;![CDATA[You are running an older version of Java. This application requires at least JDK ${java.version}.]]&gt; &lt;/message&gt; &lt;!-- jdk版本规则 --&gt; &lt;version&gt;[${java.version}.0,)&lt;/version&gt; &lt;/requireJavaVersion&gt; &lt;/rules&gt; &lt;/configuration&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;properties&gt; &lt;java."><meta itemprop="datePublished" content="2020-04-15T22:10:16&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-15T22:10:16&#43;00:00" />
+<meta itemprop="wordCount" content="465"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
 <meta itemprop="keywords" content="java,maven," />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
@@ -60,16 +54,17 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
 
 
 
+
     <meta property="og:title" content="maven plugins" />
 <meta property="og:description" content="maven plugins [toc]
 manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进行检查
 原理 enforcer 配置之后会默认在validate 后执行enforcer:enforce，对项目环境进行检查
 使用 &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt; &lt;version&gt;1.4.1&lt;/version&gt; &lt;executions&gt; &lt;execution&gt; &lt;!-- 执行实例的id --&gt; &lt;id&gt;default-cli&lt;/id&gt; &lt;goals&gt; &lt;!-- 执行的命令 --&gt; &lt;goal&gt;enforce&lt;/goal&gt; &lt;/goals&gt; &lt;!-- 执行的阶段 --&gt; &lt;phase&gt;validate&lt;/phase&gt; &lt;configuration&gt; &lt;!-- 制定的规则 --&gt; &lt;rules&gt; &lt;!-- 制定jdk版本 --&gt; &lt;requireJavaVersion&gt; &lt;!-- 执行失败后的消息提示 --&gt; &lt;message&gt; &lt;![CDATA[You are running an older version of Java. This application requires at least JDK ${java.version}.]]&gt; &lt;/message&gt; &lt;!-- jdk版本规则 --&gt; &lt;version&gt;[${java.version}.0,)&lt;/version&gt; &lt;/requireJavaVersion&gt; &lt;/rules&gt; &lt;/configuration&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;properties&gt; &lt;java." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://keltoy.github.io/posts/maven-plugins/" />
-<meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta property="article:published_time" content="2020-04-15T22:10:16+00:00" />
-<meta property="article:modified_time" content="2020-04-15T22:10:16+00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+<meta property="og:url" content="http://keltoy.github.io/posts/maven-plugins/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-15T22:10:16&#43;00:00" />
+<meta property="article:modified_time" content="2020-04-15T22:10:16&#43;00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+
 
 
 
@@ -87,7 +82,10 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -109,7 +107,7 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://keltoy.github.io/about">About</a></li><li><a href="http://keltoy.github.io/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
     </ul>
 </nav>
 
@@ -120,13 +118,6 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -152,6 +143,10 @@ manven-enforcer-plugin 功能 在项目validate的过程时，对项目环境进
       <h1 class="post-title">
         <a href="http://keltoy.github.io/posts/maven-plugins/">maven plugins</a>
       </h1>
+
+      
+
+      
 
       
 
@@ -537,12 +532,16 @@ id则是添加到打包文件名的标识符，用来做后缀。
     <hr />
 
     <div class="post-info">
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span><span class="tag"><a href="http://keltoy.github.io/tags/maven/">maven</a></span>
-        </p>
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/maven/">maven</a></span>
+        
+    </p>
+
+      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -562,7 +561,13 @@ id则是添加到打包文件名的标识符，用来做后缀。
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        2020-04-16 06:10 &#43;0800
+        
+          2020-04-16 06:10 &#43;0800
+        
+
+         
+          
+        
       </p>
     </div>
       <hr />
@@ -660,34 +665,35 @@ id则是添加到打包文件名的标识符，用来做后缀。
       </div>
 
     
-      <div class="pagination">
+    <div class="pagination">
         <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
         </div>
 
         <div class="pagination__buttons">
-          
+            
             <span class="button previous">
-              <a href="http://keltoy.github.io/posts/spark%E8%B0%83%E4%BC%98/">
-                <span class="button__icon">←</span>
-                <span class="button__text">spark调优</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/spark%E8%B0%83%E4%BC%98/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">spark调优</span>
+                </a>
             </span>
-          
+            
 
-          
+            
             <span class="button next">
-              <a href="http://keltoy.github.io/posts/conda-%E5%91%BD%E4%BB%A4/">
-                <span class="button__text">conda 命令</span>
-                <span class="button__icon">→</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/conda-%E5%91%BD%E4%BB%A4/">
+                    <span class="button__text">conda 命令</span>
+                    <span class="button__icon">→</span>
+                </a>
             </span>
-          
+            
         </div>
-      </div>
-    
+    </div>
 
+
+    
 
     
 
@@ -697,22 +703,8 @@ id则是添加到打包文件名的标识符，用来做后缀。
 
             
                 <footer class="footer">
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>&copy; 2020</span>
-            
-            
-                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            
-            <span> <a href="http://keltoy.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
-        </div>
-    </div>
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-        </div>
-    </div>
+    
+    
 </footer>
 
             
@@ -722,8 +714,7 @@ id则是添加到打包文件名的标识符，用来做后缀。
 
 
 
-
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.599099f1f14b78b657d524b28e10e0c5098e7cd46e9c7aed73d577068a276c3ff1bb234cbf29cb313333e83cf411727b43157c91ce5b809e2ffc81664614608e.js" integrity="sha512-WZCZ8fFLeLZX1SSyjhDgxQmOfNRunHrtc9V3BoonbD/xuyNMvynLMTMz6Dz0EXJ7QxV8kc5bgJ4v/IFmRhRgjg=="></script>
 
 
 

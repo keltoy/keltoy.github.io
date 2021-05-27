@@ -27,12 +27,12 @@
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
     type="text/css">
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c46cbca46fa76c0fcd3da8313ecf4adee5fb3ffb0288c0902d7e90aead220d79.css">
 
 
 
@@ -47,16 +47,10 @@
  Parquet文件由一个文件头（header），一个或多个紧随其后的文件块（block），以及一个用于结尾的文件尾（footer）构成。 Parquet文件的每个文件块负责存储一个行组，行组由列块组成，且一个列块负责存储一列数据。每个列块中的的数据以页为单位。 行组 可以理解为一个个block，这个特性让parquet是可分割的，因此可以被mapreduce split来处理 不论是行组，还是page，都有具体的统计信息，根据这些统计信息可以做很多优化 每个行组由一个个 Column chunk组成，也就是一个个列。Column chunk又细分成一个个page，每个page下就是该列的数据集合。列下面再细分page主要是为了添加索引，page容量设置的小一些可以增加索引的速度，但是设置太小也会导致过多的索引和统计数据，不仅占用空间，还会降低扫描索引的时间。 parquet可以支持嵌套的数据结构，它使用了Dremel的 Striping/Assembly 算法来实现对嵌套型数据结构的打散和重构 parquet的索引和元数据全部放在footer块  Avro avro文件格式大致如下
  header, followed by one or more file data blocks  其中，datablock又可分为
  numEntries：该datablock中的记录条数； blockSize：该datablock的大小； data：存储的数据； sync：同步位  整个avro的文件布局如下：
-与Thrift 的区别：">
-<meta itemprop="datePublished" content="2020-07-24T17:54:40+00:00" />
-<meta itemprop="dateModified" content="2020-07-24T17:54:40+00:00" />
-<meta itemprop="wordCount" content="79">
-<meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-
-
-
+与Thrift 的区别："><meta itemprop="datePublished" content="2020-07-24T17:54:40&#43;00:00" />
+<meta itemprop="dateModified" content="2020-07-24T17:54:40&#43;00:00" />
+<meta itemprop="wordCount" content="79"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
 <meta itemprop="keywords" content="data," />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
@@ -72,6 +66,7 @@
 
 
 
+
     <meta property="og:title" content="Sequence Parquet And Avro" />
 <meta property="og:description" content="[toc]
 背景 大数据常用文件格式，在hive spark 使用时都需要注意，现在在使用flink 的时候发现格式问题还挺头疼的，准备整理整理，认清楚各个文件格式是怎么一回事
@@ -82,10 +77,10 @@
  numEntries：该datablock中的记录条数； blockSize：该datablock的大小； data：存储的数据； sync：同步位  整个avro的文件布局如下：
 与Thrift 的区别：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://keltoy.github.io/posts/sequence-parquet-and-avro/" />
-<meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta property="article:published_time" content="2020-07-24T17:54:40+00:00" />
-<meta property="article:modified_time" content="2020-07-24T17:54:40+00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+<meta property="og:url" content="http://keltoy.github.io/posts/sequence-parquet-and-avro/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-24T17:54:40&#43;00:00" />
+<meta property="article:modified_time" content="2020-07-24T17:54:40&#43;00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+
 
 
 
@@ -103,7 +98,10 @@
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -125,7 +123,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://keltoy.github.io/about">About</a></li><li><a href="http://keltoy.github.io/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
     </ul>
 </nav>
 
@@ -136,13 +134,6 @@
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -168,6 +159,10 @@
       <h1 class="post-title">
         <a href="http://keltoy.github.io/posts/sequence-parquet-and-avro/">Sequence Parquet And Avro</a>
       </h1>
+
+      
+
+      
 
       
 
@@ -228,12 +223,15 @@
     <hr />
 
     <div class="post-info">
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="http://keltoy.github.io/tags/data/">data</a></span>
-        </p>
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://keltoy.github.io/tags/data/">data</a></span>
+        
+    </p>
+
+      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -253,7 +251,13 @@
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        2020-07-25 01:54 &#43;0800
+        
+          2020-07-25 01:54 &#43;0800
+        
+
+         
+          
+        
       </p>
     </div>
       <hr />
@@ -351,27 +355,35 @@
       </div>
 
     
-      <div class="pagination">
+    <div class="pagination">
         <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
         </div>
 
         <div class="pagination__buttons">
-          
-
-          
-            <span class="button next">
-              <a href="http://keltoy.github.io/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/">
-                <span class="button__text">大数据框架</span>
-                <span class="button__icon">→</span>
-              </a>
+            
+            <span class="button previous">
+                <a href="http://keltoy.github.io/posts/kylin_and_doris/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Kylin_And_Doris</span>
+                </a>
             </span>
-          
-        </div>
-      </div>
-    
+            
 
+            
+            <span class="button next">
+                <a href="http://keltoy.github.io/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/">
+                    <span class="button__text">大数据框架</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
 
     
 
@@ -381,22 +393,8 @@
 
             
                 <footer class="footer">
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>&copy; 2020</span>
-            
-            
-                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            
-            <span> <a href="http://keltoy.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
-        </div>
-    </div>
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-        </div>
-    </div>
+    
+    
 </footer>
 
             
@@ -406,8 +404,7 @@
 
 
 
-
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.599099f1f14b78b657d524b28e10e0c5098e7cd46e9c7aed73d577068a276c3ff1bb234cbf29cb313333e83cf411727b43157c91ce5b809e2ffc81664614608e.js" integrity="sha512-WZCZ8fFLeLZX1SSyjhDgxQmOfNRunHrtc9V3BoonbD/xuyNMvynLMTMz6Dz0EXJ7QxV8kc5bgJ4v/IFmRhRgjg=="></script>
 
 
 

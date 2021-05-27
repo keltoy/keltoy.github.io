@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 29 Apr 2017 12:12:58 +0000</lastBuildDate>
-    
-	<atom:link href="http://keltoy.github.io/tags/code/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 29 Apr 2017 12:12:58 +0000</lastBuildDate><atom:link href="http://keltoy.github.io/tags/code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 并发小结</title>
       <link>http://keltoy.github.io/posts/redis-%E5%B9%B6%E5%8F%91%E5%B0%8F%E7%BB%93/</link>
@@ -42,7 +38,7 @@ Postscript 将传统项目放到分布式架构上，就容易出现问题。分
  Preface 已经听了很多人说 org-mode 非常好用，一直不知道怎么用，今天看了看一些文章，发现其实和 markdown 有那么点像，总结总结，想自己做个 GTD。
 Org-mode Chapter md 中的章节使用 &amp;ldquo;#&amp;quot;，而 org-mode 中使用 &amp;ldquo;*&amp;quot;。
 不过，org-mode 有一些有趣的操作：
- S-tab, toggle 所有的 chapter tab, toggle 当前的 chapter M-left/right, 升级/降级 chapter M-up/down, 调整 chapter 的顺序  List 无序 md 无序队列使用 &amp;ldquo;*&amp;rdquo; 和 &amp;ldquo;+&amp;rdquo;，而 org-mode 使用 &amp;ldquo;+&amp;rdquo; 和 &amp;ldquo;-&amp;quot;。
+ S-tab, toggle 所有的 chapter tab, toggle 当前的 chapter M-left/right, 升级/降级 chapter M-up/down, 调整 chapter 的顺序  List 无序 md 无序队列使用 &amp;ldquo;*&amp;rdquo; 和 &amp;ldquo;+&amp;quot;，而 org-mode 使用 &amp;ldquo;+&amp;rdquo; 和 &amp;ldquo;-&amp;quot;。
 注意到的是 md 的间距是不同的：
  这是 &amp;ldquo;*&amp;rdquo; 的第一行 这是第二行   这是 &amp;ldquo;+&amp;rdquo; 的第一行 这是第二行  有序 md 的有序使用的是 &amp;ldquo;1.</description>
     </item>

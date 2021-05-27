@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on Toy&#39;s Blogs</title>
+    <link>http://keltoy.github.io/tags/untagged/</link>
+    <description>Recent content in untagged on Toy&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 27 Aug 2020 20:40:45 +0800</lastBuildDate><atom:link href="http://keltoy.github.io/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spark_内存管理</title>
+      <link>http://keltoy.github.io/posts/spark_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 27 Aug 2020 20:40:45 +0800</pubDate>
+      
+      <guid>http://keltoy.github.io/posts/spark_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>前言 Spark是基于内存的计算引擎，就是说它高效的使用了分布式节点上的内存资源，尽可能多的使用内存，而不是将数据写入磁盘。内存管理机制就是其中的核心Spark 是基于内存进行处理，不用每次计算后写入磁盘，再取出来进行计算，这样就节省了IO时间，所有的临时数据都放在内存中。
+Spark管理的内存  系统区，Spark运行自身的代码需要的空间 用户区，udf等代码需要一定的空间来执行 存储区，为了计算速度加快，Spark会将存储的数据放入内存中进行计算，存储区就是为了放入数据使用的 执行区，Spark操作数据的单元是partition，Spark在执行一些shuffle、join、sort、aggregation之类的操作，需要把partition加载到内存进行计算，会用到部分内存  总结 </description>
+    </item>
+    
+    <item>
+      <title>Kylin_And_Doris</title>
+      <link>http://keltoy.github.io/posts/kylin_and_doris/</link>
+      <pubDate>Mon, 03 Aug 2020 16:10:51 +0800</pubDate>
+      
+      <guid>http://keltoy.github.io/posts/kylin_and_doris/</guid>
+      <description>[toc]
+前言 Kylin 和 Doris 都是 开源OLAP 对比这两款数据库，实际上也是是 MOLAP 和 ROLAP的代表
+​ MOLAP (Multidimension OLAP)，存储模式使得分区的聚合和其源数据的复本以多维结构存储在分析服务器计算机上
+​ ROLAP (Relational OLAP)，存储模式使得分区的聚合存储在关系数据库的表（在分区数据源中指定）中
+​ HOLAP (Hybrid OLAP)，支持所有的三种存储模式。应用存储设计向导，可以选择最适合于分区的存储模式。或者也可使用基于使用的优化向导，以便根据已发送到多维数据集的查询选择存储模式并优化聚合设计。当使用三种存储模式之一时，还可以使用显式定义的筛选来限制读入到分区内的源数据
+MOLAP  概述：  这是OLAP分析的传统方式。在MOLAP中，数据存储在一个多维数据集(cube)中，存储并不是在传统的关系型数据库中，而是自定义的格式。
+ 优势：  卓越的性能：MOLAP cubes为了快速数据检索而构建，具有最佳的slicing dicing操作
+可以执行复杂的计算：所有的计算都在创建多维数据表时预先生成。因此，复杂的计算不仅可行，而且迅速
+ 劣势：  它可以处理的数据量有限：因为所有的计算都是执行在构建的多维数据集上，多维数据集本身不可能包括大量的数据。当然这并不是大数据不能派生出多维数据集。事实上，这是可以的。但是在这种情况下，只有汇总的信息能够包含在多维数据集中。
+需要额外的成本：多维数据集技术往往是有专利或现在并不存在在某个组织中。因此，要想采用MOLAP技术，通常是要付出额外的人力和资源成本。
+ROLAP  概述：  这种方法依赖于操作存储在关系型数据库中的数据，给传统的OLAP slicing 和 dicing功能。本质上，每个slicing或dicing功能和SQL语句中&amp;quot;WHERE&amp;quot;子句的功能是一样的。
+ 优势：  可以处理大数据量：ROLAP技术的数据量大小就是底层关系数据库存储的大小。换句话说，ROLAP本身没有对数据量的限制。
+可以利用关系型数据库所固有的功能：关系型数据库已经具备非常多的功能。ROLAP技术，由于它是建立在关系型数据库上的，因此可以使用这些功能。
+ 劣势：  性能可能会很慢：因为每个ROLAP包裹实际上是一个SQL查询（或多个SQL查询）关系数据库，可能会因为底层数据量很大，使得查询的时间很长。
+受限于SQL的功能：因为ROLAP技术主要依赖于生成SQL语句查询关系数据库，SQL语句并不能满足所有的需求（举例来说，使用SQL很难执行复杂的计算），ROLAP技术因此受限于SQL所能做的事情。ROLAP厂商已经通过构建工具以减轻这种风险，而且允许用户自定义函数。
+HOLAP  概述：  HOLAP技术试图将MOLAP和ROLAP技术的优势结合起来。总体来说，HOLAP利用了多维数据集的技术从而得到更快的性能。
+当需要详细信息时，HOLAP可以从多维数据集“穿过”到底层的关系数据库。</description>
+    </item>
+    
+  </channel>
+</rss>

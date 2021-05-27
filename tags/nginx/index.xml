@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 10 Jan 2017 12:23:20 +0000</lastBuildDate>
-    
-	<atom:link href="http://keltoy.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 10 Jan 2017 12:23:20 +0000</lastBuildDate><atom:link href="http://keltoy.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Question For Nginx Error 500</title>
       <link>http://keltoy.github.io/posts/question-for-nginx-error-500/</link>

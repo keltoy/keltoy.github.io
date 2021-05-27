@@ -24,12 +24,12 @@ Types of Index 在《高性能 MySQL》是这么分的：
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
     type="text/css">
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c46cbca46fa76c0fcd3da8313ecf4adee5fb3ffb0288c0902d7e90aead220d79.css">
 
 
 
@@ -41,16 +41,10 @@ Types of Index 在《高性能 MySQL》是这么分的：
  之前被问到索引的分类，被分为唯一性索引和普通索引，有点懵逼。回头再看看，总结一下。
 Keys  PRIMARY 主键索引建立主键索引其实跟 UNIQUE 没什么区别 INDEX 普通的索引 UNIQUE 唯一性索引 FULLTEXT 全文索引，这个 innodb 在 MySQL 5.5 之前不支持 SPAIAL 空间索引  这么分其实很混乱，这几个 key 好像不是一个维度的。
 Types of Index 在《高性能 MySQL》是这么分的：
- B-Tree 索引 哈希索引 空间数据索引 全文索引 其他索引  ">
-<meta itemprop="datePublished" content="2016-12-30T23:16:42+00:00" />
-<meta itemprop="dateModified" content="2016-12-30T23:16:42+00:00" />
-<meta itemprop="wordCount" content="39">
-<meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-
-
-
+ B-Tree 索引 哈希索引 空间数据索引 全文索引 其他索引  "><meta itemprop="datePublished" content="2016-12-30T23:16:42&#43;00:00" />
+<meta itemprop="dateModified" content="2016-12-30T23:16:42&#43;00:00" />
+<meta itemprop="wordCount" content="39"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
 <meta itemprop="keywords" content="MySQL," />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
@@ -63,6 +57,7 @@ Types of Index 在《高性能 MySQL》是这么分的：
 
 
 
+
     <meta property="og:title" content="Index For MySQL" />
 <meta property="og:description" content="Preface  Beautiful is better than ugly.
  之前被问到索引的分类，被分为唯一性索引和普通索引，有点懵逼。回头再看看，总结一下。
@@ -70,10 +65,10 @@ Keys  PRIMARY 主键索引建立主键索引其实跟 UNIQUE 没什么区别 IND
 Types of Index 在《高性能 MySQL》是这么分的：
  B-Tree 索引 哈希索引 空间数据索引 全文索引 其他索引  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://keltoy.github.io/posts/index-for-mysql/" />
-<meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta property="article:published_time" content="2016-12-30T23:16:42+00:00" />
-<meta property="article:modified_time" content="2016-12-30T23:16:42+00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+<meta property="og:url" content="http://keltoy.github.io/posts/index-for-mysql/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-12-30T23:16:42&#43;00:00" />
+<meta property="article:modified_time" content="2016-12-30T23:16:42&#43;00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+
 
 
 
@@ -91,7 +86,10 @@ Types of Index 在《高性能 MySQL》是这么分的：
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -113,7 +111,7 @@ Types of Index 在《高性能 MySQL》是这么分的：
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://keltoy.github.io/about">About</a></li><li><a href="http://keltoy.github.io/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
     </ul>
 </nav>
 
@@ -124,13 +122,6 @@ Types of Index 在《高性能 MySQL》是这么分的：
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -156,6 +147,10 @@ Types of Index 在《高性能 MySQL》是这么分的：
       <h1 class="post-title">
         <a href="http://keltoy.github.io/posts/index-for-mysql/">Index For MySQL</a>
       </h1>
+
+      
+
+      
 
       
 
@@ -190,12 +185,15 @@ Types of Index 在《高性能 MySQL》是这么分的：
     <hr />
 
     <div class="post-info">
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="http://keltoy.github.io/tags/mysql/">MySQL</a></span>
-        </p>
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://keltoy.github.io/tags/mysql/">MySQL</a></span>
+        
+    </p>
+
+      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -215,7 +213,13 @@ Types of Index 在《高性能 MySQL》是这么分的：
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        2016-12-31 07:16 &#43;0800
+        
+          2016-12-31 07:16 &#43;0800
+        
+
+         
+          
+        
       </p>
     </div>
       <hr />
@@ -313,34 +317,35 @@ Types of Index 在《高性能 MySQL》是这么分的：
       </div>
 
     
-      <div class="pagination">
+    <div class="pagination">
         <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
         </div>
 
         <div class="pagination__buttons">
-          
+            
             <span class="button previous">
-              <a href="http://keltoy.github.io/posts/question-for-nginx-error-500/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Question For Nginx Error 500</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/question-for-nginx-error-500/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Question For Nginx Error 500</span>
+                </a>
             </span>
-          
+            
 
-          
+            
             <span class="button next">
-              <a href="http://keltoy.github.io/posts/learning-docker/">
-                <span class="button__text">Learning Docker</span>
-                <span class="button__icon">→</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/learning-docker/">
+                    <span class="button__text">Learning Docker</span>
+                    <span class="button__icon">→</span>
+                </a>
             </span>
-          
+            
         </div>
-      </div>
-    
+    </div>
 
+
+    
 
     
 
@@ -350,22 +355,8 @@ Types of Index 在《高性能 MySQL》是这么分的：
 
             
                 <footer class="footer">
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>&copy; 2020</span>
-            
-            
-                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            
-            <span> <a href="http://keltoy.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
-        </div>
-    </div>
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-        </div>
-    </div>
+    
+    
 </footer>
 
             
@@ -375,8 +366,7 @@ Types of Index 在《高性能 MySQL》是这么分的：
 
 
 
-
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.599099f1f14b78b657d524b28e10e0c5098e7cd46e9c7aed73d577068a276c3ff1bb234cbf29cb313333e83cf411727b43157c91ce5b809e2ffc81664614608e.js" integrity="sha512-WZCZ8fFLeLZX1SSyjhDgxQmOfNRunHrtc9V3BoonbD/xuyNMvynLMTMz6Dz0EXJ7QxV8kc5bgJ4v/IFmRhRgjg=="></script>
 
 
 

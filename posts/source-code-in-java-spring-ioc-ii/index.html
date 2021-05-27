@@ -26,12 +26,12 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
     type="text/css">
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c46cbca46fa76c0fcd3da8313ecf4adee5fb3ffb0288c0902d7e90aead220d79.css">
 
 
 
@@ -45,16 +45,10 @@ What is BeanDefinition?  对 IoC 来说，BeanDefinition 就是对依赖反转�
 Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种对象以及它们之间的相互依赖关系。BeanDefinition 抽象了我们对 Bean 的定义，是让容器起作用的主要数据类型。
  我的理解 BeanDefinition 有点像 Bean 的元数据，又有点像抽象类，又有点像 schema。
 Resource location of BeanDefinition 再次拿出来这幅图来讲一下，像 ClassPathXmlApplicationContext 这样的方法定位资源的方式还是使用的 DefaultResourceLoader。而这个 DefaultResourceLoader 实现的是 ResourceLoader 接口：
-public interface ResourceLoader { /** Pseudo URL prefix for loading from the class path: &#34;classpath:&#34; */ String CLASSPATH_URL_PREFIX = ResourceUtils.">
-<meta itemprop="datePublished" content="2016-11-10T23:09:39+00:00" />
-<meta itemprop="dateModified" content="2016-11-10T23:09:39+00:00" />
-<meta itemprop="wordCount" content="774">
-<meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-
-
-
+public interface ResourceLoader { /** Pseudo URL prefix for loading from the class path: &#34;classpath:&#34; */ String CLASSPATH_URL_PREFIX = ResourceUtils."><meta itemprop="datePublished" content="2016-11-10T23:09:39&#43;00:00" />
+<meta itemprop="dateModified" content="2016-11-10T23:09:39&#43;00:00" />
+<meta itemprop="wordCount" content="774"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
 <meta itemprop="keywords" content="code,source code,java,spring," />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
@@ -69,6 +63,7 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
 
 
 
+
     <meta property="og:title" content="Source Code in Java -- Spring IOC - II" />
 <meta property="og:description" content="Preface  简单来说 IoC 容器的初始化是由 refresh() 方法启动的，这个方法标志着 IoC 容器正式启动。具体来说这个启动包括 BeanDefinition 的 Resource 定位、载入和注册三个基本过程。
  关于这段话我首先不能理解的就是无缘无故出来的这个BeanDefinition，我在浏览这些源码的时候也没看到。因此，为了好好了解 Spring IoC，我还需要进一步查看内部源码和解释。
@@ -78,10 +73,10 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
 Resource location of BeanDefinition 再次拿出来这幅图来讲一下，像 ClassPathXmlApplicationContext 这样的方法定位资源的方式还是使用的 DefaultResourceLoader。而这个 DefaultResourceLoader 实现的是 ResourceLoader 接口：
 public interface ResourceLoader { /** Pseudo URL prefix for loading from the class path: &#34;classpath:&#34; */ String CLASSPATH_URL_PREFIX = ResourceUtils." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://keltoy.github.io/posts/source-code-in-java-spring-ioc-ii/" />
-<meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta property="article:published_time" content="2016-11-10T23:09:39+00:00" />
-<meta property="article:modified_time" content="2016-11-10T23:09:39+00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+<meta property="og:url" content="http://keltoy.github.io/posts/source-code-in-java-spring-ioc-ii/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-11-10T23:09:39&#43;00:00" />
+<meta property="article:modified_time" content="2016-11-10T23:09:39&#43;00:00" /><meta property="og:site_name" content="Toy&#39;s Blogs" />
+
 
 
 
@@ -99,7 +94,10 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -121,7 +119,7 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://keltoy.github.io/about">About</a></li><li><a href="http://keltoy.github.io/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
     </ul>
 </nav>
 
@@ -132,13 +130,6 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -164,6 +155,10 @@ public interface ResourceLoader { /** Pseudo URL prefix for loading from the cla
       <h1 class="post-title">
         <a href="http://keltoy.github.io/posts/source-code-in-java-spring-ioc-ii/">Source Code in Java &ndash; Spring IOC - II</a>
       </h1>
+
+      
+
+      
 
       
 
@@ -364,12 +359,18 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
     <hr />
 
     <div class="post-info">
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="http://keltoy.github.io/tags/code/">code</a></span><span class="tag"><a href="http://keltoy.github.io/tags/source-code/">source code</a></span><span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span><span class="tag"><a href="http://keltoy.github.io/tags/spring/">spring</a></span>
-        </p>
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://keltoy.github.io/tags/code/">code</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/source-code/">source code</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/java/">java</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/spring/">spring</a></span>
+        
+    </p>
+
+      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -389,7 +390,13 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        2016-11-11 07:09 &#43;0800
+        
+          2016-11-11 07:09 &#43;0800
+        
+
+         
+          
+        
       </p>
     </div>
       <hr />
@@ -487,34 +494,35 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
       </div>
 
     
-      <div class="pagination">
+    <div class="pagination">
         <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
         </div>
 
         <div class="pagination__buttons">
-          
+            
             <span class="button previous">
-              <a href="http://keltoy.github.io/posts/learning-docker/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Learning Docker</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/learning-docker/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Learning Docker</span>
+                </a>
             </span>
-          
+            
 
-          
+            
             <span class="button next">
-              <a href="http://keltoy.github.io/posts/emacs-tutorials/">
-                <span class="button__text">Emacs Tutorials</span>
-                <span class="button__icon">→</span>
-              </a>
+                <a href="http://keltoy.github.io/posts/emacs-tutorials/">
+                    <span class="button__text">Emacs Tutorials</span>
+                    <span class="button__icon">→</span>
+                </a>
             </span>
-          
+            
         </div>
-      </div>
-    
+    </div>
 
+
+    
 
     
 
@@ -524,22 +532,8 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
 
             
                 <footer class="footer">
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>&copy; 2020</span>
-            
-            
-                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            
-            <span> <a href="http://keltoy.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
-        </div>
-    </div>
-    <div class="footer__inner">
-        <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-        </div>
-    </div>
+    
+    
 </footer>
 
             
@@ -549,8 +543,7 @@ Spring 通过定义 BeanDefinition 来管理基于 Spring 的应用中的各种�
 
 
 
-
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.599099f1f14b78b657d524b28e10e0c5098e7cd46e9c7aed73d577068a276c3ff1bb234cbf29cb313333e83cf411727b43157c91ce5b809e2ffc81664614608e.js" integrity="sha512-WZCZ8fFLeLZX1SSyjhDgxQmOfNRunHrtc9V3BoonbD/xuyNMvynLMTMz6Dz0EXJ7QxV8kc5bgJ4v/IFmRhRgjg=="></script>
 
 
 
