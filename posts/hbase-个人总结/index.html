@@ -5,8 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="思维导图" />
-<meta name="keywords" content=", HBase" />
+<meta name="description" content="[toc]
+存储原理 HMaster  主节点 管理RegionServer, Region  HRegionServer  从节点 数据，表数据存储  HLog 预写日志
+ 1个RegionServer可能有多个HLog 存储在HDFS上  Region  1个RegionServer可能有多个Region 每个Region 只属于一张表，只保存一张表的数据  Store  每1个列族对应1个Store  MemStore  1个Store 对应1个MemStore  StoreFile  存储到HDFS上 1个Store 对应多个MemStore 对 HFile 的包装  BlockCache  1个RegionServer一般只有1个BlockCache 加快读取数据  client  客户端  写流程 写入流程  预写日志HLog WAL 客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer 客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region) 通过meta表的信息，定位到相应的region 向memstore写入数据(默认128M) 如果memstore超过128M 则需要flush溢写数据到storeFile(HFile) 如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile 周期执行，将所有storeFile 最终进行合并触发major compation 数据量过大时需要执行split，将1个region 分成2个region  flush流程 为了避免flush影响写入性能，通过2个MemStore完成稳定写入" />
+<meta name="keywords" content=", hbase" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="http://keltoy.github.io/posts/hbase-%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" />
@@ -33,21 +35,27 @@
 
 
 <meta itemprop="name" content="HBase 个人总结">
-<meta itemprop="description" content="思维导图"><meta itemprop="datePublished" content="2020-06-24T17:39:30&#43;00:00" />
+<meta itemprop="description" content="[toc]
+存储原理 HMaster  主节点 管理RegionServer, Region  HRegionServer  从节点 数据，表数据存储  HLog 预写日志
+ 1个RegionServer可能有多个HLog 存储在HDFS上  Region  1个RegionServer可能有多个Region 每个Region 只属于一张表，只保存一张表的数据  Store  每1个列族对应1个Store  MemStore  1个Store 对应1个MemStore  StoreFile  存储到HDFS上 1个Store 对应多个MemStore 对 HFile 的包装  BlockCache  1个RegionServer一般只有1个BlockCache 加快读取数据  client  客户端  写流程 写入流程  预写日志HLog WAL 客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer 客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region) 通过meta表的信息，定位到相应的region 向memstore写入数据(默认128M) 如果memstore超过128M 则需要flush溢写数据到storeFile(HFile) 如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile 周期执行，将所有storeFile 最终进行合并触发major compation 数据量过大时需要执行split，将1个region 分成2个region  flush流程 为了避免flush影响写入性能，通过2个MemStore完成稳定写入"><meta itemprop="datePublished" content="2020-06-24T17:39:30&#43;00:00" />
 <meta itemprop="dateModified" content="2020-06-24T17:39:30&#43;00:00" />
-<meta itemprop="wordCount" content="1"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
-<meta itemprop="keywords" content="HBase," />
+<meta itemprop="wordCount" content="310"><meta itemprop="image" content="http://keltoy.github.io/background-cover.jpg"/>
+<meta itemprop="keywords" content="hbase," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://keltoy.github.io/background-cover.jpg"/>
 
 <meta name="twitter:title" content="HBase 个人总结"/>
-<meta name="twitter:description" content="思维导图"/>
+<meta name="twitter:description" content="[toc]
+存储原理 HMaster  主节点 管理RegionServer, Region  HRegionServer  从节点 数据，表数据存储  HLog 预写日志
+ 1个RegionServer可能有多个HLog 存储在HDFS上  Region  1个RegionServer可能有多个Region 每个Region 只属于一张表，只保存一张表的数据  Store  每1个列族对应1个Store  MemStore  1个Store 对应1个MemStore  StoreFile  存储到HDFS上 1个Store 对应多个MemStore 对 HFile 的包装  BlockCache  1个RegionServer一般只有1个BlockCache 加快读取数据  client  客户端  写流程 写入流程  预写日志HLog WAL 客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer 客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region) 通过meta表的信息，定位到相应的region 向memstore写入数据(默认128M) 如果memstore超过128M 则需要flush溢写数据到storeFile(HFile) 如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile 周期执行，将所有storeFile 最终进行合并触发major compation 数据量过大时需要执行split，将1个region 分成2个region  flush流程 为了避免flush影响写入性能，通过2个MemStore完成稳定写入"/>
 
 
 
 
     <meta property="og:title" content="HBase 个人总结" />
-<meta property="og:description" content="思维导图" />
+<meta property="og:description" content="[toc]
+存储原理 HMaster  主节点 管理RegionServer, Region  HRegionServer  从节点 数据，表数据存储  HLog 预写日志
+ 1个RegionServer可能有多个HLog 存储在HDFS上  Region  1个RegionServer可能有多个Region 每个Region 只属于一张表，只保存一张表的数据  Store  每1个列族对应1个Store  MemStore  1个Store 对应1个MemStore  StoreFile  存储到HDFS上 1个Store 对应多个MemStore 对 HFile 的包装  BlockCache  1个RegionServer一般只有1个BlockCache 加快读取数据  client  客户端  写流程 写入流程  预写日志HLog WAL 客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer 客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region) 通过meta表的信息，定位到相应的region 向memstore写入数据(默认128M) 如果memstore超过128M 则需要flush溢写数据到storeFile(HFile) 如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile 周期执行，将所有storeFile 最终进行合并触发major compation 数据量过大时需要执行split，将1个region 分成2个region  flush流程 为了避免flush影响写入性能，通过2个MemStore完成稳定写入" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://keltoy.github.io/posts/hbase-%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="http://keltoy.github.io/background-cover.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-06-24T17:39:30&#43;00:00" />
@@ -121,7 +129,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        One minute
+        2 minutes
 
         
       </p>
@@ -139,7 +147,218 @@
       
 
       <div class="post-content">
-        <p><img src="/hbase.png" alt="HBase.png"></p>
+        <p>[toc]</p>
+<h2 id="存储原理">存储原理</h2>
+<h3 id="hmaster">HMaster</h3>
+<ul>
+<li>主节点</li>
+<li>管理RegionServer, Region</li>
+</ul>
+<h3 id="hregionserver">HRegionServer</h3>
+<ul>
+<li>从节点</li>
+<li>数据，表数据存储</li>
+</ul>
+<h4 id="hlog">HLog</h4>
+<p>预写日志</p>
+<ul>
+<li>1个RegionServer可能有多个HLog</li>
+<li>存储在HDFS上</li>
+</ul>
+<h4 id="region">Region</h4>
+<ul>
+<li>1个RegionServer可能有多个Region</li>
+<li>每个Region 只属于一张表，只保存一张表的数据</li>
+</ul>
+<h5 id="store">Store</h5>
+<ul>
+<li>每1个列族对应1个Store</li>
+</ul>
+<h6 id="memstore">MemStore</h6>
+<ul>
+<li>1个Store 对应1个MemStore</li>
+</ul>
+<h6 id="storefile">StoreFile</h6>
+<ul>
+<li>存储到HDFS上</li>
+<li>1个Store 对应多个MemStore</li>
+<li>对 <strong>HFile</strong> 的包装</li>
+</ul>
+<h4 id="blockcache">BlockCache</h4>
+<ul>
+<li>1个RegionServer一般只有1个BlockCache</li>
+<li>加快读取数据</li>
+</ul>
+<h3 id="client">client</h3>
+<ul>
+<li>客户端</li>
+</ul>
+<h2 id="写流程">写流程</h2>
+<h3 id="写入流程">写入流程</h3>
+<ol>
+<li>预写日志HLog WAL</li>
+<li>客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer</li>
+<li>客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region)</li>
+<li>通过meta表的信息，定位到相应的region</li>
+<li>向memstore写入数据(默认128M)</li>
+<li>如果memstore超过128M 则需要flush溢写数据到storeFile(HFile)</li>
+<li>如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile</li>
+<li>周期执行，将所有storeFile 最终进行合并触发major compation</li>
+<li>数据量过大时需要执行split，将1个region 分成2个region</li>
+</ol>
+<h3 id="flush流程">flush流程</h3>
+<p>为了避免flush影响写入性能，通过2个MemStore完成稳定写入</p>
+<h4 id="flush写入流程">flush写入流程</h4>
+<ol>
+<li>当前写入MemStore设置为Snapshot，不容许新写入操作写入</li>
+<li>另开内存空间作为MemStore，后续的写入操作写入这里</li>
+<li>Snapshot的MemStore写入完毕，对应内存空间释放</li>
+</ol>
+<h4 id="flush触发条件">flush触发条件</h4>
+<ol>
+<li>memstore 大小达到了上限(hbase.hregion.memstore.flush.size 默认128M)</li>
+<li>region 所有的memstore大小总和达到了上限(hbase.hregion.memstore.block.multiplier * hbase.hregion.memstore.flush.size 默认 2 * 128M)</li>
+<li>RegionServer 中所有的memstore的大小总和超过低水位阈值(hbase.regionserver.global.memstore.size.lower.limit * hbase.regionserver.globlal.memstore.size,前者默认0.95)，先flush最大的，然后是次大的，以此类推</li>
+<li>如果写入速度大于flush写出速度，导致总memstore大小超过高水位阈值 hbase.regionserver.global.memstore.size(默认jvm内存的40%)，此时regionServer会阻塞更新并执行flush,直到memstore大小低于低水为值</li>
+</ol>
+<h3 id="minor-compaction">minor compaction</h3>
+<h4 id="小合并触发条件">小合并触发条件</h4>
+<ol>
+<li>至少需要3个满足条件的storefile时 才会启动(可配置)</li>
+<li>一次 minor compaction 最多选取10个storefile(可配置)</li>
+<li>文件大小小于128m的storefile 一定会加入到minor compaction的storefile中(可配置)</li>
+<li>文件大于Long.MAX_VALUE的文件，一定排除minor compaction(可配置)</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+<span style="color:#f92672">&lt;name&gt;</span>hbase.hstore.compactionThreshold<span style="color:#f92672">&lt;/name&gt;</span>
+<span style="color:#f92672">&lt;value&gt;</span>3<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+
+<span style="color:#f92672">&lt;property&gt;</span>
+<span style="color:#f92672">&lt;name&gt;</span>hbase.hstore.compaction.max<span style="color:#f92672">&lt;/name&gt;</span>
+<span style="color:#f92672">&lt;value&gt;</span>3<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+
+<span style="color:#f92672">&lt;property&gt;</span>
+<span style="color:#f92672">&lt;name&gt;</span>hbase.hstore.compaction.min.size<span style="color:#f92672">&lt;/name&gt;</span>
+<span style="color:#f92672">&lt;value&gt;</span>134217728<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+
+<span style="color:#f92672">&lt;property&gt;</span>
+<span style="color:#f92672">&lt;name&gt;</span>hbase.hstore.compaction.max.size<span style="color:#f92672">&lt;/name&gt;</span>
+<span style="color:#f92672">&lt;value&gt;</span>9223372036854775807<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+
+</code></pre></div><h3 id="major-compaction">major compaction</h3>
+<ol>
+<li>将所有Store中的 HFile 合并成一个HFile</li>
+<li>清理3类无意义的数据被删除的数据，ttl过期数据 版本号超过设定版本号的数据</li>
+</ol>
+<p>一般不会让hbase 自动执行，挑选一个不繁忙的时间段，进行定时执行(7天左右)</p>
+<p>默认情况下是7天执行一次，生产环境中，将其关闭(将时间设置为0)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+<span style="color:#f92672">&lt;name&gt;</span>hbase.hregion.majorcompaction<span style="color:#f92672">&lt;/name&gt;</span>
+<span style="color:#75715e">&lt;!-- 设置为0时 为关闭自动执行major compaction--&gt;</span>
+<span style="color:#f92672">&lt;value&gt;</span>604800000<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 手动触发</span>
+major_compact tableName
+</code></pre></div><h2 id="读流程">读流程</h2>
+<h3 id="读取流程">读取流程</h3>
+<ol>
+<li>客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer</li>
+<li>客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region)</li>
+<li>通过meta表的信息，定位到相应的region</li>
+<li>先读取memstore是否存在</li>
+<li>如果不存在读取blockcache</li>
+<li>如果不存在读取HFile数据</li>
+</ol>
+<h3 id="meta-信息">meta 信息</h3>
+<p>保存了</p>
+<ol>
+<li>hbase集群有哪些表</li>
+<li>每张表有哪些region</li>
+<li>这些region 保存在哪些regionServer上</li>
+<li>region的开始rowkey和结束rowkey(startrowkey endrowkey)</li>
+</ol>
+<h2 id="region拆分机制split">Region拆分机制(split)</h2>
+<p>Region拆分有如下几个钟策略</p>
+<h3 id="constantsizeregionsplitpolicy">ConstantSizeRegionSplitPolicy</h3>
+<p>0.94版本前的切分逻辑</p>
+<p>当region大小大于阈值后就会触发切分，分成2个等分的region
+hbase.hregion.max.filesize=10G</p>
+<p>弊端:</p>
+<ol>
+<li>对大表小表没有区分，会导致 设置过大，小表不切分，设置过小，大表产生大量region</li>
+<li>设置过大，对业务不友好</li>
+<li>设置过小，对集群管理，资源使用, failover不好</li>
+</ol>
+<h3 id="increasingtoupperboundregionsplitpolicy">IncreasingToUpperBoundRegionSplitPolicy</h3>
+<p>0.94版本-2.0版本默认切分策略</p>
+<p>region split 计算公式:</p>
+<pre><code>min(regioncount^3 * 128M * 2, 10G) , 当region达到了该size的时候进行split
+</code></pre>
+<p>例如：</p>
+<p>$$ 第1次split,regioncount=1: 1^3<em>256 = 256M $$
+$$ 第2次split,regioncount=1: 2^3</em>256 = 2048M $$
+$$ 第3次split,regioncount=1: 3^3<em>256 = 6912M $$
+$$ 第4次split,regioncount=1: 4^3</em>256 = 163841M  大于10G 所以取10G$$</p>
+<p>第4次后都是以10G进行split</p>
+<h3 id="steppingsplitpolicy">SteppingSplitPolicy</h3>
+<p>2.0版本后默认切分策略</p>
+<pre><code>如果region = 1，则切分阈值为 flush size  * 2
+否则，切分阈值为MaxRegionFileSize
+</code></pre>
+<p>好处是小表不会产生大量小region</p>
+<h3 id="keyprefixregionsplitpolicy">KeyPrefixRegionSplitPolicy</h3>
+<p>根据rowkey前缀对数据进行分组，将前缀前n位相同的用户放在同一个region中</p>
+<h3 id="delimitedkeyprefixregionsplitpolicy">DelimitedKeyPrefixRegionSplitPolicy</h3>
+<p>保证相同前缀在同一region中，这次使用指定分隔符delimiter来切分</p>
+<h3 id="disabledregionsplitpolicy">DisabledRegionSplitPolicy</h3>
+<p>不启动自动拆分</p>
+<h2 id="hbase-表预分区-pre-splitting">Hbase 表预分区 pre-splitting</h2>
+<p>Region 切分非常耗时，为了</p>
+<ol>
+<li>提升数据读写效率</li>
+<li>负载均衡，防止数据倾斜</li>
+<li>方便集群容灾调度region</li>
+<li>优化Map数量</li>
+</ol>
+<p>所以需要预分区</p>
+<h3 id="pre-splitting-原理">pre-splitting 原理</h3>
+<p>每个region维护者startRow 和 endRowKey，如果加入的数据符合某个region维护的rowkey范围，则该数据交给这个region维护</p>
+<h3 id="手动指定预分区">手动指定预分区</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">create <span style="color:#e6db74">&#39;person&#39;</span>, <span style="color:#e6db74">&#39;info1&#39;</span>, <span style="color:#e6db74">&#39;info2&#39;</span>, SPLIT <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;1000&#39;</span>, <span style="color:#e6db74">&#39;2000&#39;</span>, <span style="color:#e6db74">&#39;3000&#39;</span>, <span style="color:#e6db74">&#39;4000&#39;</span><span style="color:#f92672">]</span>
+
+<span style="color:#75715e"># 文件内容</span>
+<span style="color:#75715e"># aaa</span>
+<span style="color:#75715e"># bbb</span>
+<span style="color:#75715e"># ccc</span>
+<span style="color:#75715e"># ddd</span>
+create <span style="color:#e6db74">&#39;student&#39;</span>, <span style="color:#e6db74">&#39;info&#39;</span>, SPLIT_FILE <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;/xxx/xxx/split.txt&#39;</span>
+</code></pre></div><h3 id="hexstringsplit算法">HexStringSplit算法</h3>
+<p>将 00000000 - FFFFFFFF 之间的数据 n等分</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">create <span style="color:#e6db74">&#39;mytable&#39;</span>, <span style="color:#e6db74">&#39;base_info&#39;</span>, <span style="color:#e6db74">&#39;extra_info&#39;</span>, <span style="color:#f92672">{</span>NUMREGIONS <span style="color:#f92672">=</span>&gt; 15, SPLITALGO <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;HexStringSplit&#39;</span><span style="color:#f92672">}</span>
+
+</code></pre></div><h2 id="region-合并">Region 合并</h2>
+<p>Region 合并不是为了性能，而是出于维护的目的， 比如删除了大量的数据</p>
+<h3 id="通过-merge-冷合并region">通过 Merge 冷合并Region</h3>
+<ol>
+<li>合并之前需要先关闭hbase</li>
+<li>创建一张表</li>
+<li>查找到region的信息(名称) 端口 60010</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">create <span style="color:#e6db74">&#39;test&#39;</span>, <span style="color:#e6db74">&#39;info1&#39;</span>, SPLIT <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;1000&#39;</span>, <span style="color:#e6db74">&#39;2000&#39;</span>, <span style="color:#e6db74">&#39;3000&#39;</span><span style="color:#f92672">]</span>
+
+hbase org.apache.hadoop.hbase.util.Merge test regionname1, regionname2
+</code></pre></div><h3 id="通过online_merge-热合并region">通过online_merge 热合并Region</h3>
+<ol>
+<li>不需要关闭hbase集群</li>
+<li>online_merge 传参是Region的hash值，就是Region名称最后面的那个字符串</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">merge_region regionhash1, reginhash2
+
+</code></pre></div><p><img src="/hbase.png" alt="HBase.png"></p>
 <p><a href="/Hbase.emmx">思维导图</a></p>
 
       </div>
@@ -152,7 +371,7 @@
     <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
 
-        <span class="tag"><a href="http://keltoy.github.io/tags/hbase/">HBase</a></span>
+        <span class="tag"><a href="http://keltoy.github.io/tags/hbase/">hbase</a></span>
         
     </p>
 
@@ -166,7 +385,7 @@
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        One Word
+        310 Words
       </p>
 
       <p>

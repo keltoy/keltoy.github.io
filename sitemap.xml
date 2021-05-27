@@ -5,6 +5,9 @@
     <loc>http://keltoy.github.io/posts/</loc>
     <lastmod>2020-08-27T20:40:45+08:00</lastmod>
   </url><url>
+    <loc>http://keltoy.github.io/tags/spark/</loc>
+    <lastmod>2020-08-27T20:40:45+08:00</lastmod>
+  </url><url>
     <loc>http://keltoy.github.io/posts/spark_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2020-08-27T20:40:45+08:00</lastmod>
   </url><url>
@@ -14,10 +17,10 @@
     <loc>http://keltoy.github.io/</loc>
     <lastmod>2020-08-27T20:40:45+08:00</lastmod>
   </url><url>
-    <loc>http://keltoy.github.io/tags/untagged/</loc>
-    <lastmod>2020-08-27T20:40:45+08:00</lastmod>
-  </url><url>
     <loc>http://keltoy.github.io/posts/kylin_and_doris/</loc>
+    <lastmod>2020-08-03T16:10:51+08:00</lastmod>
+  </url><url>
+    <loc>http://keltoy.github.io/tags/olap/</loc>
     <lastmod>2020-08-03T16:10:51+08:00</lastmod>
   </url><url>
     <loc>http://keltoy.github.io/about/</loc>
@@ -49,9 +52,6 @@
   </url><url>
     <loc>http://keltoy.github.io/tags/jstack/</loc>
     <lastmod>2020-05-21T16:03:03+00:00</lastmod>
-  </url><url>
-    <loc>http://keltoy.github.io/tags/spark/</loc>
-    <lastmod>2020-05-12T20:39:43+00:00</lastmod>
   </url><url>
     <loc>http://keltoy.github.io/posts/spark-shuffle-%E5%92%8C%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C/</loc>
     <lastmod>2020-05-12T20:39:43+00:00</lastmod>

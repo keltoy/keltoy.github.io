@@ -102,7 +102,9 @@ Kappa架构的核心思想包括以下三点：
       <pubDate>Wed, 24 Jun 2020 17:39:30 +0000</pubDate>
       
       <guid>http://keltoy.github.io/posts/hbase-%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</guid>
-      <description>思维导图</description>
+      <description>[toc]
+存储原理 HMaster  主节点 管理RegionServer, Region  HRegionServer  从节点 数据，表数据存储  HLog 预写日志
+ 1个RegionServer可能有多个HLog 存储在HDFS上  Region  1个RegionServer可能有多个Region 每个Region 只属于一张表，只保存一张表的数据  Store  每1个列族对应1个Store  MemStore  1个Store 对应1个MemStore  StoreFile  存储到HDFS上 1个Store 对应多个MemStore 对 HFile 的包装  BlockCache  1个RegionServer一般只有1个BlockCache 加快读取数据  client  客户端  写流程 写入流程  预写日志HLog WAL 客户端与zookeeper建立连接，读取zookeeper上的meta信息(meta-region-server)，找到存放meta信息的regionServer 客户端连接存放该表meta信息的regionServer，找到保存meta表的region(meta 只有1个region) 通过meta表的信息，定位到相应的region 向memstore写入数据(默认128M) 如果memstore超过128M 则需要flush溢写数据到storeFile(HFile) 如果storeFile超过阈值，则触发minor compation 将几个小的HFile合并成1个HFile 周期执行，将所有storeFile 最终进行合并触发major compation 数据量过大时需要执行split，将1个region 分成2个region  flush流程 为了避免flush影响写入性能，通过2个MemStore完成稳定写入</description>
     </item>
     
     <item>
