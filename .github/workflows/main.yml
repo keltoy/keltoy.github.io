@@ -37,3 +37,4 @@ jobs:
           external_repository: keltoy/keltoy.github.io
           publish_branch: gh-pages  # default: gh-pages
           publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
