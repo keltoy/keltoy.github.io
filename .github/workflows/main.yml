@@ -2,44 +2,38 @@ name: main
 
 on:
   push:
-    tags:
-      - '*'
     branches:
-      - main
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+      - master
+    paths-ignore:
+      - 'archetypes/**'
+      - 'myscript/**'
+      - 'todo/**'
+      - 'todo-done/**'
+      - '.gitignore'
+      - 'qiniu-sync.py'
 
 jobs:
-  build:
+  deploy: #执行部署Hugo生成静态代码，默认放在gh-pages分支
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: read
-    #   packages: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: setup hugo
+      - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.92.0'
-          extended: true
+          hugo-version: '0.90.1'
+          extended: true #不需要extended版本就可以注释
 
-      - name: build
-        run: hugo --minify
+      - name: Build github # 我的Hugo配置baseurl为GitHub Pages路径，使用hugo命令默认为GitHub Pages生成静态网站
+        run: hugo
 
-      - name: deploy
+      - name: Deploypage # 部署到GitHub Pages分支
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.ACCESS_TOKEN }}
+          external_repository: keltoy/keltoy.github.io
+          publish_branch: gh-pages  # default: gh-pages
           publish_dir: ./public
-          # cname: wolanx.com # 重点 ！！！
