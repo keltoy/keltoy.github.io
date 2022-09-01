@@ -1,19 +1,45 @@
-# On every push this script is executed
-on: push
-name: Build and deploy GH Pages
+name: main 
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # permissions:
+    #   contents: read
+    #   packages: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: build_and_deploy
-        uses: shalzz/zola-deploy-action@v0.14.1
-        env:
-          # Target branch
-          PAGES_BRANCH: gh-pages
-          # Provide personal access token
-          TOKEN: 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
-          # Or if publishing to the same repo, use the automatic token
-          #TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.92.0'
+          extended: true
+
+      - name: build
+        run: hugo --minify
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          # cname: wolanx.com # 重点 ！！！
