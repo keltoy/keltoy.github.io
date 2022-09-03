@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Toxi&#39;s Blog</title>
-    <link>https://keltoy.github.io/tags/</link>
-    <description>Toxi&#39;s Blog (Tags)</description>
+    <title>Blog on Toxi&#39;s Blog</title>
+    <link>https://keltoy.github.io/blog/</link>
+    <description>Toxi&#39;s Blog (Blog)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 01 Sep 2022 21:46:45 +0800</lastBuildDate>
     
-    <atom:link href="https://keltoy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://keltoy.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

@@ -2,10 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://keltoy.github.io/categories/</loc>
+    <loc>https://keltoy.github.io/about/</loc>
+    <lastmod>2022-09-02T03:29:13+08:00</lastmod>
   </url><url>
-    <loc>https://keltoy.github.io/</loc>
+    <loc>https://keltoy.github.io/tags/aa/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
+  </url><url>
+    <loc>https://keltoy.github.io/blog/abc/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
+  </url><url>
+    <loc>https://keltoy.github.io/blog/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
+  </url><url>
+    <loc>https://keltoy.github.io/posts/hugo/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
+  </url><url>
+    <loc>https://keltoy.github.io/posts/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
   </url><url>
     <loc>https://keltoy.github.io/tags/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
+  </url><url>
+    <loc>https://keltoy.github.io/</loc>
+    <lastmod>2022-09-01T21:46:45+08:00</lastmod>
   </url>
 </urlset>

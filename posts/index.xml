@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Toxi&#39;s Blog</title>
-    <link>https://keltoy.github.io/</link>
-    <description>Toxi&#39;s Blog</description>
+    <title>Posts on Toxi&#39;s Blog</title>
+    <link>https://keltoy.github.io/posts/</link>
+    <description>Toxi&#39;s Blog (Posts)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 01 Sep 2022 21:46:45 +0800</lastBuildDate>
     
-    <atom:link href="https://keltoy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://keltoy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>About</title>
-      <link>https://keltoy.github.io/about/</link>
-      <pubDate>Fri, 02 Sep 2022 03:29:13 +0800</pubDate>
-      
-      <guid>https://keltoy.github.io/about/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Hugo</title>
