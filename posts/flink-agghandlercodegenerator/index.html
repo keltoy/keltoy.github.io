@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-cn" data-theme="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Flink AggHandlerCodeGenerator - Toxi &amp; Alisa</title>
+
+<meta name="description" content="介绍     AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码 类定义     classDiagram class AggsHandlerCodeGenerator{ &#43;CodeGeneratorContext ctx &#43;RelBuilder relBuilder &#43;Seq~LogicalType~ inputFieldTypes &#43;Boolean copyInputField &#43;RowType inputType &#43;Seq~RexLiteral~ constants -Seq~GeneratedExpression~ constantExprs -String namespaceClassName -Seq~PlannerWindowProperty~ windowProperties -Boolean hasNamespace -RowType accTypeInfo -Int aggBufferSize -Array~DataType~ mergedAccExternalTypes -Int mergedAccOffset -Boolean mergedAccOnHeap -Array~Int~ ignoreAggValues -Boolean isAccumulateNeeded -Boolean isRetractNeeded -Boolean isMergeNeeded &#43;RowType valueType: -Array~AggCodeGen~ aggBufferCodeGens -Array~AggCodeGen~ aggActionCodeGens &#43;AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): } package org.apache.flink.table.planner.codegen.agg class AggsHandlerCodeGenerator( ctx: CodeGeneratorContext, // 上下文  relBuilder: RelBuilder, // 用来生成关系表达式  inputFieldTypes: Seq[LogicalType], copyInputField: Boolean // 需要缓存时将此字段设置为true) {  private val inputType = RowType.">
+
+
+
+
+
+<link rel="icon" type="image/x-icon" href="https://keltoy.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://keltoy.github.io/favicon.png">
+
+
+<style>
+  body {
+    visibility: hidden;
+    opacity: 0;
+  }
+</style>
+
+<noscript>
+  <style>
+    body {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</noscript>
+
+
+
+    
+
+
+
+
+
+    
+    
+        
+    
+    
+
+    
+        <link rel="stylesheet" href="https://keltoy.github.io/css/style.min.aac3b3a2a3235d20a652d9ccde7ec59be09f74c45de387513f681d02f3912b95.css" integrity="sha256-qsOzoqMjXSCmUtnM3n7Fm&#43;CfdMRd44dRP2gdAvORK5U=">
+    
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+    
+    
+        
+    
+    
+
+    
+        <script src="https://keltoy.github.io/js/script.min.510c781c39dbb21b4c76d85c82e2bdf4689220adbb7cd61e49e9d293e442fb42.js" type="text/javascript" charset="utf-8" integrity="sha256-UQx4HDnbshtMdthcguK99GiSIK27fNYeSenSk&#43;RC&#43;0I="></script>
+    
+
+
+
+
+
+
+
+<meta property="og:title" content="Flink AggHandlerCodeGenerator" />
+<meta property="og:description" content="介绍     AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码 类定义     classDiagram class AggsHandlerCodeGenerator{ &#43;CodeGeneratorContext ctx &#43;RelBuilder relBuilder &#43;Seq~LogicalType~ inputFieldTypes &#43;Boolean copyInputField &#43;RowType inputType &#43;Seq~RexLiteral~ constants -Seq~GeneratedExpression~ constantExprs -String namespaceClassName -Seq~PlannerWindowProperty~ windowProperties -Boolean hasNamespace -RowType accTypeInfo -Int aggBufferSize -Array~DataType~ mergedAccExternalTypes -Int mergedAccOffset -Boolean mergedAccOnHeap -Array~Int~ ignoreAggValues -Boolean isAccumulateNeeded -Boolean isRetractNeeded -Boolean isMergeNeeded &#43;RowType valueType: -Array~AggCodeGen~ aggBufferCodeGens -Array~AggCodeGen~ aggActionCodeGens &#43;AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): } package org.apache.flink.table.planner.codegen.agg class AggsHandlerCodeGenerator( ctx: CodeGeneratorContext, // 上下文  relBuilder: RelBuilder, // 用来生成关系表达式  inputFieldTypes: Seq[LogicalType], copyInputField: Boolean // 需要缓存时将此字段设置为true) {  private val inputType = RowType." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keltoy.github.io/posts/flink-agghandlercodegenerator/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-26T11:38:59+08:00" />
+<meta property="article:modified_time" content="2022-09-26T11:38:59+08:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flink AggHandlerCodeGenerator"/>
+<meta name="twitter:description" content="介绍     AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码 类定义     classDiagram class AggsHandlerCodeGenerator{ &#43;CodeGeneratorContext ctx &#43;RelBuilder relBuilder &#43;Seq~LogicalType~ inputFieldTypes &#43;Boolean copyInputField &#43;RowType inputType &#43;Seq~RexLiteral~ constants -Seq~GeneratedExpression~ constantExprs -String namespaceClassName -Seq~PlannerWindowProperty~ windowProperties -Boolean hasNamespace -RowType accTypeInfo -Int aggBufferSize -Array~DataType~ mergedAccExternalTypes -Int mergedAccOffset -Boolean mergedAccOnHeap -Array~Int~ ignoreAggValues -Boolean isAccumulateNeeded -Boolean isRetractNeeded -Boolean isMergeNeeded &#43;RowType valueType: -Array~AggCodeGen~ aggBufferCodeGens -Array~AggCodeGen~ aggActionCodeGens &#43;AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): } package org.apache.flink.table.planner.codegen.agg class AggsHandlerCodeGenerator( ctx: CodeGeneratorContext, // 上下文  relBuilder: RelBuilder, // 用来生成关系表达式  inputFieldTypes: Seq[LogicalType], copyInputField: Boolean // 需要缓存时将此字段设置为true) {  private val inputType = RowType."/>
+
+
+
+
+
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header class="common-header"> 
+            
+                <div class="header-top">
+    <h1 class="site-title">
+    <a href="/">Toxi &amp; Alisa</a>
+</h1>
+    <ul class="social-icons">
+
+
+
+
+
+</ul>
+</div>
+
+    <nav>
+        
+        
+        <a class="" href="https://keltoy.github.io/about/" title="About">About</a>
+        
+        <a class="" href="https://keltoy.github.io/posts/" title="Posts">Posts</a>
+        
+        <a class="" href="https://keltoy.github.io/tags/" title="Tags">Tags</a>
+        
+    </nav>
+
+
+
+
+
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+    
+
+    <article class="post h-entry">
+        <div class="post-header">
+            <header>
+                <h1 class="p-name post-title">Flink AggHandlerCodeGenerator</h1>
+
+                
+            </header>
+        </div>
+        <div class="content e-content">
+            <h1 id="介绍" >介绍
+<span>
+    <a href="#%e4%bb%8b%e7%bb%8d">
+        <svg viewBox="0 0 28 23" height="100%" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+    </a>
+</span>
+</h1><p>AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码
+<img src="flink-AggHandlerCodeGenerator/11664164374_.pic.jpg" alt=""></p>
+<h2 id="类定义" >类定义
+<span>
+    <a href="#%e7%b1%bb%e5%ae%9a%e4%b9%89">
+        <svg viewBox="0 0 28 23" height="100%" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+    </a>
+</span>
+</h2><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">classDiagram
+    class AggsHandlerCodeGenerator{
+    +CodeGeneratorContext ctx
+    +RelBuilder relBuilder
+    +Seq~LogicalType~ inputFieldTypes
+    +Boolean copyInputField
+    +RowType inputType 
+    +Seq~RexLiteral~ constants
+    -Seq~GeneratedExpression~ constantExprs
+    -String namespaceClassName
+    -Seq~PlannerWindowProperty~ windowProperties
+    -Boolean hasNamespace
+    -RowType accTypeInfo
+    -Int aggBufferSize
+    -Array~DataType~ mergedAccExternalTypes
+    -Int mergedAccOffset
+    -Boolean mergedAccOnHeap
+    -Array~Int~  ignoreAggValues
+    -Boolean isAccumulateNeeded  
+    -Boolean isRetractNeeded  
+    -Boolean isMergeNeeded  
+    +RowType  valueType: 
+    -Array~AggCodeGen~ aggBufferCodeGens
+    -Array~AggCodeGen~ aggActionCodeGens
+    +AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): 
+    }
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">package</span> org.apache.flink.table.planner.codegen.agg
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AggsHandlerCodeGenerator</span><span style="color:#f92672">(</span>
+    ctx<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">CodeGeneratorContext</span><span style="color:#f92672">,</span> <span style="color:#75715e">// 上下文
+</span><span style="color:#75715e"></span>    relBuilder<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">RelBuilder</span><span style="color:#f92672">,</span> <span style="color:#75715e">// 用来生成关系表达式
+</span><span style="color:#75715e"></span>    inputFieldTypes<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Seq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">LogicalType</span><span style="color:#f92672">],</span>
+    copyInputField<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span> <span style="color:#75715e">// 需要缓存时将此字段设置为true) {
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> inputType <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">RowType</span><span style="color:#f92672">.</span>of<span style="color:#f92672">(</span>inputFieldTypes<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span><span style="color:#f92672">)</span> 
+
+  <span style="color:#75715e">/** 常量表达式 */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> constants<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Seq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">RexLiteral</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">()</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> constantExprs<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Seq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">GeneratedExpression</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">()</span>
+
+  <span style="color:#75715e">/** 窗口相关参数，窗口聚合才会用到 */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> namespaceClassName<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">_</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> windowProperties<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Seq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">PlannerWindowProperty</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">()</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> hasNamespace<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+  <span style="color:#75715e">/** 聚合信息 */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> accTypeInfo<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">RowType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">_</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> aggBufferSize<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">_</span>
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> mergedAccExternalTypes<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">DataType</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">_</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> mergedAccOffset<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> mergedAccOnHeap<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> ignoreAggValues<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Array</span><span style="color:#f92672">()</span>
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> isAccumulateNeeded <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">false</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> isRetractNeeded <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">false</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> isMergeNeeded <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">false</span>
+
+  <span style="color:#66d9ef">var</span> valueType<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">RowType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">_</span>
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">    * 生成 [[AggsHandleFunction]] 或者 [[NamespaceAggsHandleFunction]] 会创建 [[aggBufferCodeGens]] and [[aggActionCodeGens]] 两者包含相同的AggCodeGens，aggBufferCodeGens 以列表的扁平形式， aggActionCodeGens是树形结构
+</span><span style="color:#75715e">    在没有distinct 的的情况下，两者相同
+</span><span style="color:#75715e">  */</span>
+
+  <span style="color:#75715e">/**  
+</span><span style="color:#75715e">    aggBufferCodeGens 用于生成相关累加器(Accumulator)的 方法
+</span><span style="color:#75715e">    */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> aggBufferCodeGens<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">AggCodeGen</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">_</span>
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   aggActionCodeGens 树形结构，聚合distinct数据的时候，会将相同需要distinct的字段组成树结构
+</span><span style="color:#75715e">    */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> aggActionCodeGens<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">AggCodeGen</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">_</span>
+
+
+<span style="color:#66d9ef">object</span> <span style="color:#a6e22e">aggshandlercodegenerator</span> <span style="color:#f92672">{</span>
+
+  <span style="color:#75715e">/** static terms **/</span>
+  <span style="color:#66d9ef">val</span> acc_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;acc&#34;</span>
+  <span style="color:#66d9ef">val</span> merged_acc_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;otheracc&#34;</span>
+  <span style="color:#66d9ef">val</span> accumulate_input_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;accinput&#34;</span>
+  <span style="color:#66d9ef">val</span> retract_input_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;retractinput&#34;</span>
+  <span style="color:#66d9ef">val</span> distinct_key_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;distinctkey&#34;</span>
+
+  <span style="color:#66d9ef">val</span> namespace_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;namespace&#34;</span>
+  <span style="color:#66d9ef">val</span> store_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;store&#34;</span>
+
+  <span style="color:#66d9ef">val</span> collector<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> classname<span style="color:#f92672">[</span><span style="color:#66d9ef">collector</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span>
+  <span style="color:#66d9ef">val</span> collector_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;out&#34;</span>
+  <span style="color:#66d9ef">val</span> member_collector_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;convertcollector&#34;</span>
+  <span style="color:#66d9ef">val</span> convert_collector_type_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;convertcollector&#34;</span>
+  <span style="color:#66d9ef">val</span> key_term <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;groupkey&#34;</span>
+
+  <span style="color:#66d9ef">val</span> input_not_null <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">false</span>
+
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>如果一个SQL的结构如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>), <span style="color:#66d9ef">count</span>(<span style="color:#66d9ef">distinct</span> a), <span style="color:#66d9ef">count</span>(<span style="color:#66d9ef">distinct</span> a) filter d <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>, <span style="color:#66d9ef">sum</span>(a), <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">distinct</span> a)
+     <span style="color:#f92672">+</span><span style="color:#75715e">----------+-----------+-----------+---------+---------+----------------+
+</span><span style="color:#75715e"></span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#f92672">|</span> <span style="color:#66d9ef">count</span>(a<span style="color:#e6db74">&#39;) | count(a&#39;</span>) <span style="color:#f92672">|</span>  <span style="color:#66d9ef">sum</span>(a) <span style="color:#f92672">|</span> <span style="color:#66d9ef">sum</span>(a<span style="color:#e6db74">&#39;) | distinct(a) a&#39;</span> <span style="color:#f92672">|</span>
+     <span style="color:#f92672">+</span><span style="color:#75715e">----------+-----------+-----------+---------+---------+----------------+
+</span><span style="color:#75715e"></span>
+</code></pre></div><p>那么 aggBufferCodeGens 会这样保存</p>
+<pre tabindex="0"><code class="language-goat" data-lang="goat">┌────────┬──────────┬──────────┬───────┬────────┬────────────┐
+│count(*)│ count(a')│ count(a')│ sum(a)│ sum(a')│ distinct(a)│
+└────────┴──────────┴──────────┴───────┴────────┴────────────┘
+</code></pre><p>aggActionCodeGens 会这样保存</p>
+<pre tabindex="0"><code class="language-goat" data-lang="goat">┌─────────────────────────────┬───────┬────────────────────────────────┐
+│    count(*)                 │ sum(a)│  distinct(a) a'                │
+│                             │       │    ├─count(a')                 │
+│                             │       │    ├─count(a') (filter d &gt; 5)  │
+│                             │       │    └─sum(a')                   │
+└─────────────────────────────┴───────┴────────────────────────────────┘
+
+</code></pre><h3 id="codegeneratorcontext" >CodeGeneratorContext
+<span>
+    <a href="#codegeneratorcontext">
+        <svg viewBox="0 0 28 23" height="100%" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+    </a>
+</span>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">package</span> org.apache.flink.table.planner.codegen
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e">  生成代码的上下文，维护代码段的状态
+</span><span style="color:#75715e">  */</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CodeGeneratorContext</span><span style="color:#f92672">(</span><span style="color:#66d9ef">val</span> tableConfig<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TableConfig</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+  <span style="color:#75715e">// 保存用于传递生成类的对象列表
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">val</span> references<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.ArrayBuffer</span><span style="color:#f92672">[</span><span style="color:#66d9ef">AnyRef</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">ArrayBuffer</span><span style="color:#f92672">[</span><span style="color:#66d9ef">AnyRef</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次， 成员状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableMemberStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次， 构造状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableInitStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次， RichFunction 中open方法的状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableOpenStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次， RichFunction 中close方法的状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableCloseStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次， 清理 dataview 的状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableCleanupStatements <span style="color:#66d9ef">=</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 单个记录的状态， 插入有序，因为本地变量需要被分割，所以本地变量无法访问，只能更新成员变量
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusablePerRecordStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// (inputTerm, index) -&gt; expr
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 只会被添加一次， 初始化拆箱表达式Map
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">val</span> reusableInputUnboxingExprs<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.Map</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span>, <span style="color:#66d9ef">GeneratedExpression</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span>, <span style="color:#66d9ef">GeneratedExpression</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次，构造函数的状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableConstructorStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">)]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">)]()</span>
+
+  <span style="color:#75715e">// 插入有序，只会被添加一次，类声明状态
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableInnerClassDefinitionStatements<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// string_constant -&gt; reused_term
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 常量
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableStringConstants<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>,  <span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// LogicalType -&gt; reused_term
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 类型序列化
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableTypeSerializers<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">mutable.Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">LogicalType</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">LogicalType</span>,  <span style="color:#66d9ef">String</span><span style="color:#f92672">]()</span>
+
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Flag map that indicates whether the generated code for method is split into several methods.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> isCodeSplitMap <span style="color:#66d9ef">=</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">Boolean</span><span style="color:#f92672">]()</span>
+
+  <span style="color:#75715e">// method_name -&gt; local_variable_statements
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> reusableLocalVariableStatements <span style="color:#66d9ef">=</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">mutable.LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]](</span>
+    <span style="color:#f92672">(</span>currentMethodNameForLocalVariables<span style="color:#f92672">,</span> mutable<span style="color:#f92672">.</span><span style="color:#a6e22e">LinkedHashSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]()))</span>
+
+</code></pre></div>
+        </div>
+        
+
+    
+
+
+<div class="post-info">
+    
+        <div class="post-date dt-published">2022-09-26</div>
+    
+
+    <a class="post-hidden-url u-url" href="https://keltoy.github.io/posts/flink-agghandlercodegenerator/">https://keltoy.github.io/posts/flink-agghandlercodegenerator/</a>
+    <a href="https://keltoy.github.io/" class="p-name p-author post-hidden-author h-card" rel="me">Toxi</a>
+
+
+    <div class="post-taxonomies">
+        
+            
+                <ul class="post-tags">
+                    
+                        
+                        <li><a href="https://keltoy.github.io/tags/flink/">#flink</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+
+    
+        
+        
+    
+
+    
+        
+    <div class="pagination post-pagination">
+        <div class="left pagination-item disabled">
+            
+        </div>
+        <div class="right pagination-item ">
+            
+                <a href="/posts/hugo/">Hugo</a>
+            
+        </div>
+    </div>
+
+
+
+
+    
+
+    
+        
+
+
+
+
+
+
+
+    
+
+        </main>
+        
+            <footer class="common-footer">
+    
+    
+
+    <div class="common-footer-bottom">
+        
+        <div class="copyright">
+            <p>© Toxi, 2022<br>
+            Powered by <a target="_blank" rel="noopener noreferrer" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" rel="noopener noreferrer" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.<br>
+            
+            </p>  
+        </div> 
+
+        
+
+    
+
+
+
+
+<script>
+const STORAGE_KEY = 'user-color-scheme'
+const defaultTheme = "light-without-switcher"
+
+let currentTheme
+let switchButton
+let autoDefinedScheme = window.matchMedia('(prefers-color-scheme: dark)')
+
+const autoChangeScheme = e => {
+    currentTheme = e.matches ? 'dark' : 'light'
+    document.documentElement.setAttribute('data-theme', currentTheme)
+    changeButtonText()
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    switchButton = document.querySelector('.theme-switcher')
+    currentTheme = detectCurrentScheme()
+    if (currentTheme == 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark')
+    }
+    if (currentTheme == 'auto') {
+        autoChangeScheme(autoDefinedScheme);
+        autoDefinedScheme.addListener(autoChangeScheme);
+    }
+
+    if (switchButton) {
+        changeButtonText()
+        switchButton.addEventListener('click', switchTheme, false)
+    }
+  
+    showContent()
+})
+
+function detectCurrentScheme() {
+    if (localStorage.getItem(STORAGE_KEY)) {
+        return localStorage.getItem(STORAGE_KEY)
+    } 
+    if (defaultTheme) {
+        return defaultTheme
+    } 
+    if (!window.matchMedia) {
+        return 'light'
+    } 
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark'
+    }
+    return 'light'
+}
+
+function changeButtonText()
+{   
+    if (switchButton) {
+        switchButton.textContent = currentTheme == 'dark' ?  "Light theme" : "Dark theme"
+    }
+}
+
+function switchTheme(e) {
+    if (currentTheme == 'dark') {
+        localStorage.setItem(STORAGE_KEY, 'light')
+        document.documentElement.setAttribute('data-theme', 'light')
+        currentTheme = 'light'
+    } else {
+        localStorage.setItem(STORAGE_KEY, 'dark')
+        document.documentElement.setAttribute('data-theme', 'dark')
+        currentTheme = 'dark'
+    }
+    changeButtonText()
+}
+
+function showContent() {
+    document.body.style.visibility = 'visible';
+    document.body.style.opacity = 1;
+}
+</script>   
+    </div>
+
+    <p class="h-card vcard">
+
+    <a href=https://keltoy.github.io/ class="p-name u-url url fn" rel="me">Toxi</a> 
+
+     
+        /
+        <a class="p-email u-email email" rel="me" href="mailto:315090132@qq.com">315090132@qq.com</a>
+    
+
+     
+        <img class="u-photo" src="/images/me.png" />
+    
+</p> 
+</footer>
+
+        
+    </div>
+</body>
+</html>
