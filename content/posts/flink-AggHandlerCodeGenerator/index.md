@@ -3,15 +3,17 @@ title: "Flink AggHandlerCodeGenerator"
 date: 2022-09-26T11:38:59+08:00
 draft: false
 tags: ["flink"]
+author: "toxi"
 blog: ["code"]
 ---
 # 介绍
 AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码
-![](flink-AggHandlerCodeGenerator/11664164374_.pic.jpg)
+![](11664164374_.pic.jpg)
 
 ## 类定义
 
-```mermaid
+```
+{{< mermaid >}}
 classDiagram
     class AggsHandlerCodeGenerator{
     +CodeGeneratorContext ctx
@@ -38,6 +40,7 @@ classDiagram
     -Array~AggCodeGen~ aggActionCodeGens
     +AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): 
     }
+{{< /mermaid >}}
 ```
 
 ```scala
