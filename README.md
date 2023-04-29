@@ -1,5 +1,11 @@
 # ReadMe
 
+## 新建
+
+```bash
+hugo new posts/newblog
+```
+
 ## show
 
 ```bash
