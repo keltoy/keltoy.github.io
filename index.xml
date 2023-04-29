@@ -3,15 +3,23 @@
         <title>Toxi &amp; Alisa</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 27 Apr 2023 01:17:42 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 28 Apr 2023 19:21:47 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Hello</title>
-    <link>https://example.com/hello/</link>
-    <pubDate>Thu, 27 Apr 2023 01:17:42 &#43;0800</pubDate>
-    <author>Toxi &amp; Alisa</author>
-    <guid>https://example.com/hello/</guid>
-    <description><![CDATA[test ]]></description>
+    <title>Torch 预处理</title>
+    <link>https://example.com/torch-%E9%A2%84%E5%A4%84%E7%90%86/</link>
+    <pubDate>Fri, 28 Apr 2023 19:21:47 &#43;0800</pubDate>
+    <author>toxi</author>
+    <guid>https://example.com/torch-%E9%A2%84%E5%A4%84%E7%90%86/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Torch 预热</title>
+    <link>https://example.com/deep-learning-prefix/</link>
+    <pubDate>Thu, 27 Apr 2023 19:21:47 &#43;0800</pubDate>
+    <author>toxi</author>
+    <guid>https://example.com/deep-learning-prefix/</guid>
+    <description><![CDATA[1 2 import torch 1 2 3 # 行向量 x = torch.arange(12) x tensor([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) 1 2 3 # 张量形状 x.shape torch.Size([12]) 1 2 3 # 元素总数 x.numel() 12 1 2 3 # 改变顺序 X = x.reshape(3, 4) X tensor([[ 0, 1, 2, 3], [ 4, 5, 6,]]></description>
 </item>
 <item>
     <title>Flink AggHandlerCodeGenerator</title>
