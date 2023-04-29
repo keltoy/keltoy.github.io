@@ -12,6 +12,14 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
+    <title>LSM树</title>
+    <link>https://example.com/lsm/</link>
+    <pubDate>Fri, 28 Apr 2023 13:45:08 &#43;0800</pubDate>
+    <author>toxi</author>
+    <guid>https://example.com/lsm/</guid>
+    <description><![CDATA[LSM 树(Log-Structured-Merge-Tree) 不算是树，其实是一种存储结构 利用顺序追加写来提高写性能 内存-文件读取方式会降低读性]]></description>
+</item>
+<item>
     <title>Torch 预热</title>
     <link>https://example.com/deep-learning-prefix/</link>
     <pubDate>Thu, 27 Apr 2023 19:21:47 &#43;0800</pubDate>

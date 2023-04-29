@@ -3,8 +3,8 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>https://example.com/tags/ml/</loc><lastmod>2023-04-29T16:54:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/posts/</loc><lastmod>2023-04-29T16:54:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/tags/</loc><lastmod>2023-04-29T16:54:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/posts/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/tags/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://example.com/en/tags/"
@@ -14,7 +14,7 @@
                     href="https://example.com/tags/"
                     /></url><url>
             <loc>https://example.com/torch-%E9%A2%84%E5%A4%84%E7%90%86/</loc><lastmod>2023-04-28T19:21:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/</loc><lastmod>2023-04-29T16:54:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://example.com/en/"
@@ -23,6 +23,8 @@
                     hreflang="zh-cn"
                     href="https://example.com/"
                     /></url><url>
+            <loc>https://example.com/tags/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/deep-learning-prefix/</loc><lastmod>2023-04-29T16:54:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/tags/flink/</loc><lastmod>2023-04-27T01:33:16&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/flink-agghandlercodegenerator/</loc><lastmod>2023-04-27T01:33:16&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
