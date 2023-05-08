@@ -7,6 +7,7 @@ AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函�
 ## 类定义
 
 ```
+{{<mermaid>}}
 classDiagram
     class AggsHandlerCodeGenerator{
     +CodeGeneratorContext ctx
@@ -31,8 +32,9 @@ classDiagram
     +RowType  valueType: 
     -Array~AggCodeGen~ aggBufferCodeGens
     -Array~AggCodeGen~ aggActionCodeGens
-    +AggsHandlerCodeGenerator withConstants(Seq~RexLiteral~ literals ): 
+    +withConstants(Seq~RexLiteral~ literals ): AggsHandlerCodeGenerator
     }
+{{</mermaid>}}
 ```
 
 ```scala
