@@ -4,12 +4,12 @@
     <link>https://example.com/posts/</link>
     <description>所有文章 | Toxi &amp; Alisa</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 May 2023 23:48:08 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>Flink SqlQuery</title>
+  <title>Flink sqlQuery</title>
   <link>https://example.com/flink-sqlquery/</link>
   <pubDate>Thu, 04 May 2023 23:48:08 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/flink-sqlquery/</guid>
-  <description><![CDATA[SqlQuery 1 List&lt;Operation&gt; operations = getParser().parse(query); sqlQuery 获取Parser，就是 Planner的Parser 1 2 3 4 5 6 7 8 9 @Override public Parser getParser() { return getPlanner().getParser(); } @VisibleForTesting public Planner getPlanner() { return planner; } StreamTableEnvironment 在创建的过程中会创建 Planner 1]]></description>
+  <description><![CDATA[sqlQuery sql 进入sqlQuery后，首先就是获取Parser 解析sql语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // TableEnvironmentImpl.java @Override public Table sqlQuery(String query) { List&lt;Operation&gt; operations = getParser().parse(query); if (operations.size() != 1)]]></description>
 </item>
 <item>
   <title>学习 FlinkSQL - 开始</title>
