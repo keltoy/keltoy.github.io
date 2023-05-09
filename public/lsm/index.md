@@ -83,3 +83,9 @@ Ps: 多个不相干的合并是可以并发进行的：
 leveled策略相较于size-tiered策略来说，每层内key是不会重复的，即使是最坏的情况，除开最底层外，其余层都是重复key，按照相邻层大小比例为10来算，冗余占比也很小。因此空间放大问题得到缓解。但是写放大问题会更加突出。举一个最坏场景，如果LevelN层某个SSTable的key的范围跨度非常大，覆盖了LevelN+1层所有key的范围，那么进行Compact时将涉及LevelN+1层的全部数据
 
 ![](subcompaction.png)
+
+---
+
+> 作者: toxi  
+> URL: https://example.com/lsm/  
+
