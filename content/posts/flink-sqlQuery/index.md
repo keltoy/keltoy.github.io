@@ -6,13 +6,34 @@ tags: ["flink", "sql"]
 author: "toxi"
 blog: ["code"]
 ---
-## SqlQuery 
+## sqlQuery 
 
 ```java
-List<Operation> operations = getParser().parse(query);
-```
+// TableEnvironmentImpl.java
 
-sqlQuery 获取Parser，就是 Planner的Parser
+    @Override
+    public Table sqlQuery(String query) {
+        List<Operation> operations = getParser().parse(query);
+
+        if (operations.size() != 1) {
+            throw new ValidationException(
+                    "Unsupported SQL query! sqlQuery() only accepts a single SQL query.");
+        }
+
+        Operation operation = operations.get(0);
+
+        if (operation instanceof QueryOperation && !(operation instanceof ModifyOperation)) {
+            return createTable((QueryOperation) operation);
+        } else {
+            throw new ValidationException(
+                    "Unsupported SQL query! sqlQuery() only accepts a single SQL query of type "
+                            + "SELECT, UNION, INTERSECT, EXCEPT, VALUES, and ORDER_BY.");
+        }
+    }
+```
+sql 进入sqlQuery后，首先就是获取Parser 解析sql语句  
+
+这里会获取StreamPlanner的Parser
 
 ```java
 @Override
