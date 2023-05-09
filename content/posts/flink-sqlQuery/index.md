@@ -8,6 +8,8 @@ blog: ["code"]
 ---
 ## sqlQuery 
 
+sql 进入sqlQuery后，首先就是获取Parser 解析sql语句  
+
 ```java 
 // TableEnvironmentImpl.java
 
@@ -31,7 +33,6 @@ blog: ["code"]
         }
     }
 ```
-sql 进入sqlQuery后，首先就是获取Parser 解析sql语句  
 
 这里会获取StreamPlanner的Parser
 
