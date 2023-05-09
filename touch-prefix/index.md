@@ -377,5 +377,5 @@ a, a.item(), float(a), int(a)
 ---
 
 > 作者: toxi  
-> URL: https://example.com/deep-learning-prefix/  
+> URL: https://example.com/touch-prefix/  
 
