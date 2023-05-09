@@ -212,3 +212,9 @@ class CodeGeneratorContext(val tableConfig: TableConfig) {
 
 ```
 
+
+---
+
+> 作者: toxi  
+> URL: https://example.com/flink-agghandlercodegenerator/  
+

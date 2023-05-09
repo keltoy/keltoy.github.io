@@ -100,3 +100,9 @@ sqlQuery 会把 输入的 SQL 语句转换成Operation
         }
     }
 ```
+
+---
+
+> 作者: toxi  
+> URL: https://example.com/flink-prefix/  
+

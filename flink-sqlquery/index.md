@@ -56,7 +56,7 @@ final Planner planner =
 > This interface is responsible for reading and writing metadata such as database/table/views/UDFs from a registered catalog. It connects a registered catalog and Flink's Table API. This interface only processes permanent metadata objects. In order to process temporary objects, a catalog can also implement the TemporaryOperationListener interface.
 - functionCatalog
   - 函数catalog，保存函数的定义
-  - 注册的幻术就会放在这个对象中，像UDF 等注册的catalog也会放在这里
+  - 注册的函数就会放在这个对象中，像UDF 等注册的catalog也会放在这里
   - [FLIP-65](https://cwiki.apache.org/confluence/display/FLINK/FLIP-65%3A+New+type+inference+for+Table+API+UDFs)
 
 > Simple function catalog to store FunctionDefinitions in catalogs.
@@ -209,5 +209,13 @@ select * from tableA where amount > 2
 ![](sqlNode.png)  
 
 最后经过SqlNodeToOperationConversion.convert 会转换成 包含逻辑计划的operation  
-![](screenshot-20230508-013653.png)
+![](screenshot-20230508-013653.png)  
+
+目前流程为
+![](liucheng.png)
+
+---
+
+> 作者: toxi  
+> URL: https://example.com/flink-sqlquery/  
 
