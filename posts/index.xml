@@ -33,7 +33,7 @@
   <pubDate>Thu, 27 Apr 2023 19:21:47 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/touch-prefix/</guid>
-  <description><![CDATA[1 import torch 1 2 3 # 行向量 x = torch.arange(12) x tensor([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) 1 2 # 张量形状 x.shape torch.Size([12]) 1 2 # 元素总数 x.numel() 12 1 2 3 # 改变顺序 X = x.reshape(3, 4) X tensor([[ 0, 1, 2, 3], [ 4, 5, 6, 7], [ 8,]]></description>
+  <description><![CDATA[Torch123 1 import torch 1 2 3 # 行向量 x = torch.arange(12) x tensor([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) 1 2 # 张量形状 x.shape torch.Size([12]) 1 2 # 元素总数 x.numel() 12 1 2 3 # 改变顺序 X = x.reshape(3, 4) X tensor([[ 0, 1, 2, 3], [ 4, 5, 6, 7], []]></description>
 </item>
 <item>
   <title>Flink AggHandlerCodeGenerator</title>
