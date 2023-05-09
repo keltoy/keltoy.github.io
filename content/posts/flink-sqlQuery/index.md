@@ -1,5 +1,5 @@
 ---
-title: "Flink SqlQuery"
+title: "Flink sqlQuery"
 date: 2023-05-04T23:48:08+08:00
 draft: false
 tags: ["flink", "sql"]
