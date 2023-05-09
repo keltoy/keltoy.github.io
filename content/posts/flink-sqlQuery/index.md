@@ -8,7 +8,7 @@ blog: ["code"]
 ---
 ## sqlQuery 
 
-```java
+```java 
 // TableEnvironmentImpl.java
 
     @Override
