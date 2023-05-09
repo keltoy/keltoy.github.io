@@ -217,5 +217,5 @@ select * from tableA where amount > 2
 最后经过SqlNodeToOperationConversion.convert 会转换成 包含逻辑计划的operation  
 ![](screenshot-20230508-013653.png)
 
-当前流程为
+目前流程为
 ![](liucheng.png)
