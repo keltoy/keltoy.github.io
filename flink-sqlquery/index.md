@@ -1,7 +1,7 @@
 # Flink sqlQuery
 
 ## sqlQuery 
-
+ 
 sql 进入sqlQuery后，首先就是获取Parser 解析sql语句  
 
 ```java 
@@ -235,6 +235,7 @@ select * from tableA where amount > 2
 
 目前流程为
 ![](liucheng.png)
+
 
 ---
 
