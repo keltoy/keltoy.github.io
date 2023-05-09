@@ -24,7 +24,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.90.1'
+          hugo-version: '0.111.3'
           extended: true #不需要extended版本就可以注释
 
       - name: Build github # 我的Hugo配置baseurl为GitHub Pages路径，使用hugo命令默认为GitHub Pages生成静态网站
