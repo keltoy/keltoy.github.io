@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Calcite 简介 - Toxi &amp; Alisa</title><meta name="author" content="Toxi &amp; Alisa">
+<meta name="author-link" content="">
+<meta name="description" content="简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数" /><meta name="keywords" content='calcite, sql' /><meta itemprop="name" content="Calcite 简介">
+<meta itemprop="description" content="简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数"><meta itemprop="datePublished" content="2023-05-11T13:40:06+08:00" />
+<meta itemprop="dateModified" content="2023-05-25T00:16:17+08:00" />
+<meta itemprop="wordCount" content="3533"><meta itemprop="image" content="https://example.com/logo.png"/>
+<meta itemprop="keywords" content="calcite,sql," /><meta property="og:title" content="Calcite 简介" />
+<meta property="og:description" content="简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/calcite-prefix/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-11T13:40:06+08:00" />
+<meta property="article:modified_time" content="2023-05-25T00:16:17+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="Calcite 简介"/>
+<meta name="twitter:description" content="简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/calcite-prefix/" /><link rel="prev" href="https://example.com/flink-sqlquery/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Calcite 简介",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/example.com\/calcite-prefix\/"
+    },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "calcite, sql","wordcount":  3533 ,
+    "url": "https:\/\/example.com\/calcite-prefix\/","datePublished": "2023-05-11T13:40:06+08:00","dateModified": "2023-05-25T00:16:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+        "@type": "Person",
+        "name": "toxi"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/documentation/"
+                
+                
+              >文档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              >关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://github.com/dillonzq/LoveIt"
+                title="GitHub"
+                rel="noopener noreferrer" target="_blank"
+              ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch">
+            <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/documentation/"
+                  
+                  
+                >文档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                >关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/dillonzq/LoveIt"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span class="menu-system-item language-switch">
+              <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+              <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+            </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Calcite 简介</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      toxi</span></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-05-11 13:40:06"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-11">2023-05-11</time></span>&nbsp;<span title="更新于 2023-05-25 00:16:17"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-25">2023-05-25</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3533 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;<span id="/calcite-prefix/" class="leancloud_visitors comment-visitors" data-flag-title="Calcite 简介">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
+            </span>&nbsp;<span class="comment-count" data-flag-title="Calcite 简介">
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/calcite-prefix/" class="valine-comment-count">-</span>&nbsp;条评论
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#关系代数">关系代数</a></li>
+    <li><a href="#calcite-解析流程">Calcite 解析流程</a>
+      <ul>
+        <li><a href="#sqlnode">SqlNode</a></li>
+        <li><a href="#relnode">RelNode</a></li>
+        <li><a href="#rexnode">RexNode</a></li>
+        <li><a href="#案例">案例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>Apache Calcite是一个动态数据管理框架。<br>
+它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数据的存储库。<br>
+我们主要用 Calcite 来解析SQL。很多项目也是直接使用了Calcite来解析SQL，优化SQL等，比如 FlinkSQL</p>
+<p>calicte的基本架构如下
+<img loading="lazy" src="calcite.png" srcset="/calcite-prefix/calcite.png, calcite.png 1.5x, /calcite-prefix/calcite.png 2x" sizes="auto" data-title="/calcite-prefix/calcite.png" data-alt="/calcite-prefix/calcite.png" width="1558" height="1314" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<h2 id="关系代数">关系代数</h2>
+<p>关系模型源于数学。关系是由元组构成的集合，可以通过关系的运算来表达查询要求，而关系代数恰恰是关系操作语言的一种传统的表示方式，它是一种抽象的查询语言。<br>
+关系代数的运算对象是关系，运算结果也是关系。与一般的运算一样，运算对象、运算符和运算结果是关系代数的三大要素。<br>
+关系代数的运算可分为两大类：</p>
+<ul>
+<li>传统的集合运算。这类运算完全把关系看成元组的集合。传统的集合运算包括集合的广义笛卡儿积运算、并运算、交运算和差运算。</li>
+<li>专门的关系运算。这类运算除了把关系看成元组的集合外，还通过运算表达了查询的要求。专门的关系运算包括选择、投影、连接和除运算。
+关系代数中的运算符可以分为四类：传统的集合运算符、专门的关系运算符、比较运算符和逻辑运算符。</li>
+</ul>
+<p>关系运算 和 SQL的关系如下</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>SQL关键字</th>
+<th>含义</th>
+<th>分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$\cap$$</td>
+<td></td>
+<td>交</td>
+<td>集合运算</td>
+</tr>
+<tr>
+<td>$$\cup$$</td>
+<td></td>
+<td>并</td>
+<td>集合运算</td>
+</tr>
+<tr>
+<td>$$-$$</td>
+<td></td>
+<td>差</td>
+<td>集合运算</td>
+</tr>
+<tr>
+<td>$$\times$$</td>
+<td>from A,B</td>
+<td>广义笛卡尔积</td>
+<td>集合运算</td>
+</tr>
+<tr>
+<td>$$\sigma$$</td>
+<td>where</td>
+<td>选择</td>
+<td>关系运算</td>
+</tr>
+<tr>
+<td>$$\Pi$$</td>
+<td>select distinct</td>
+<td>投影</td>
+<td>关系运算</td>
+</tr>
+<tr>
+<td>$$\bowtie$$</td>
+<td>join</td>
+<td>连接</td>
+<td>关系运算</td>
+</tr>
+<tr>
+<td>$$\div$$</td>
+<td></td>
+<td>除</td>
+<td>关系运算</td>
+</tr>
+<tr>
+<td>$$&gt;$$</td>
+<td></td>
+<td>大于</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$&lt;$$</td>
+<td></td>
+<td>小于</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$=$$</td>
+<td></td>
+<td>等于</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$\neq$$</td>
+<td></td>
+<td>不等</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$\leqslant$$</td>
+<td></td>
+<td>小于等于</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$\geqslant$$</td>
+<td></td>
+<td>大于等于</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td>$$\neg$$</td>
+<td></td>
+<td>非</td>
+<td>逻辑运算</td>
+</tr>
+<tr>
+<td>$$\land$$</td>
+<td></td>
+<td>与</td>
+<td>逻辑运算</td>
+</tr>
+<tr>
+<td>$$\lor$$</td>
+<td></td>
+<td>或</td>
+<td>逻辑运算</td>
+</tr>
+</tbody>
+</table>
+<p>SQL语句会先翻译成为关系代数后再被执行的
+在执行explain 一条SQL的时候 就可以看到翻译后关系代数的命名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">== Abstract Syntax Tree ==
+</span></span><span class="line"><span class="cl">LogicalProject(user=[$0], product=[$1], amount=[$2])
+</span></span><span class="line"><span class="cl">+- LogicalFilter(condition=[&gt;($2, 2)])
+</span></span><span class="line"><span class="cl">   +- LogicalTableScan(table=[[*anonymous_datastream_source$1*]])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="calcite-解析流程">Calcite 解析流程</h2>
+<ol>
+<li>Parser 将SQL语句(字符串) 解析成 AST(抽象语法树) 语法树的节点在代码中为SqlNode</li>
+<li>Validate 校验SqlNode节点，替换节点中的部分属性，设置单调性等信息</li>
+<li>Convert 将SqlNode 抽象语法树 转换成RelNode，执行逻辑执行计划</li>
+<li>Optimize 成本优化</li>
+<li>Execute 生成动态代码，并执行物理执行计划</li>
+</ol>
+<p>其中，</p>
+<ul>
+<li>SqlNode 是语法树上的节点，其本质是把SQL语句进行拆解</li>
+<li>RelNode 是关系节点，代表的事关系代数中的关系操作，RelNode 更倾向数学的概念，就可以进行下一步的优化了</li>
+<li>RexNode 虽然RexNode也属于关系节点，但是这里的RexNode更偏向于去表示表达式，比如一个常数，或者是 简单的a+b的运算，亦或是count(*) 这样的聚合；所以一个RelNode中会有很多RexNode节点</li>
+</ul>
+<h3 id="sqlnode">SqlNode</h3>
+<p>SqlNode 是一个抽象类，没有过多的信息，就包括一个位置信息的对象SqlParserPos<br>
+SqlParserPos 是用来表示SQL语句中的位置信息的类。它包含了行号、列号和字符偏移量等信息，可以用于定位SQL语句中的错误或者生成更加详细的错误信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">SqlNode</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Static fields/initializers ---------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nd">@Nullable</span> <span class="n">SqlNode</span><span class="o">[]</span> <span class="n">EMPTY_ARRAY</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlNode</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kd">final</span> <span class="n">SqlParserPos</span> <span class="n">pos</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlParserPos</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Static fields/initializers ---------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * SqlParserPos representing line one, character one. Use this if the node
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * doesn&#39;t correspond to a position in piece of SQL text.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SqlParserPos</span> <span class="n">ZERO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlParserPos</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/** Same as {@link #ZERO} but always quoted. **/</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SqlParserPos</span> <span class="n">QUOTED_ZERO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QuotedParserPos</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">columnNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">endLineNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">endColumnNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从SqlSelect的这个类中就可以看出，一个简单的SQL语句在SqlSelect中都能找到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlSelect</span> <span class="kd">extends</span> <span class="n">SqlCall</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Static fields/initializers ---------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// constants representing operand positions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">FROM_OPERAND</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">WHERE_OPERAND</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">HAVING_OPERAND</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">SqlNodeList</span> <span class="n">keywordList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SqlNodeList</span> <span class="n">selectList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNode</span> <span class="n">from</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNode</span> <span class="n">where</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNodeList</span> <span class="n">groupBy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNode</span> <span class="n">having</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SqlNodeList</span> <span class="n">windowDecls</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNodeList</span> <span class="n">orderBy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNode</span> <span class="n">offset</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNode</span> <span class="n">fetch</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Nullable</span> <span class="n">SqlNodeList</span> <span class="n">hints</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的keywordList就是像 SELECT FROM 这样的保留字<br>
+不过从debug的过程来看 这个keywordList是个空的数据</p>
+<p><img loading="lazy" src="sqlNode.png" srcset="/calcite-prefix/sqlNode.png, sqlNode.png 1.5x, /calcite-prefix/sqlNode.png 2x" sizes="auto" data-title="/calcite-prefix/sqlNode.png" data-alt="/calcite-prefix/sqlNode.png" width="2472" height="684" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<h3 id="relnode">RelNode</h3>
+<p>RelNode 是个接口 继承了 RelOptNode<br>
+RelOptNode 目前没有看到除了RelNode以外有其他地方使用和实现</p>
+<p>RelNode 接口定义了树结构的父类以及节点数据和类型的方法 真正处理的方法都放在了 RelShuttle 和 RexShuttle中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RelNode</span> <span class="kd">extends</span> <span class="n">RelOptNode</span><span class="o">,</span> <span class="n">Cloneable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Accepts a visit from a shuttle.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param shuttle Shuttle
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return A copy of this node incorporating changes made by the shuttle to
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * this node&#39;s children
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">RelNode</span> <span class="nf">accept</span><span class="o">(</span><span class="n">RelShuttle</span> <span class="n">shuttle</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Accepts a visit from a shuttle. If the shuttle updates expression, then
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * a copy of the relation should be created. This new relation might have
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * a different row-type.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param shuttle Shuttle
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return A copy of this node incorporating changes made by the shuttle to
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * this node&#39;s children
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">RelNode</span> <span class="nf">accept</span><span class="o">(</span><span class="n">RexShuttle</span> <span class="n">shuttle</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以具体一点，看一下比较常用的RelNode 的实现是如何定义的：LogicalProject
+<img loading="lazy" src="LocalProject.png" srcset="/calcite-prefix/LocalProject.png, LocalProject.png 1.5x, /calcite-prefix/LocalProject.png 2x" sizes="auto" data-title="LocalProject" data-alt="LocalProject" width="908" height="910" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Sub-class of Project not targeted at any particular engine or calling convention.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">LogicalProject</span> <span class="kd">extends</span> <span class="n">Project</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Constructors -----------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Creates a LogicalProject.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Use {@link #create} unless you know what you&#39;re doing.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param cluster  Cluster this relational expression belongs to
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param traitSet Traits of this relational expression
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param hints    Hints of this relational expression
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param input    Input relational expression
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param projects List of expressions for the input columns
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param rowType  Output row type
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">LogicalProject</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">RelOptCluster</span> <span class="n">cluster</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">RelTraitSet</span> <span class="n">traitSet</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">List</span><span class="o">&lt;</span><span class="n">RelHint</span><span class="o">&gt;</span> <span class="n">hints</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">RelNode</span> <span class="n">input</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">RexNode</span><span class="o">&gt;</span> <span class="n">projects</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">RelDataType</span> <span class="n">rowType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">(</span><span class="n">cluster</span><span class="o">,</span> <span class="n">traitSet</span><span class="o">,</span> <span class="n">hints</span><span class="o">,</span> <span class="n">input</span><span class="o">,</span> <span class="n">projects</span><span class="o">,</span> <span class="n">rowType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">traitSet</span><span class="o">.</span><span class="na">containsIfApplicable</span><span class="o">(</span><span class="n">Convention</span><span class="o">.</span><span class="na">NONE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Creates a LogicalProject by parsing serialized output.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">LogicalProject</span><span class="o">(</span><span class="n">RelInput</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Methods ----------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/** Creates a LogicalProject. */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="n">LogicalProject</span> <span class="nf">create</span><span class="o">(</span><span class="kd">final</span> <span class="n">RelNode</span> <span class="n">input</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RelHint</span><span class="o">&gt;</span> <span class="n">hints</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">RexNode</span><span class="o">&gt;</span> <span class="n">projects</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Nullable</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nd">@Nullable</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">fieldNames</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">RelOptCluster</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">getCluster</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">RelDataType</span> <span class="n">rowType</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RexUtil</span><span class="o">.</span><span class="na">createStructType</span><span class="o">(</span><span class="n">cluster</span><span class="o">.</span><span class="na">getTypeFactory</span><span class="o">(),</span> <span class="n">projects</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fieldNames</span><span class="o">,</span> <span class="n">SqlValidatorUtil</span><span class="o">.</span><span class="na">F_SUGGESTER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">create</span><span class="o">(</span><span class="n">input</span><span class="o">,</span> <span class="n">hints</span><span class="o">,</span> <span class="n">projects</span><span class="o">,</span> <span class="n">rowType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/** Creates a LogicalProject, specifying row type rather than field names. */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="n">LogicalProject</span> <span class="nf">create</span><span class="o">(</span><span class="kd">final</span> <span class="n">RelNode</span> <span class="n">input</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RelHint</span><span class="o">&gt;</span> <span class="n">hints</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">RexNode</span><span class="o">&gt;</span> <span class="n">projects</span><span class="o">,</span> <span class="n">RelDataType</span> <span class="n">rowType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">RelOptCluster</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">getCluster</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">RelMetadataQuery</span> <span class="n">mq</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="na">getMetadataQuery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">RelTraitSet</span> <span class="n">traitSet</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cluster</span><span class="o">.</span><span class="na">traitSet</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="n">Convention</span><span class="o">.</span><span class="na">NONE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">replaceIfs</span><span class="o">(</span><span class="n">RelCollationTraitDef</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">RelMdCollation</span><span class="o">.</span><span class="na">project</span><span class="o">(</span><span class="n">mq</span><span class="o">,</span> <span class="n">input</span><span class="o">,</span> <span class="n">projects</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">LogicalProject</span><span class="o">(</span><span class="n">cluster</span><span class="o">,</span> <span class="n">traitSet</span><span class="o">,</span> <span class="n">hints</span><span class="o">,</span> <span class="n">input</span><span class="o">,</span> <span class="n">projects</span><span class="o">,</span> <span class="n">rowType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>LocalProject 的变量定义都散落在他的父类中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Relational expression that computes a set of &#39;select expressions&#39; from its input relational expression.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * See Also:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * org.apache.calcite.rel.logical.LogicalProject
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">extends</span> <span class="n">SingleRel</span> <span class="kd">implements</span> <span class="n">Hintable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">RexNode</span><span class="o">&gt;</span> <span class="n">exps</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">RelHint</span><span class="o">&gt;</span> <span class="n">hints</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Abstract base class for relational expressions with a single input.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;It is not required that single-input relational expressions use this
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * class as a base class. However, default implementations of methods make life
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * easier.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">SingleRel</span> <span class="kd">extends</span> <span class="n">AbstractRelNode</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="n">RelNode</span> <span class="n">input</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rexnode">RexNode</h3>
+<p>RexNode 是 行表达式(Row Expression) 是通过SqlNode 转换过来 尤其是 select 的项 where 的条件 等等 与SqlNode不同的是,RexNode的类型都是确定的，SqlNode的类型是在优化前就已经定好了，所以这个类型可能不能用<br>
+RexNode 是一个抽象类，也是实现了访问者模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Row expression.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;Every row-expression has a type.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * (Compare with {@link org.apache.calcite.sql.SqlNode}, which is created before
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * validation, and therefore types may not be available.)
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;Some common row-expressions are: {@link RexLiteral} (constant value),
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * {@link RexVariable} (variable), {@link RexCall} (call to operator with
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * operands). Expressions are generally created using a {@link RexBuilder}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * factory.&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;All sub-classes of RexNode are immutable.&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RexNode</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Effectively final. Set in each sub-class constructor, and never re-set.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">protected</span> <span class="nd">@MonotonicNonNull</span> <span class="n">String</span> <span class="n">digest</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Methods ----------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">RelDataType</span> <span class="nf">getType</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Returns whether this expression always returns true. (Such as if this
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * expression is equal to the literal &lt;code&gt;TRUE&lt;/code&gt;.)
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAlwaysTrue</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Returns whether this expression always returns false. (Such as if this
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * expression is equal to the literal &lt;code&gt;FALSE&lt;/code&gt;.)
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAlwaysFalse</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isA</span><span class="o">(</span><span class="n">SqlKind</span> <span class="n">kind</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">getKind</span><span class="o">()</span> <span class="o">==</span> <span class="n">kind</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isA</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">SqlKind</span><span class="o">&gt;</span> <span class="n">kinds</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">getKind</span><span class="o">().</span><span class="na">belongsTo</span><span class="o">(</span><span class="n">kinds</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Returns the kind of node this is.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return Node kind, never null
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">SqlKind</span> <span class="nf">getKind</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">SqlKind</span><span class="o">.</span><span class="na">OTHER</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span> <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">requireNonNull</span><span class="o">(</span><span class="n">digest</span><span class="o">,</span> <span class="s">&#34;digest&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/** Returns the number of nodes in this expression.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Leaf nodes, such as {@link RexInputRef} or {@link RexLiteral}, have
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * a count of 1. Calls have a count of 1 plus the sum of their operands.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Node count is a measure of expression complexity that is used by some
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * planner rules to prevent deeply nested expressions.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">nodeCount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Accepts a visitor, dispatching to the right overloaded
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * {@link RexVisitor#visitInputRef visitXxx} method.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Also see {@link RexUtil#apply(RexVisitor, java.util.List, RexNode)},
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * which applies a visitor to several expressions simultaneously.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">abstract</span> <span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">R</span> <span class="nf">accept</span><span class="o">(</span><span class="n">RexVisitor</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">visitor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Accepts a visitor with a payload, dispatching to the right overloaded
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * {@link RexBiVisitor#visitInputRef(RexInputRef, Object)} visitXxx} method.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">abstract</span> <span class="o">&lt;</span><span class="n">R</span><span class="o">,</span> <span class="n">P</span><span class="o">&gt;</span> <span class="n">R</span> <span class="nf">accept</span><span class="o">(</span><span class="n">RexBiVisitor</span><span class="o">&lt;</span><span class="n">R</span><span class="o">,</span> <span class="n">P</span><span class="o">&gt;</span> <span class="n">visitor</span><span class="o">,</span> <span class="n">P</span> <span class="n">arg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/** {@inheritDoc}
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Every node must implement {@link #equals} based on its content
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/** {@inheritDoc}
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * &lt;p&gt;Every node must implement {@link #hashCode} consistent with
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * {@link #equals}
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还是具体一点看一下 RexCall的定义
+<a href="/calcite-prefix/rex.png"></a>
+RexCall是有操作符的表达式，操作符可以是 一元二元，也可是函数，或者是固定语法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * An expression formed by a call to an operator with zero or more expressions
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * as operands.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;Operators may be binary, unary, functions, special syntactic constructs
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * like &lt;code&gt;CASE ... WHEN ... END&lt;/code&gt;, or even internally generated
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * constructs like implicit type conversions. The syntax of the operator is
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * really irrelevant, because row-expressions (unlike
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * {@link org.apache.calcite.sql.SqlNode SQL expressions})
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * do not directly represent a piece of source code.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;It&#39;s not often necessary to sub-class this class. The smarts should be in
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * the operator, rather than the call. Any extra information about the call can
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * often be encoded as extra arguments. (These don&#39;t need to be hidden, because
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * no one is going to be generating source code from this tree.)&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RexCall</span> <span class="kd">extends</span> <span class="n">RexNode</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//~ Instance fields --------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">final</span> <span class="n">SqlOperator</span> <span class="n">op</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">RexNode</span><span class="o">&gt;</span> <span class="n">operands</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">final</span> <span class="n">RelDataType</span> <span class="n">type</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">nodeCount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Cache of hash code.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">int</span> <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Cache of normalized variables used for #equals and #hashCode.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="nd">@Nullable</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">SqlOperator</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RexNode</span><span class="o">&gt;&gt;</span> <span class="n">normalized</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>op 操作符，加减乘除，大于小于，函数等</li>
+<li>operands 操作数，可以是一元的也可以是多元的</li>
+<li>type  数据类型，和SQL的是可以对应上的</li>
+<li>nodeCount RexNode的个数，包括本身和Operands操作数</li>
+</ul>
+<h3 id="案例">案例</h3>
+<p>通过一个简单的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- table(user,product,amount)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tableA</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>该Sql语句经过后生成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">LogicalProject(user=[$0], product=[$1], amount=[$2])
+</span></span><span class="line"><span class="cl">+- LogicalFilter(condition=[&gt;($2, 2)])
+</span></span><span class="line"><span class="cl">   +- LogicalTableScan(table=[[default_catalog, default_database, tableA]])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以看出：</p>
+<ul>
+<li>select * 对应的是 LocalProject</li>
+<li>where amount &gt; 2 对应的是 LogicalFilter</li>
+<li>from tableA 对应的是 LogicalTableScan</li>
+</ul>
+<p>LogicalProject 有以下变量</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>类型</th>
+<th>说明</th>
+<th>案例中的取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exprs</td>
+<td>ImmutableList&lt;RexNode&gt;</td>
+<td>表达式，一般就是select 后面跟的表达式，这里的表达式已经转换过了，给不同的表达式进行了命名,user=[$0], product=[$1], amount=[$2] 这里都是RexInputRef</td>
+<td>[$0, $1, $2]</td>
+</tr>
+<tr>
+<td>hints</td>
+<td>ImmutableList&lt;RelHint&gt;</td>
+<td>这里是hint 的表达式，是嵌在代码里的一串增强说明</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>input</td>
+<td>LogicalFilter</td>
+<td>关联其他RelNode，是该对象的输入节点</td>
+<td>LogicalFilter(condition=[&gt;($2, 2)])</td>
+</tr>
+<tr>
+<td>rowType</td>
+<td>RelRecordType</td>
+<td>数据类型</td>
+<td>RecordType(BIGINT user, VARCHAR(2147483647) product, INTEGER amount)</td>
+</tr>
+<tr>
+<td>digest</td>
+<td>AbstractRelNode.InnerRelDigest</td>
+<td>关系信息的摘要，根据此判断两个关系是否相同</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cluster</td>
+<td>RelOptCluster</td>
+<td>默认的Cluster，提供元数据，统计信息，管理查询计划的各种关系运算符，提供优化查询计划的方法等</td>
+<td>-</td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>traitSet</td>
+<td>List&lt;RelTraitSet&gt;</td>
+<td>关系的一些特征、特质，比如处理引擎的规范，Flink分布，mini-batch，下ModifyKind， UpdateKind 这些</td>
+<td>[Convention, FlinkRelDistribution, MiniBatchIntervalTrait, ModifyKindSetTrait, UpdateKindTrait]</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出RelNode 其实更像是一个关系代数，这个关系代数也是有树型关系在里面的</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-05-25 00:16:17">更新于 2023-05-25&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/74a60d38fd6cf3e72e1c3099e9a1d4fa1e4d3d16" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) 74a60d38fd6cf3e72e1c3099e9a1d4fa1e4d3d16: calcite"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>74a60d3</a></span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/calcite-prefix/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/calcite-prefix/" data-title="Calcite 简介" data-hashtags="calcite,sql"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/calcite-prefix/" data-hashtag="calcite"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/calcite-prefix/" data-title="Calcite 简介"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/calcite-prefix/" data-title="Calcite 简介"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/calcite-prefix/" data-title="Calcite 简介"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/calcite/' class="post-tag">calcite</a><a href='/tags/sql/' class="post-tag">sql</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/flink-sqlquery/" class="post-nav-item" rel="prev" title="Flink sqlQuery"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Flink sqlQuery</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/" rel="external nofollow noopener noreferrer">Valine</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.111.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.18"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">Toxi & Alisa</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js" async defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{"enable":true,"expired":false,"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"","pageSize":10,"placeholder":"你的评论……","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

@@ -2,11 +2,11 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>https://example.com/tags/flink/</loc><lastmod>2023-05-09T20:48:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/flink-sqlquery/</loc><lastmod>2023-05-09T20:48:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/posts/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/sql/</loc><lastmod>2023-05-09T20:48:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/tags/calcite/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/calcite-prefix/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/posts/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/sql/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/tags/"
@@ -15,7 +15,7 @@
           hreflang="zh-cn"
           href="https://example.com/tags/"
           /></url><url>
-      <loc>https://example.com/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/</loc><lastmod>2023-05-25T00:16:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/"
@@ -24,12 +24,14 @@
           hreflang="zh-cn"
           href="https://example.com/"
           /></url><url>
-      <loc>https://example.com/flink-prefix/</loc><lastmod>2023-05-03T11:05:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>https://example.com/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>https://example.com/tags/ml/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/touch-prefix/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/flink-agghandlercodegenerator/</loc><lastmod>2023-05-08T11:34:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/flink/</loc><lastmod>2023-05-09T20:48:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+      <loc>https://example.com/flink-sqlquery/</loc><lastmod>2023-05-09T20:48:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+      <loc>https://example.com/flink-prefix/</loc><lastmod>2023-05-03T11:05:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>https://example.com/tags/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>https://example.com/lsm/</loc><lastmod>2023-04-29T16:56:52&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>https://example.com/tags/ml/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+      <loc>https://example.com/touch-prefix/</loc><lastmod>2023-05-10T00:52:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+      <loc>https://example.com/flink-agghandlercodegenerator/</loc><lastmod>2023-05-08T11:34:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
       <loc>https://example.com/about/</loc><lastmod>2022-09-18T19:08:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
             rel="alternate"
