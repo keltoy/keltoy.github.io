@@ -1,4 +1,4 @@
-# 学习 FlinkSQL - 开始
+# FlinkSQL - 开始
 
 
 ## flink 参数

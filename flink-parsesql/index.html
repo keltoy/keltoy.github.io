@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>FlinkSQL - SQL语句到SqlNode - Toxi &amp; Alisa</title><meta name="author" content="Toxi &amp; Alisa">
+<meta name="author-link" content="">
+<meta name="description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6" /><meta name="keywords" content='flink, calcite, sql, javacc' /><meta itemprop="name" content="FlinkSQL - SQL语句到SqlNode">
+<meta itemprop="description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6"><meta itemprop="datePublished" content="2023-05-27T01:08:14+08:00" />
+<meta itemprop="dateModified" content="2023-06-06T21:38:53+08:00" />
+<meta itemprop="wordCount" content="1914"><meta itemprop="image" content="https://example.com/logo.png"/>
+<meta itemprop="keywords" content="flink,calcite,sql,javacc," /><meta property="og:title" content="FlinkSQL - SQL语句到SqlNode" />
+<meta property="og:description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/flink-parsesql/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-27T01:08:14+08:00" />
+<meta property="article:modified_time" content="2023-06-06T21:38:53+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="FlinkSQL - SQL语句到SqlNode"/>
+<meta name="twitter:description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/flink-parsesql/" /><link rel="prev" href="https://example.com/calcite-prefix/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "FlinkSQL - SQL语句到SqlNode",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/example.com\/flink-parsesql\/"
+    },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "flink, calcite, sql, javacc","wordcount":  1914 ,
+    "url": "https:\/\/example.com\/flink-parsesql\/","datePublished": "2023-05-27T01:08:14+08:00","dateModified": "2023-06-06T21:38:53+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+        "@type": "Person",
+        "name": "toxi"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/documentation/"
+                
+                
+              >文档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              >关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://github.com/dillonzq/LoveIt"
+                title="GitHub"
+                rel="noopener noreferrer" target="_blank"
+              ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch">
+            <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/documentation/"
+                  
+                  
+                >文档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                >关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/dillonzq/LoveIt"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span class="menu-system-item language-switch">
+              <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+              <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+            </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>FlinkSQL - SQL语句到SqlNode</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      toxi</span></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-05-27 01:08:14"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-27">2023-05-27</time></span>&nbsp;<span title="更新于 2023-06-06 21:38:53"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-06">2023-06-06</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1914 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="/flink-parsesql/" class="leancloud_visitors comment-visitors" data-flag-title="FlinkSQL - SQL语句到SqlNode">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
+            </span>&nbsp;<span class="comment-count" data-flag-title="FlinkSQL - SQL语句到SqlNode">
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/flink-parsesql/" class="valine-comment-count">-</span>&nbsp;条评论
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#parsesqllist">parseSqlList</a>
+      <ul>
+        <li><a href="#sqlparserconfig">SqlParser.Config</a>
+          <ul>
+            <li><a href="#sqlconformance">SqlConformance</a></li>
+            <li><a href="#flinksqlparserfactories">FlinkSqlParserFactories</a></li>
+            <li><a href="#lex">Lex</a></li>
+          </ul>
+        </li>
+        <li><a href="#sqlparser">SqlParser</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="parsesqllist">parseSqlList</h2>
+<p>Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// org.apache.flink.table.planner.parse.CalciteParser
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"> <span class="kd">public</span> <span class="n">SqlNodeList</span> <span class="nf">parseSqlList</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">SqlParser</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="na">parseStmtList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SqlParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;Encountered \&#34;&lt;EOF&gt;\&#34;&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">SqlParserEOFException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">SqlParserException</span><span class="o">(</span><span class="s">&#34;SQL parse failed. &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 parser 的创建 使用到了 calcite 的 SqlParser实例<br>
+生成 SqlParser 需要两个参数</p>
+<ul>
+<li>sql String 类型，就是传入的Sql字符串</li>
+<li>config SqlParser.Config类型</li>
+</ul>
+<h3 id="sqlparserconfig">SqlParser.Config</h3>
+<p>Flink 在解析sqlQuery 或者 createTemporaryView 这类操作SQL的处理中，就会创建CalciteParser,在创建CalciteParser的时候会调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">getSqlParserConfig()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>的方法获取SqlParser.Config</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// org.apache.flink.table.planner.delegation.PlannerContext
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Returns the SQL parser config for this environment including a custom Calcite configuration.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">SqlParser</span><span class="o">.</span><span class="na">Config</span> <span class="nf">getSqlParserConfig</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">JavaScalaConversionUtil</span><span class="o">.&lt;</span><span class="n">SqlParser</span><span class="o">.</span><span class="na">Config</span><span class="o">&gt;</span><span class="n">toJava</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">getCalciteConfig</span><span class="o">().</span><span class="na">getSqlParserConfig</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">orElseGet</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">// we use Java lex because back ticks are easier than double quotes in
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="c1">// programming and cases are preserved
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">SqlConformance</span> <span class="n">conformance</span> <span class="o">=</span> <span class="n">getSqlConformance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">return</span> <span class="n">SqlParser</span><span class="o">.</span><span class="na">config</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                                    <span class="o">.</span><span class="na">withParserFactory</span><span class="o">(</span><span class="n">FlinkSqlParserFactories</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">conformance</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                                    <span class="o">.</span><span class="na">withConformance</span><span class="o">(</span><span class="n">conformance</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                                    <span class="o">.</span><span class="na">withLex</span><span class="o">(</span><span class="n">Lex</span><span class="o">.</span><span class="na">JAVA</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                                    <span class="o">.</span><span class="na">withIdentifierMaxLength</span><span class="o">(</span><span class="mi">256</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果设置了Calicte的一些配置，那么就会在这里被读取出来自定义的CalicteParser，
+否则，走orElseGet信息</p>
+<p>SqlParser在这里设置了解析SQL的语法、词法、方言以及限定词的最大长度</p>
+<h4 id="sqlconformance">SqlConformance</h4>
+<p>SqlConformance 是用来设置 SQL的方言(或标准)的
+在FlinkSQL中一共有两种方言，</p>
+<ul>
+<li>Calcite 默认方言</li>
+<li>Hive 方言</li>
+</ul>
+<h4 id="flinksqlparserfactories">FlinkSqlParserFactories</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/** A util method to create SqlParserImplFactory according to SqlConformance. */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlinkSqlParserFactories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">FlinkSqlParserFactories</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlParserImplFactory</span> <span class="nf">create</span><span class="o">(</span><span class="n">SqlConformance</span> <span class="n">conformance</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">conformance</span> <span class="o">==</span> <span class="n">FlinkSqlConformance</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">FlinkSqlParserImpl</span><span class="o">.</span><span class="na">FACTORY</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">TableException</span><span class="o">(</span><span class="s">&#34;Unsupported SqlConformance: &#34;</span> <span class="o">+</span> <span class="n">conformance</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里就很有意思，FlinkSqlParser只接受Calcite默认方言<br>
+然后再看FlinkSqlParserImpl</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// package org.apache.flink.sql.parser.impl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * SQL parser, generated from Parser.jj by JavaCC.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * &lt;p&gt;The public wrapper for this parser is {@link SqlParser}.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlinkSqlParserImpl</span> <span class="kd">extends</span> <span class="n">SqlAbstractParserImpl</span> <span class="kd">implements</span> <span class="n">FlinkSqlParserImplConstants</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">CalciteTrace</span><span class="o">.</span><span class="na">getParserTracer</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看出，FlinkSqlParserImpl 是通过JavaCC生成的<br>
+生成此类的 JavaCC 文件 在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flink-table/flink-sql-parser/target/generated-sources/javacc/Parser.jj
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而这个应该是根据 FreeMarker的模板fmpp来生成的,打开 flink-sql-parser 下面 codegen里面的config.fmpp，我们可以发现一下一段话，答题意思就是说FMPP继承了CalciteParser，然后解析指定的Sql</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># This file is an FMPP (http://fmpp.sourceforge.net/) configuration file to</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># allow clients to extend Calcite&#39;s SQL parser to support application specific</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SQL statements, literals or data types.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Calcite&#39;s parser grammar file (Parser.jj) is written in javacc</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (https://javacc.org/) with Freemarker (http://freemarker.org/) variables</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># to allow clients to:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   1. have custom parser implementation class and package name.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   2. insert new parser method implementations written in javacc to parse</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      custom:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      a) SQL statements.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      b) literals.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      c) data types.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   3. add new keywords to support custom SQL constructs added as part of (2).</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   4. add import statements needed by inserted custom parser implementations.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Parser template file (Parser.jj) along with this file are packaged as</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># part of the calcite-core-&lt;version&gt;.jar under &#34;codegen&#34; directory.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>简单看一下这个jj文件，可以发现，就是在定义SQL如何声明，以及如何处理SQL语句的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SqlLiteral</span> <span class="nf">AllOrDistinct</span><span class="o">()</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">DISTINCT</span><span class="o">&gt;</span> <span class="o">{</span> <span class="k">return</span> <span class="n">SqlSelectKeyword</span><span class="o">.</span><span class="na">DISTINCT</span><span class="o">.</span><span class="na">symbol</span><span class="o">(</span><span class="n">getPos</span><span class="o">());</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">ALL</span><span class="o">&gt;</span> <span class="o">{</span> <span class="k">return</span> <span class="n">SqlSelectKeyword</span><span class="o">.</span><span class="na">ALL</span><span class="o">.</span><span class="na">symbol</span><span class="o">(</span><span class="n">getPos</span><span class="o">());</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 flink-sql-parser 中还可以看到生成这些FlinkSQL的逻辑，比如这种 Flink的建表语句如何判断的逻辑，都在这里可以找到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// org.apache.flink.sql.parser.ddl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlCreateTable</span> <span class="kd">extends</span> <span class="n">SqlCreate</span> <span class="kd">implements</span> <span class="n">ExtendedSqlNode</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SqlSpecialOperator</span> <span class="n">OPERATOR</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">SqlSpecialOperator</span><span class="o">(</span><span class="s">&#34;CREATE TABLE&#34;</span><span class="o">,</span> <span class="n">SqlKind</span><span class="o">.</span><span class="na">CREATE_TABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"> <span class="n">writer</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;CREATE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">isTemporary</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;TEMPORARY&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">writer</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;TABLE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">isIfNotExists</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;IF NOT EXISTS&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tableName</span><span class="o">.</span><span class="na">unparse</span><span class="o">(</span><span class="n">writer</span><span class="o">,</span> <span class="n">leftPrec</span><span class="o">,</span> <span class="n">rightPrec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">columnList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">tableConstraints</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">watermark</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlUnparseUtils</span><span class="o">.</span><span class="na">unparseTableSchema</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">writer</span><span class="o">,</span> <span class="n">leftPrec</span><span class="o">,</span> <span class="n">rightPrec</span><span class="o">,</span> <span class="n">columnList</span><span class="o">,</span> <span class="n">tableConstraints</span><span class="o">,</span> <span class="n">watermark</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">comment</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="na">newlineAndIndent</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;COMMENT&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">comment</span><span class="o">.</span><span class="na">unparse</span><span class="o">(</span><span class="n">writer</span><span class="o">,</span> <span class="n">leftPrec</span><span class="o">,</span> <span class="n">rightPrec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回jj文件中，我们可以看出一条SQL语句是如何拆分成一步一步拆分成SqlNode的过程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SqlNodeList</span> <span class="nf">SqlStmtList</span><span class="o">()</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SqlNode</span><span class="o">&gt;</span> <span class="n">stmtList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SqlNode</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlNode</span> <span class="n">stmt</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stmt</span> <span class="o">=</span> <span class="n">SqlStmt</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stmtList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">stmt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="n">SEMICOLON</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stmt</span> <span class="o">=</span> <span class="n">SqlStmt</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stmtList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">stmt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">)*</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">EOF</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">SqlNodeList</span><span class="o">(</span><span class="n">stmtList</span><span class="o">,</span> <span class="n">Span</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">stmtList</span><span class="o">).</span><span class="na">pos</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="lex">Lex</h4>
+<p>Calcite 中的 Lex 是一个词法分析器，用于将输入的 SQL 语句转换为一系列的词法单元（tokens）。这些词法单元可以被后续的语法分析器（parser）用来构建语法树。</p>
+<p>举个例子，假设我们有一个 SQL 查询语句：</p>
+<p>SELECT name, age FROM users WHERE age &gt; 18;
+Lex 会将这个语句分解为以下词法单元：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT
+</span></span><span class="line"><span class="cl">name
+</span></span><span class="line"><span class="cl">,
+</span></span><span class="line"><span class="cl">age
+</span></span><span class="line"><span class="cl">FROM
+</span></span><span class="line"><span class="cl">users
+</span></span><span class="line"><span class="cl">WHERE
+</span></span><span class="line"><span class="cl">age
+</span></span><span class="line"><span class="cl">&gt;
+</span></span><span class="line"><span class="cl">18
+</span></span><span class="line"><span class="cl">;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些词法单元可以被 Calcite 中的语法分析器用来构建语法树，进而进行查询优化和执行</p>
+<h3 id="sqlparser">SqlParser</h3>
+<p>了解了 SqlParser.Config的构成，SqlParser就更简单了创建过程就是将Config中的的数据拿出来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="c1">//~ Constructors -----------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">private</span> <span class="nf">SqlParser</span><span class="o">(</span><span class="n">SqlAbstractParserImpl</span> <span class="n">parser</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Config</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">parser</span> <span class="o">=</span> <span class="n">parser</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">setTabSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">setQuotedCasing</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">quotedCasing</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">setUnquotedCasing</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">unquotedCasing</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">setIdentifierMaxLength</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">identifierMaxLength</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">setConformance</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">conformance</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="na">switchTo</span><span class="o">(</span><span class="n">SqlAbstractParserImpl</span><span class="o">.</span><span class="na">LexicalState</span><span class="o">.</span><span class="na">forConfig</span><span class="o">(</span><span class="n">config</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中parser.switchTo 用于切换解析器的状态
+具体来说，switchTo方法接受一个参数，表示要切换到的状态。在解析SQL语句的过程中，不同的状态对应着不同的语法规则和解析方式。通过切换状态，解析器可以根据当前的语法规则和上下文信息，正确地解析SQL语句。
+举个例子，假设我们有一个SQL语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在解析这个SQL语句时，解析器需要根据不同的关键字和符号，判断当前的语法状态。比如，在解析SELECT关键字时，解析器需要切换到SELECT状态；在解析FROM关键字时，解析器需要切换到FROM状态；在解析WHERE关键字时，解析器需要切换到WHERE状态。
+具体的实现可以参考SqlAbstractParserImpl类的源代码。</p>
+<p>所以一条字符串类型的Sql语句 转换成 SqlNode 的流程应该就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-1"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-06-06 21:38:53">更新于 2023-06-06&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/02d3ea2683fa7a3b4d1c2e5dade5b6141022f728" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) 02d3ea2683fa7a3b4d1c2e5dade5b6141022f728: flinksql"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>02d3ea2</a></span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/flink-parsesql/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode" data-hashtags="flink,calcite,sql,javacc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/flink-parsesql/" data-hashtag="flink"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/flink/' class="post-tag">flink</a><a href='/tags/calcite/' class="post-tag">calcite</a><a href='/tags/sql/' class="post-tag">sql</a><a href='/tags/javacc/' class="post-tag">javacc</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/calcite-prefix/" class="post-nav-item" rel="prev" title="Calcite 简介"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Calcite 简介</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/" rel="external nofollow noopener noreferrer">Valine</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.111.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.18"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">Toxi & Alisa</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js" async defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{"enable":true,"expired":false,"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"","pageSize":10,"placeholder":"你的评论……","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"graph LR\n\nA(\"FlinkSQL\") --\u003e B(\"语法分析规则flink-table-parser\") --\u003e C(\"fmpp语法分析规则模板\") --\u003e D(\"Parser.jj\") --\u003e E(\"FlinkSqlParserImpl\") --\u003e F(\"SqlParser\")\nI(\"SQL语句\") --\u003e G(\"parseSqlList\") --\u003e F --\u003e H(\"SqlNode\")"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"mermaid":{"themes":["default","dark"]}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

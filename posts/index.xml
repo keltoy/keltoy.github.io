@@ -3,7 +3,15 @@
     <title>所有文章 - Toxi &amp; Alisa</title>
     <link>https://example.com/posts/</link>
     <description>所有文章 | Toxi &amp; Alisa</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 11 May 2023 13:40:06 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 May 2023 01:08:14 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>FlinkSQL - SQL语句到SqlNode</title>
+  <link>https://example.com/flink-parsesql/</link>
+  <pubDate>Sat, 27 May 2023 01:08:14 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/flink-parsesql/</guid>
+  <description><![CDATA[parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6]]></description>
+</item>
+<item>
   <title>Calcite 简介</title>
   <link>https://example.com/calcite-prefix/</link>
   <pubDate>Thu, 11 May 2023 13:40:06 &#43;0800</pubDate>
@@ -12,7 +20,7 @@
   <description><![CDATA[简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数]]></description>
 </item>
 <item>
-  <title>Flink sqlQuery</title>
+  <title>FlinkSQL - SQL解析过程</title>
   <link>https://example.com/flink-sqlquery/</link>
   <pubDate>Thu, 04 May 2023 23:48:08 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
@@ -20,7 +28,7 @@
   <description><![CDATA[sqlQuery sql 进入sqlQuery后，首先就是获取Parser 解析sql语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // TableEnvironmentImpl.java @Override public Table sqlQuery(String query) { List&lt;Operation&gt; operations = getParser().parse(query); if (operations.size() != 1)]]></description>
 </item>
 <item>
-  <title>学习 FlinkSQL - 开始</title>
+  <title>FlinkSQL - 开始</title>
   <link>https://example.com/flink-prefix/</link>
   <pubDate>Sun, 30 Apr 2023 19:08:11 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
