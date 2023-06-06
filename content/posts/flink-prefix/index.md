@@ -1,5 +1,5 @@
 ---
-title: "学习 FlinkSQL - 开始"
+title: "FlinkSQL - 开始"
 date: 2023-04-30T19:08:11+08:00
 draft: false
 tags: ["flink", "sql"]
