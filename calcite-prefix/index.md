@@ -122,7 +122,7 @@ public class SqlSelect extends SqlCall {
   @Nullable SqlNodeList hints;
 }
 ```
-这里的keywordList就是像 SELECT FROM 这样的保留字  
+这里的keywordList是保留字，如果有 distinct 这种就会放在这个keywordList中
 不过从debug的过程来看 这个keywordList是个空的数据
 
 ![](sqlNode.png)

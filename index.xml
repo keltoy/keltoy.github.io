@@ -3,9 +3,25 @@
     <title>Toxi &amp; Alisa</title>
     <link>https://example.com/</link>
     <description>Hugo theme - LoveIt</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 May 2023 01:08:14 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 13 Jun 2023 15:18:47 &#43;0800</lastBuildDate>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>UART, I2C, SPI</title>
+  <link>https://example.com/transmitter/</link>
+  <pubDate>Tue, 13 Jun 2023 15:18:47 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/transmitter/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>FlinkSQL - 验证过程</title>
+  <link>https://example.com/flink-sql-validate/</link>
+  <pubDate>Tue, 06 Jun 2023 22:00:08 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/flink-sql-validate/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>FlinkSQL - SQL语句到SqlNode</title>
   <link>https://example.com/flink-parsesql/</link>
   <pubDate>Sat, 27 May 2023 01:08:14 &#43;0800</pubDate>

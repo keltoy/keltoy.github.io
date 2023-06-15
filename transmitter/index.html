@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>UART, I2C, SPI - Toxi &amp; Alisa</title><meta name="author" content="Toxi &amp; Alisa">
+<meta name="author-link" content="">
+<meta name="description" content="Hugo theme - LoveIt" /><meta name="keywords" content='uart, i2c, spi' /><meta itemprop="name" content="UART, I2C, SPI">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-06-13T15:18:47+08:00" />
+<meta itemprop="dateModified" content="2023-06-15T16:05:48+08:00" />
+<meta itemprop="wordCount" content="2769"><meta itemprop="image" content="https://example.com/logo.png"/>
+<meta itemprop="keywords" content="uart,i2c,spi," /><meta property="og:title" content="UART, I2C, SPI" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/transmitter/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-13T15:18:47+08:00" />
+<meta property="article:modified_time" content="2023-06-15T16:05:48+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="UART, I2C, SPI"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/transmitter/" /><link rel="prev" href="https://example.com/flink-sql-validate/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "UART, I2C, SPI",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/example.com\/transmitter\/"
+    },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "uart, i2c, spi","wordcount":  2769 ,
+    "url": "https:\/\/example.com\/transmitter\/","datePublished": "2023-06-13T15:18:47+08:00","dateModified": "2023-06-15T16:05:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+        "@type": "Person",
+        "name": "toxi"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/documentation/"
+                
+                
+              >文档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              >关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://github.com/dillonzq/LoveIt"
+                title="GitHub"
+                rel="noopener noreferrer" target="_blank"
+              ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch">
+            <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/documentation/"
+                  
+                  
+                >文档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                >关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/dillonzq/LoveIt"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span class="menu-system-item language-switch">
+              <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+              <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+            </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>UART, I2C, SPI</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      toxi</span></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-06-13 15:18:47"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-13">2023-06-13</time></span>&nbsp;<span title="更新于 2023-06-15 16:05:48"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-15">2023-06-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 2769 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 6 分钟</span>&nbsp;<span id="/transmitter/" class="leancloud_visitors comment-visitors" data-flag-title="UART, I2C, SPI">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
+            </span>&nbsp;<span class="comment-count" data-flag-title="UART, I2C, SPI">
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/transmitter/" class="valine-comment-count">-</span>&nbsp;条评论
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#uart">UART</a>
+      <ul>
+        <li><a href="#流控制">流控制</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点">缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#spi">SPI</a>
+      <ul>
+        <li><a href="#spi使用的四根信号线">SPI使用的四根信号线</a></li>
+        <li><a href="#spi的四种操作模式">SPI的四种操作模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#i2c">I2C</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>线数</th>
+<th>通信类型</th>
+<th>多主</th>
+<th>数据率</th>
+<th>总线上期间的数量</th>
+<th>线缆长度(米)</th>
+<th>工作模式</th>
+<th>使用距离</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$UART$$</td>
+<td>2</td>
+<td>异步</td>
+<td>不支持</td>
+<td>3Kbps 到 4Mbps</td>
+<td>2</td>
+<td>1.5</td>
+<td>全双工</td>
+<td>远距离</td>
+</tr>
+<tr>
+<td>$$SPI$$</td>
+<td>3</td>
+<td>同步</td>
+<td>不支持</td>
+<td>1Mbps</td>
+<td>&lt; 10</td>
+<td>&lt;3</td>
+<td>全双工</td>
+<td>近距离低速</td>
+</tr>
+<tr>
+<td>$$I^2C$$</td>
+<td>2</td>
+<td>同步</td>
+<td>支持</td>
+<td>&lt;3.4Mbps</td>
+<td>&lt; 10</td>
+<td>&lt;3</td>
+<td>半双工</td>
+<td>近距离低速</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>I2C的使用场景：连接传感器、存储器、显示器等设备。例如，连接温度传感器、EEPROM存储器、OLED显示器等。</p>
+<p>UART的使用场景：连接串口设备，如调试器、GPS接收器等。例如，连接串口调试器进行程序调试。</p>
+<p>SPI的使用场景：连接存储器、显示器、传感器等设备。例如，连接Flash存储器、LCD显示器、加速度传感器等。</p>
+<p>选择使用这三者的场景取决于具体的应用需求。</p>
+<ul>
+<li>如果需要连接多个设备，可以选择使用I2C或SPI协议；</li>
+<li>如果只需要连接单个设备，可以选择使用UART协议。</li>
+<li>如果需要高速传输数据，可以选择使用SPI协议。</li>
+<li>如果需要低功耗和简单的通信方式，可以选择使用I2C协议。</li>
+<li>如果需要长距离传输数据，可以选择使用UART协议。</li>
+</ul>
+<h2 id="uart">UART</h2>
+<p>UART（Universal Asynchronous Receiver/Transmitter）：UART是一种异步串行通信协议，用于在计算机和外部设备之间传输数据。它使用两根线（TX和RX）进行通信，其中TX是发送线，RX是接收线。UART协议只支持单主机和单从机的通信，不能连接多个设备。UART通常用于连接串口设备，如调试器、GPS接收器等。</p>
+<h3 id="流控制">流控制</h3>
+<p>流控制的方式分别有软件和硬件两种。</p>
+<ul>
+<li>软件的流控制方式，在UART通信中，只需RxD、TxD、GND三根即可，数据在传输过程中，依靠代码的判断处理，并通过收发双方进行的数据交互完成控制，在现有通信物理信号线基础上，使用控制字符(ASCII表中的0x00~0x0x1F、0x7F)完成控制指令的交互。一般在私有协议下也会定义一些特殊字符设为控制指令。</li>
+<li>硬件的流控制方式，即在原有的RxD、TxD、GND三根信号线的基础上，再增加RTS/CTS和DTR/DSR这两组信号线。第一组线是RTS（Request toSend）和CTS（Clear toSend）。当接收方准备好接收数据，它置高RTS线表示它准备好了，如果发送方也就绪，它置高CTS，表示它即将发送数据。第二组线是DTR（DataTerminal Ready）和DSR（Data SetReady）。这些线主要用于Modem通信。使得串口和Modem通信他们的状态。例如：当Modem已经准备好接收来自PC的数据，它置高DTR线，表示和电话线的连接已经建立。读取DSR线置高，PC机开始发送数据。一个简单的规则是DTR/DSR用于表示系统通信就绪，而RTS/CTS用于单个数据包的传输。</li>
+</ul>
+<h3 id="优点">优点</h3>
+<ol>
+<li>只使用两根电线，不需要时钟信号</li>
+<li>有一个奇偶校验位，只要双方设置后，就可以改变数据包的结构</li>
+</ol>
+<h3 id="缺点">缺点</h3>
+<ol>
+<li>数据帧的大小限制为最多9位，不支持多个从属或多个主系统</li>
+<li>每个UART的波特率必须在10％之内</li>
+</ol>
+<h2 id="spi">SPI</h2>
+<p>SPI（Serial Peripheral Interface）：SPI是一种串行通信协议，用于在芯片之间传输数据。它使用四根线（MOSI、MISO、SCK和SS）进行通信，其中MOSI是主设备输出从设备输入的数据线，MISO是主设备输入从设备输出的数据线，SCK是时钟线，SS是片选线。SPI协议支持多主机和多从机的通信，可以连接多个设备。SPI通常用于连接存储器、显示器、传感器等设备。</p>
+<h3 id="spi使用的四根信号线">SPI使用的四根信号线</h3>
+<ul>
+<li>SCLK: Serial Clock (output from master)：串行时钟，用来同步数据传输，由主机输出；</li>
+<li>MOSI \ SIMO: Master Output, Slave Input(output from master)：主机输出从机输入数据线，通常先传输MSB；</li>
+<li>MISO \ SOMI: Master Input, Slave Output(output from slave)：主机输入从机输出数据线，通常先传输LSB；</li>
+<li>SS: Slave Select (active low, output from master)：片选线，低电平有效，由主机输出。</li>
+</ul>
+<p>SS\CS：控制芯片是否被选中的，也就是说只有片选信号为预先规定的使能信号时（一般默认为低电位），对此芯片的操作才有效，这就允许在同一总线上连接多个SPI设备成为可能。也就是说：当有多个从设备的时候，因为每个从设备上都有一个片选引脚接入到主设备机中，当我们的主设备和某个从设备通信时将需要将从设备对应的片选引脚电平拉低。</p>
+<h3 id="spi的四种操作模式">SPI的四种操作模式</h3>
+<p>SPI的四种操作模式，它们的区别是定义了在时钟脉冲的哪条边沿转换（toggles）输出信号，哪条边沿采样输入信号，还有时钟脉冲的稳定电平值（就是时钟信号无效时是高还低）。</p>
+<p>对于STM32等MCU自带的硬件SPI外设来说，可能没有那么重要，只需要配置一下模式就行了，但是对于使用使用GPIO模拟或者FPGA来实现SPI的时序，这一点是非常非常重要的。</p>
+<p>Master 设备会根据将要交换的数据来产生相应的时钟脉冲(Clock Pulse)，时钟脉冲组成了时钟信号(Clock Signal) ，每种模式由时钟信号中的时钟极性（clock polarity）CPOL与时钟周期（clock phase）CPHA来定义。</p>
+<p>不同的从设备可能在出厂是就是配置为某种模式，这是不能改变的，但我们的通信双方必须是工作在同一模式下，所以我们可以对我们的主设备的SPI模式进行配置，从而实现主从通讯。</p>
+<p>时钟极性CPOL是用来配置SCLK的电平出于哪种状态时是空闲态或者有效态；时钟相位CPHA是用来配置数据采样是在第几个边沿。</p>
+<p>CPOL=0，表示当SCLK=0时处于空闲态，所以有效状态就是SCLK处于高电平时；
+CPOL=1，表示当SCLK=1时处于空闲态，所以有效状态就是SCLK处于低电平时；
+CPHA=0，表示数据采样是在第1个边沿，数据发送在第2个边沿；
+CPHA=1，表示数据采样是在第2个边沿，数据发送在第1个边沿。
+在高电平有效状态时，第一边沿为上升沿，第二边沿为下降沿；在低电平有效状态时，第一边沿为下降沿，第二边沿为上升沿</p>
+<p>具体四种模式如下：</p>
+<p>CPOL = 0，CPHA = 0：时钟高电平时为有效状态，时钟上升沿（第一个边沿）采样。
+CPOL = 0，CPHA = 1：时钟高电平时为有效状态，时钟下降沿（第二个边沿）采样。
+CPOL = 1，CPHA = 0：时钟低电平时为有效状态，时钟下降沿（第一个边沿）采样。
+CPOL = 1，CPHA = 1：时钟低电平时为有效状态，时钟上升沿（第二个边沿）采样。</p>
+<h2 id="i2c">I2C</h2>
+<p>I2C（Inter-Integrated Circuit）：I2C是一种串行通信协议，用于在芯片之间传输数据。它使用两根线（SDA和SCL）进行通信，其中SDA是数据线，SCL是时钟线。I2C协议支持多主机和多从机的通信，可以连接多个设备。I2C通常用于连接传感器、存储器、显示器等设备。
+IIC 是多主设备的总线，IIC没有物理的芯片选择信号线，没有仲裁逻辑电路，只使用serial data (SDA)数据线 和 serial clock(SCL)时钟线两条信号线，数据线用来传输数据，时钟线用来同步数据收发。两根信号线都是双向传输的，这两条线都是漏极开路或者集电极开路结构，使用时需要外加上拉电阻，可以挂载多个设备。</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-06-15 16:05:48">更新于 2023-06-15&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fe7522230d2c1ff693925724cd07efb28dda1876" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) fe7522230d2c1ff693925724cd07efb28dda1876: -"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>fe75222</a></span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/transmitter/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/transmitter/" data-title="UART, I2C, SPI" data-hashtags="uart,i2c,spi"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/transmitter/" data-hashtag="uart"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/transmitter/" data-title="UART, I2C, SPI"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/transmitter/" data-title="UART, I2C, SPI"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/transmitter/" data-title="UART, I2C, SPI"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/uart/' class="post-tag">uart</a><a href='/tags/i2c/' class="post-tag">i2c</a><a href='/tags/spi/' class="post-tag">spi</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/flink-sql-validate/" class="post-nav-item" rel="prev" title="FlinkSQL - 验证过程"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>FlinkSQL - 验证过程</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/" rel="external nofollow noopener noreferrer">Valine</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.111.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.18"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">Toxi & Alisa</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js" async defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{"enable":true,"expired":false,"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"","pageSize":10,"placeholder":"你的评论……","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

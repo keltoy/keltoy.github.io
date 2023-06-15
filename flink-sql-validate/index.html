@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>FlinkSQL - 验证过程 - Toxi &amp; Alisa</title><meta name="author" content="Toxi &amp; Alisa">
+<meta name="author-link" content="">
+<meta name="description" content="Hugo theme - LoveIt" /><meta name="keywords" content='flink, sql' /><meta itemprop="name" content="FlinkSQL - 验证过程">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-06-06T22:00:08+08:00" />
+<meta itemprop="dateModified" content="2023-06-15T16:05:48+08:00" />
+<meta itemprop="wordCount" content="4862"><meta itemprop="image" content="https://example.com/logo.png"/>
+<meta itemprop="keywords" content="flink,sql," /><meta property="og:title" content="FlinkSQL - 验证过程" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/flink-sql-validate/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-06T22:00:08+08:00" />
+<meta property="article:modified_time" content="2023-06-15T16:05:48+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="FlinkSQL - 验证过程"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/flink-sql-validate/" /><link rel="prev" href="https://example.com/flink-parsesql/" /><link rel="next" href="https://example.com/transmitter/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "FlinkSQL - 验证过程",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/example.com\/flink-sql-validate\/"
+    },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "flink, sql","wordcount":  4862 ,
+    "url": "https:\/\/example.com\/flink-sql-validate\/","datePublished": "2023-06-06T22:00:08+08:00","dateModified": "2023-06-15T16:05:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+        "@type": "Person",
+        "name": "toxi"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/documentation/"
+                
+                
+              >文档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              >关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://github.com/dillonzq/LoveIt"
+                title="GitHub"
+                rel="noopener noreferrer" target="_blank"
+              ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch">
+            <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/documentation/"
+                  
+                  
+                >文档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                >关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/dillonzq/LoveIt"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span class="menu-system-item language-switch">
+              <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+              <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+            </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>FlinkSQL - 验证过程</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      toxi</span></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-06-06 22:00:08"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-06">2023-06-06</time></span>&nbsp;<span title="更新于 2023-06-15 16:05:48"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-15">2023-06-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 4862 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 10 分钟</span>&nbsp;<span id="/flink-sql-validate/" class="leancloud_visitors comment-visitors" data-flag-title="FlinkSQL - 验证过程">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
+            </span>&nbsp;<span class="comment-count" data-flag-title="FlinkSQL - 验证过程">
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/flink-sql-validate/" class="valine-comment-count">-</span>&nbsp;条评论
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么-sqlnode-需要验证">为什么 SqlNode 需要验证</a></li>
+    <li><a href="#validate">validate</a>
+      <ul>
+        <li><a href="#创建-validator">创建 validator</a>
+          <ul>
+            <li><a href="#flinkcalcitesqlvalidator">FlinkCalciteSqlValidator</a></li>
+          </ul>
+        </li>
+        <li><a href="#开始验证">开始验证</a>
+          <ul>
+            <li><a href="#重写">重写</a></li>
+            <li><a href="#validator验证sqlnode">validator验证SqlNode</a>
+              <ul>
+                <li><a href="#sqlvalidatorscope">SqlValidatorScope</a></li>
+                <li><a href="#validatescopedexpression">validateScopedExpression</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#举例">举例</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>当Sql语句转换为SqlNode 之后 就会进入下一个阶段：将SqlNode 转换成 Operations</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Operation</span><span class="o">&gt;</span> <span class="nf">parse</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CalciteParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">calciteParserSupplier</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FlinkPlannerImpl</span> <span class="n">planner</span> <span class="o">=</span> <span class="n">validatorSupplier</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Operation</span><span class="o">&gt;</span> <span class="n">command</span> <span class="o">=</span> <span class="n">EXTENDED_PARSER</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">statement</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">command</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">command</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// parse the sql query
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// use parseSqlList here because we need to support statement end with &#39;;&#39; in sql client.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">SqlNodeList</span> <span class="n">sqlNodeList</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">parseSqlList</span><span class="o">(</span><span class="n">statement</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">SqlNode</span><span class="o">&gt;</span> <span class="n">parsed</span> <span class="o">=</span> <span class="n">sqlNodeList</span><span class="o">.</span><span class="na">getList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkArgument</span><span class="o">(</span><span class="n">parsed</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;only single statement supported&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SqlNodeToOperationConversion</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="n">planner</span><span class="o">,</span> <span class="n">catalogManager</span><span class="o">,</span> <span class="n">parsed</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">TableException</span><span class="o">(</span><span class="s">&#34;Unsupported query: &#34;</span> <span class="o">+</span> <span class="n">statement</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中  SqlNodeToOperationConversion.convert方法，就算是将 SqlNode转换成 Operation<br>
+SqlNod会先进行验证工作，然后再进行转换</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Operation</span><span class="o">&gt;</span> <span class="nf">convert</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">FlinkPlannerImpl</span> <span class="n">flinkPlanner</span><span class="o">,</span> <span class="n">CatalogManager</span> <span class="n">catalogManager</span><span class="o">,</span> <span class="n">SqlNode</span> <span class="n">sqlNode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// validate the query
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">final</span> <span class="n">SqlNode</span> <span class="n">validated</span> <span class="o">=</span> <span class="n">flinkPlanner</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">sqlNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">convertValidatedSqlNode</span><span class="o">(</span><span class="n">flinkPlanner</span><span class="o">,</span> <span class="n">catalogManager</span><span class="o">,</span> <span class="n">validated</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="为什么-sqlnode-需要验证">为什么 SqlNode 需要验证</h2>
+<p>目的当然是为了确保SQL语句的正确性和合法性，避免在后续的执行过程中出现错误
+举例来说，假设有以下的SQL语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在进行转换成Operation的过程中，需要先进行validate，检查SQL语句是否符合语法规则和语义规则。如果SQL语句中存在语法错误或者语义错误，那么validate过程会抛出异常，提示用户需要修改SQL语句
+例如，如果SQL语句中存在以下错误：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，age的类型是整数，但是在SQL语句中使用了字符串类型的&rsquo;two&rsquo;进行比较，这是一个语义错误。在进行validate的过程中，会检测到这个错误并抛出异常，提示用户需要修改SQL语句中的比较条件
+因此，先进行validate的过程可以帮助用户在SQL语句执行之前就发现错误，避免在后续的执行过程中出现问题，提高SQL语句的执行效率和准确性</p>
+<h2 id="validate">validate</h2>
+<p>validate的过程的输入和输出都是SqlNode，除了检查类型之外还会更改SqlNode的节点信息<br>
+通过FlinkPlanner 对SqlNode进行检查</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="n">def</span> <span class="nf">validate</span><span class="o">(</span><span class="n">sqlNode</span><span class="o">:</span> <span class="n">SqlNode</span><span class="o">):</span> <span class="n">SqlNode</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val</span> <span class="n">validator</span> <span class="o">=</span> <span class="n">getOrCreateSqlValidator</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">validate</span><span class="o">(</span><span class="n">sqlNode</span><span class="o">,</span> <span class="n">validator</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>FlinkCalciteSqlValidator 实现 了Calicte 的SqlValidatorImpl 作为validator，就是用来检查FlinkSql的Sql语法的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/** Extends Calcite&#39;s {@link SqlValidator} by Flink-specific behavior. */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Internal</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">FlinkCalciteSqlValidator</span> <span class="kd">extends</span> <span class="n">SqlValidatorImpl</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Enables CallContext#getOutputDataType() when validating SQL expressions.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">SqlNode</span> <span class="n">sqlNodeForExpectedOutputType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">RelDataType</span> <span class="n">expectedOutputType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">FlinkCalciteSqlValidator</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlOperatorTable</span> <span class="n">opTab</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlValidatorCatalogReader</span> <span class="n">catalogReader</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">RelDataTypeFactory</span> <span class="n">typeFactory</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlValidator</span><span class="o">.</span><span class="na">Config</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">opTab</span><span class="o">,</span> <span class="n">catalogReader</span><span class="o">,</span> <span class="n">typeFactory</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建-validator">创建 validator</h3>
+<p>第一次写入Sql时，会新建一个validator，后面再创建就会使用一个单例来处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">getOrCreateSqlValidator</span><span class="o">()</span><span class="k">:</span> <span class="kt">FlinkCalciteSqlValidator</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">validator</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">catalogReader</span> <span class="k">=</span> <span class="n">catalogReaderSupplier</span><span class="o">.</span><span class="n">apply</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">validator</span> <span class="k">=</span> <span class="n">createSqlValidator</span><span class="o">(</span><span class="n">catalogReader</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">validator</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，catalogReaderSupplier是一个函数，目的是读取和解析数据库中的元信息，比如数据库，表，列等信息<br>
+函数的输入是一个bool值，用来确定大小写是否敏感；输出是FlinkCalciteCatalogReader<br>
+FlinkCalciteCatalogReader相比于CalciteCatalogReader，包含了Flink特有的信息，例如：Flink的UDF函数信息和Flink的Table信息</p>
+<h4 id="flinkcalcitesqlvalidator">FlinkCalciteSqlValidator</h4>
+<p>通过数据元信息，就可以创建 SqlValidator</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl">  <span class="k">private</span> <span class="k">def</span> <span class="n">createSqlValidator</span><span class="o">(</span><span class="n">catalogReader</span><span class="k">:</span> <span class="kt">CalciteCatalogReader</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">validator</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FlinkCalciteSqlValidator</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">operatorTable</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">catalogReader</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">typeFactory</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nc">SqlValidator</span><span class="o">.</span><span class="nc">Config</span><span class="o">.</span><span class="nc">DEFAULT</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">withIdentifierExpansion</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">withDefaultNullCollation</span><span class="o">(</span><span class="nc">FlinkPlannerImpl</span><span class="o">.</span><span class="n">defaultNullCollation</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">withTypeCoercionEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">)</span> <span class="c1">// Disable implicit type coercion for now.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">validator</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建SqlValidator 需要以下信息</p>
+<ul>
+<li>SqlOperatorTable, 定义了Sql操作符和方法，也可以查找这些操作符和方法</li>
+</ul>
+<p>这个SqlOperatorTable是在创建 StreamTableEnvironment的时候就创建了，具体是在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// org.apache.flink.table.planner.delegation.PlannerContext
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">FrameworkConfig</span> <span class="nf">createFrameworkConfig</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Frameworks</span><span class="o">.</span><span class="na">newConfigBuilder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">defaultSchema</span><span class="o">(</span><span class="n">rootSchema</span><span class="o">.</span><span class="na">plus</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">parserConfig</span><span class="o">(</span><span class="n">getSqlParserConfig</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">costFactory</span><span class="o">(</span><span class="k">new</span> <span class="n">FlinkCostFactory</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">typeSystem</span><span class="o">(</span><span class="n">typeSystem</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">convertletTable</span><span class="o">(</span><span class="n">FlinkConvertletTable</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">sqlToRelConverterConfig</span><span class="o">(</span><span class="n">getSqlToRelConverterConfig</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">operatorTable</span><span class="o">(</span><span class="n">getSqlOperatorTable</span><span class="o">(</span><span class="n">getCalciteConfig</span><span class="o">()))</span> <span class="c1">// 这里创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// set the executor to evaluate constant expressions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">executor</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">new</span> <span class="n">ExpressionReducer</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">context</span><span class="o">.</span><span class="na">getTableConfig</span><span class="o">(),</span> <span class="n">context</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">(),</span> <span class="kc">false</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">context</span><span class="o">(</span><span class="n">context</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">traitDefs</span><span class="o">(</span><span class="n">traitDefs</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一般来说 opTab 里包含的都是 Calcite自带的操作符 比如 not like, is not null 这类</p>
+<ul>
+<li>SqlValidatorCatalogReader, 就是上面所说的FlinkCalciteCatalogReader，保存的SQL的元数据</li>
+<li>RelDataTypeFactory, FlinkSQL的类型，连接 Flink 的 LogicalType 和 Calcite 的 RelDataType。 RelDataType 是 RelNode关系代数中的数据类型，使用Calcite解析SQL的时候内部会转换成这种类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Flink specific type factory that represents the interface between Flink&#39;s [[LogicalType]] and
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Calcite&#39;s [[RelDataType]].
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nf">FlinkTypeFactory</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">classLoader</span><span class="o">:</span> <span class="n">ClassLoader</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">typeSystem</span><span class="o">:</span> <span class="n">RelDataTypeSystem</span> <span class="o">=</span> <span class="n">FlinkTypeSystem</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">extends</span> <span class="nf">JavaTypeFactoryImpl</span><span class="o">(</span><span class="n">typeSystem</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">with</span> <span class="n">ExtendedRelTypeFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">val</span> <span class="n">seenTypes</span> <span class="o">=</span> <span class="n">mutable</span><span class="o">.</span><span class="na">HashMap</span><span class="o">[</span><span class="n">LogicalType</span><span class="o">,</span> <span class="n">RelDataType</span><span class="o">]()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * Create a calcite field type in table schema from [[LogicalType]]. It use PEEK_FIELDS_NO_EXPAND
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * when type is a nested struct type (Flink [[RowType]]).
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param t
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *   flink logical type.
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return
+</span></span></span><span class="line"><span class="cl"><span class="cm">   *   calcite [[RelDataType]].
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">def</span> <span class="nf">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">t</span><span class="o">:</span> <span class="n">LogicalType</span><span class="o">):</span> <span class="n">RelDataType</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">def</span> <span class="nf">newRelDataType</span><span class="o">():</span> <span class="n">RelDataType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">getTypeRoot</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">NULL</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">NULL</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">BOOLEAN</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">BOOLEAN</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">TINYINT</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">TINYINT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">SMALLINT</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">SMALLINT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">INTEGER</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">INTEGER</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">BIGINT</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">BIGINT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">FLOAT</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">FLOAT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">DOUBLE</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">DOUBLE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">VARCHAR</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">VARCHAR</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">VarCharType</span><span class="o">].</span><span class="na">getLength</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">CHAR</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">CHAR</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">CharType</span><span class="o">].</span><span class="na">getLength</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">// temporal types
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">DATE</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">DATE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">TIME_WITHOUT_TIME_ZONE</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">TIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">// interval types
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">INTERVAL_YEAR_MONTH</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">createSqlIntervalType</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">          <span class="k">new</span> <span class="n">SqlIntervalQualifier</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MONTH</span><span class="o">,</span> <span class="n">SqlParserPos</span><span class="o">.</span><span class="na">ZERO</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">INTERVAL_DAY_TIME</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">createSqlIntervalType</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">          <span class="k">new</span> <span class="n">SqlIntervalQualifier</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">DAY</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECOND</span><span class="o">,</span> <span class="n">SqlParserPos</span><span class="o">.</span><span class="na">ZERO</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">BINARY</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">BINARY</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">BinaryType</span><span class="o">].</span><span class="na">getLength</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">VARBINARY</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">createSqlType</span><span class="o">(</span><span class="n">VARBINARY</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">VarBinaryType</span><span class="o">].</span><span class="na">getLength</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">DECIMAL</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">decimalType</span><span class="o">:</span> <span class="n">DecimalType</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createSqlType</span><span class="o">(</span><span class="n">DECIMAL</span><span class="o">,</span> <span class="n">decimalType</span><span class="o">.</span><span class="na">getPrecision</span><span class="o">,</span> <span class="n">decimalType</span><span class="o">.</span><span class="na">getScale</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">legacyType</span><span class="o">:</span> <span class="n">LegacyTypeInformationType</span><span class="o">[</span><span class="n">_</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="n">legacyType</span><span class="o">.</span><span class="na">getTypeInformation</span> <span class="o">==</span> <span class="n">BasicTypeInfo</span><span class="o">.</span><span class="na">BIG_DEC_TYPE_INFO</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createSqlType</span><span class="o">(</span><span class="n">DECIMAL</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">18</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">ROW</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">rowType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">RowType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">buildStructType</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">rowType</span><span class="o">.</span><span class="na">getFieldNames</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">rowType</span><span class="o">.</span><span class="na">getChildren</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// fields are not expanded in &#34;SELECT *&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">StructKind</span><span class="o">.</span><span class="na">PEEK_FIELDS_NO_EXPAND</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">STRUCTURED_TYPE</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">structuredType</span><span class="o">:</span> <span class="n">StructuredType</span> <span class="o">=&gt;</span> <span class="n">StructuredRelDataType</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">structuredType</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">legacyTypeInformationType</span><span class="o">:</span> <span class="n">LegacyTypeInformationType</span><span class="o">[</span><span class="n">_</span><span class="o">]</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">              <span class="n">PlannerTypeUtils</span><span class="o">.</span><span class="na">removeLegacyTypes</span><span class="o">(</span><span class="n">legacyTypeInformationType</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">ARRAY</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">arrayType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">ArrayType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">createArrayType</span><span class="o">(</span><span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">arrayType</span><span class="o">.</span><span class="na">getElementType</span><span class="o">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">MAP</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">mapType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">MapType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">createMapType</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">mapType</span><span class="o">.</span><span class="na">getKeyType</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">mapType</span><span class="o">.</span><span class="na">getValueType</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">MULTISET</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">multisetType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">MultisetType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">createMultisetType</span><span class="o">(</span><span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">multisetType</span><span class="o">.</span><span class="na">getElementType</span><span class="o">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">RAW</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">rawType</span><span class="o">:</span> <span class="n">RawType</span><span class="o">[</span><span class="n">_</span><span class="o">]</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">RawRelDataType</span><span class="o">(</span><span class="n">rawType</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">genericType</span><span class="o">:</span> <span class="n">TypeInformationRawType</span><span class="o">[</span><span class="n">_</span><span class="o">]</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">GenericRelDataType</span><span class="o">(</span><span class="n">genericType</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="n">getTypeSystem</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">legacyType</span><span class="o">:</span> <span class="n">LegacyTypeInformationType</span><span class="o">[</span><span class="n">_</span><span class="o">]</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createFieldTypeFromLogicalType</span><span class="o">(</span><span class="n">PlannerTypeUtils</span><span class="o">.</span><span class="na">removeLegacyTypes</span><span class="o">(</span><span class="n">legacyType</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">SYMBOL</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">createSqlType</span><span class="o">(</span><span class="n">SqlTypeName</span><span class="o">.</span><span class="na">SYMBOL</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">_</span> <span class="nd">@t</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">TableException</span><span class="o">(</span><span class="n">s</span><span class="s">&#34;Type is not supported: $t&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Kind in TimestampType do not affect the hashcode and equals, So we can&#39;t put it to seenTypes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">val</span> <span class="n">relType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">getTypeRoot</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">TIMESTAMP_WITHOUT_TIME_ZONE</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">timestampType</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">TimestampType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">timestampType</span><span class="o">.</span><span class="na">getKind</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">ROWTIME</span> <span class="o">=&gt;</span> <span class="n">createRowtimeIndicatorType</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">isNullable</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">REGULAR</span> <span class="o">=&gt;</span> <span class="n">createSqlType</span><span class="o">(</span><span class="n">TIMESTAMP</span><span class="o">,</span> <span class="n">timestampType</span><span class="o">.</span><span class="na">getPrecision</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">PROCTIME</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">TableException</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">              <span class="n">s</span><span class="s">&#34;Processing time indicator only supports&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span><span class="s">&#34; LocalZonedTimestampType, but actual is TimestampType.&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span><span class="s">&#34; This is a bug in planner, please file an issue.&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">LogicalTypeRoot</span><span class="o">.</span><span class="na">TIMESTAMP_WITH_LOCAL_TIME_ZONE</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="n">lzTs</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">asInstanceOf</span><span class="o">[</span><span class="n">LocalZonedTimestampType</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lzTs</span><span class="o">.</span><span class="na">getKind</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">PROCTIME</span> <span class="o">=&gt;</span> <span class="n">createProctimeIndicatorType</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">isNullable</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">ROWTIME</span> <span class="o">=&gt;</span> <span class="n">createRowtimeIndicatorType</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">isNullable</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">TimestampKind</span><span class="o">.</span><span class="na">REGULAR</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createSqlType</span><span class="o">(</span><span class="n">TIMESTAMP_WITH_LOCAL_TIME_ZONE</span><span class="o">,</span> <span class="n">lzTs</span><span class="o">.</span><span class="na">getPrecision</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">_</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">seenTypes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)</span> <span class="n">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">Some</span><span class="o">(</span><span class="n">retType</span><span class="o">:</span> <span class="n">RelDataType</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">retType</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">None</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">val</span> <span class="n">refType</span> <span class="o">=</span> <span class="n">newRelDataType</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">seenTypes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">refType</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">refType</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">createTypeWithNullability</span><span class="o">(</span><span class="n">relType</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">isNullable</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>SqlValidator.Config, SqlValidator的配置信息，这里默认使用的是 ImmutableSqlValidator</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">   <span class="n">SqlValidator</span><span class="o">.</span><span class="na">Config</span> <span class="n">DEFAULT</span> <span class="o">=</span> <span class="n">ImmutableSqlValidator</span><span class="o">.</span><span class="na">Config</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withTypeCoercionFactory</span><span class="o">(</span><span class="n">TypeCoercions</span><span class="o">::</span><span class="n">createTypeCoercion</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="开始验证">开始验证</h3>
+<p>创建validator 后 根据validate 来验证 sqlNode</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-1"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="重写">重写</h4>
+<p>为什么要重写？</p>
+<p>重写相当于是在SqlNode进行一些预处理主要作用是检查查询语句是否符合Flink Table的语法规范，并对查询语句进行一些必要的转换和优化，以便更好地支持Flink的执行引擎</p>
+<p>Flink中重写是依靠PreValidateReWriter来实现的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">      <span class="n">sqlNode</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">new</span> <span class="n">PreValidateReWriter</span><span class="o">(</span><span class="n">validator</span><span class="o">,</span> <span class="n">typeFactory</span><span class="o">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是简单的SQL其实不需要重写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl">  <span class="k">override</span> <span class="k">def</span> <span class="n">visit</span><span class="o">(</span><span class="n">call</span><span class="k">:</span> <span class="kt">SqlCall</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">call</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">e</span><span class="k">:</span> <span class="kt">SqlRichExplain</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="n">getStatement</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="n">r</span><span class="k">:</span> <span class="kt">RichSqlInsert</span> <span class="o">=&gt;</span> <span class="n">rewriteInsert</span><span class="o">(</span><span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="c1">// do nothing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">r</span><span class="k">:</span> <span class="kt">RichSqlInsert</span> <span class="o">=&gt;</span> <span class="n">rewriteInsert</span><span class="o">(</span><span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="c1">// do nothing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="validator验证sqlnode">validator验证SqlNode</h4>
+<p>如果不是特殊的SQL，应该都会使用 validator来验证SqlNode</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl">        <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="n">validator</span><span class="o">.</span><span class="n">validate</span><span class="o">(</span><span class="n">sqlNode</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// org.apache.calcite.sql.validate.SqlValidatorImpl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">SqlNode</span> <span class="nf">validate</span><span class="o">(</span><span class="n">SqlNode</span> <span class="n">topNode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlValidatorScope</span> <span class="n">scope</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EmptyScope</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scope</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CatalogScope</span><span class="o">(</span><span class="n">scope</span><span class="o">,</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;CATALOG&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="n">SqlNode</span> <span class="n">topNode2</span> <span class="o">=</span> <span class="n">validateScopedExpression</span><span class="o">(</span><span class="n">topNode</span><span class="o">,</span> <span class="n">scope</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="n">RelDataType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">getValidatedNodeType</span><span class="o">(</span><span class="n">topNode2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Util</span><span class="o">.</span><span class="na">discard</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">topNode2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="sqlvalidatorscope">SqlValidatorScope</h5>
+<p>SqlValidatorScope是Calcite中的一个接口，用于表示SQL语句中的作用域。它包含了当前作用域中可见的所有表、列、函数等信息。
+具体来说，SqlValidatorScope中包含了以下信息：</p>
+<ul>
+<li>当前作用域中可见的所有表，包括别名和表的元数据信息。</li>
+<li>当前作用域中可见的所有列，包括别名和列的元数据信息。</li>
+<li>当前作用域中可见的所有函数，包括函数的元数据信息和参数信息。</li>
+<li>当前作用域中可见的所有变量，包括变量的类型和值。</li>
+</ul>
+<p>举例说明，假设有以下SQL语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">salary</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个SQL语句中，作用域可以分为以下几个部分：</p>
+<ol>
+<li>SELECT子句中的作用域，包括a.name和b.salary两个列。</li>
+<li>FROM子句中的作用域，包括employee和salary两个表。</li>
+<li>JOIN子句中的作用域，包括a和b两个表的别名。</li>
+<li>WHERE子句中的作用域，包括b.salary列和5000常量。</li>
+</ol>
+<p>在每个作用域中，SqlValidatorScope都会包含相应的表、列、函数等信息，以便进行语法和语义的验证。</p>
+<p>SqlValidatorScope 本身也是一个树形结构，根节点是一个空scope</p>
+<h5 id="validatescopedexpression">validateScopedExpression</h5>
+<p>验证过程的第一步就是重写SqlNode，将SqlNode中的不确定的地方都进行更新<br>
+然后如果是Select这种简单的SQL，会将查询进行注册</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-2"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">SqlNode</span> <span class="nf">validateScopedExpression</span><span class="o">(</span><span class="n">SqlNode</span> <span class="n">topNode</span><span class="o">,</span> <span class="n">SqlValidatorScope</span> <span class="n">scope</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlNode</span> <span class="n">outermostNode</span> <span class="o">=</span> <span class="n">performUnconditionalRewrites</span><span class="o">(</span><span class="n">topNode</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cursorSet</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">outermostNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">top</span> <span class="o">=</span> <span class="n">outermostNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TRACER</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">&#34;After unconditional rewrite: {}&#34;</span><span class="o">,</span> <span class="n">outermostNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">outermostNode</span><span class="o">.</span><span class="na">isA</span><span class="o">(</span><span class="n">SqlKind</span><span class="o">.</span><span class="na">TOP_LEVEL</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">registerQuery</span><span class="o">(</span><span class="n">scope</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">outermostNode</span><span class="o">,</span> <span class="n">outermostNode</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">outermostNode</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">scope</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(!</span><span class="n">outermostNode</span><span class="o">.</span><span class="na">isA</span><span class="o">(</span><span class="n">SqlKind</span><span class="o">.</span><span class="na">TOP_LEVEL</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// force type derivation so that we can provide it to the
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// caller later without needing the scope
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">deriveType</span><span class="o">(</span><span class="n">scope</span><span class="o">,</span> <span class="n">outermostNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TRACER</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">&#34;After validation: {}&#34;</span><span class="o">,</span> <span class="n">outermostNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">outermostNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>performUnconditionalRewrites</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-3"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里大部分都是递归调用，能够实际重写的大部分都是函数调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getOperator</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">SqlUnresolvedFunction</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">assert</span> <span class="n">call</span> <span class="k">instanceof</span> <span class="n">SqlBasicCall</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">final</span> <span class="n">SqlUnresolvedFunction</span> <span class="n">function</span> <span class="o">=</span> <span class="o">(</span><span class="n">SqlUnresolvedFunction</span><span class="o">)</span> <span class="n">call</span><span class="o">.</span><span class="na">getOperator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// This function hasn&#39;t been resolved yet.  Perform
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// a half-hearted resolution now in case it&#39;s a
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// builtin function requiring special casing.  If it&#39;s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// not, we&#39;ll handle it later during overload resolution.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SqlOperator</span><span class="o">&gt;</span> <span class="n">overloads</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">opTab</span><span class="o">.</span><span class="na">lookupOperatorOverloads</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">function</span><span class="o">.</span><span class="na">getNameAsId</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">function</span><span class="o">.</span><span class="na">getFunctionType</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">SqlSyntax</span><span class="o">.</span><span class="na">FUNCTION</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">overloads</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">catalogReader</span><span class="o">.</span><span class="na">nameMatcher</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">overloads</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">((</span><span class="n">SqlBasicCall</span><span class="o">)</span> <span class="n">call</span><span class="o">).</span><span class="na">setOperator</span><span class="o">(</span><span class="n">overloads</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>SqlNode的lookupOperatorOverloads方法主要是用于查找可用的操作符重载。具体来说，它会根据传入的操作符名称和参数类型，查找符合条件的操作符重载方法。</p>
+<p>举个例子，假设有以下的SqlNode：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">column1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">column2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个SqlNode中，有一个加法操作符“+”，它的左右两边分别是column1和column2这两个列。因此，lookupOperatorOverloads方法会首先根据“+”操作符名称查找可用的操作符重载方法。如果找到了多个重载方法，它会根据参数类型进一步筛选出符合条件的重载方法。</p>
+<p>假设我们定义了以下的操作符重载方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">operator</span> <span class="o">+(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="n">operator</span> <span class="o">+(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">string</span> <span class="n">operator</span> <span class="o">+(</span><span class="n">string</span> <span class="n">a</span><span class="o">,</span> <span class="n">string</span> <span class="n">b</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这种情况下，lookupOperatorOverloads方法会根据column1和column2的数据类型来选择合适的重载方法。</p>
+<ul>
+<li>如果column1和column2都是int类型，那么会选择第一个重载方法；</li>
+<li>如果column1和column2都是double类型，那么会选择第二个重载方法；</li>
+<li>如果column1和column2都是string类型，那么会选择第三个重载方法。</li>
+</ul>
+<p>如果找不到符合条件的操作符重载方法，lookupOperatorOverloads方法会抛出异常。</p>
+<p><strong>registerQuery</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-4"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="kd">private</span> <span class="kt">void</span> <span class="nf">registerQuery</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlValidatorScope</span> <span class="n">parentScope</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Nullable</span> <span class="n">SqlValidatorScope</span> <span class="n">usingScope</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlNode</span> <span class="n">node</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SqlNode</span> <span class="n">enclosingNode</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">alias</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">boolean</span> <span class="n">forceNullable</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">boolean</span> <span class="n">checkUpdate</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">              <span class="o">...</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>enclosingNode和Node都是AST节点，但是它们的含义和使用方式有所不同。<br>
+enclosingNode表示当前节点所在的最近的语法结构节点，例如SELECT语句中的FROM子句，WHERE子句等。enclosingNode可以通过调用getEnclosingNode方法获取。<br>
+Node表示当前节点本身，例如SELECT语句中的SELECT子句，FROM子句等。Node可以通过调用getNode方法获取。<br>
+举个例子，假设有以下SQL语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在validate过程中，对于SELECT子句中的a和b，它们的enclosingNode都是SELECT语句本身，而它们的Node分别是ColumnRef节点，表示一个列引用。<br>
+对于WHERE子句中的a &gt; 10，它的enclosingNode是SELECT语句的WHERE子句，而它的Node是一个比较操作符节点，表示一个大于号操作。<br>
+在validate过程中，Calcite会对每个节点进行类型检查、语法检查等操作，以确保SQL语句的正确性。在这个过程中，enclosingNode和Node都会被用到，以确定当前节点的上下文和语义。</p>
+<p><strong>validate</strong></p>
+<ol>
+<li>检查验证状态，如果没有验证，则开始验证，然后验证类型，Select子句会调用SelectNamespace的验证，最后根据不同的子句分别验证</li>
+<li>验证对表的访问(只有from子句才会真正被验证)</li>
+<li>验证快照到表</li>
+<li>验证Select和其子句的形态 Relation 还是 Stream</li>
+</ol>
+<p>Modality指的是数据流的模式，即数据流的类型和结构。在Relational模式下，数据流是以表格的形式呈现，每个数据流都有一个固定的列集合和数据类型。而在Streaming模式下，数据流是以流的形式呈现，数据是按照时间顺序到达的，每个数据流都是一个无限的数据流。</p>
+<p>举例来说，如果我们有一个查询语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">30</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在Relational模式下，我们需要知道employees表格的列集合和数据类型，以及age列的数据类型是什么，才能验证这个查询语句是否合法。</li>
+<li>而在Streaming模式下，我们需要知道employees表格的列集合和数据类型，以及数据流是按照时间顺序到达的，才能验证这个查询语句是否合法。</li>
+</ul>
+<p>验证过程中我们需要根据数据流的模式来验证查询语句是否合法。如果数据流的模式与查询语句不匹配，就会抛出异常。<br>
+例如，在Relational模式下，如果查询语句中引用了不存在的列，就会抛出异常；在Streaming模式下，如果查询语句中使用了聚合函数，就会抛出异常，因为数据流是无限的，无法计算聚合函数的结果。</p>
+<h2 id="举例">举例</h2>
+<p>以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tableA</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>为例，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="mermaid" id="id-5"></div>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-06-15 16:05:48">更新于 2023-06-15&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fe7522230d2c1ff693925724cd07efb28dda1876" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) fe7522230d2c1ff693925724cd07efb28dda1876: -"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>fe75222</a></span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/flink-sql-validate/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/flink-sql-validate/" data-title="FlinkSQL - 验证过程" data-hashtags="flink,sql"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/flink-sql-validate/" data-hashtag="flink"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/flink-sql-validate/" data-title="FlinkSQL - 验证过程"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/flink-sql-validate/" data-title="FlinkSQL - 验证过程"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/flink-sql-validate/" data-title="FlinkSQL - 验证过程"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/flink/' class="post-tag">flink</a><a href='/tags/sql/' class="post-tag">sql</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/flink-parsesql/" class="post-nav-item" rel="prev" title="FlinkSQL - SQL语句到SqlNode"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>FlinkSQL - SQL语句到SqlNode</a>
+      <a href="/transmitter/" class="post-nav-item" rel="next" title="UART, I2C, SPI">UART, I2C, SPI<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/" rel="external nofollow noopener noreferrer">Valine</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.111.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.18"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">Toxi & Alisa</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js" async defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{"enable":true,"expired":false,"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"","pageSize":10,"placeholder":"你的评论……","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"graph TB\nstart((\"开始\")) --\u003e A(\"预处理重写SqlNode\") --\u003e B(\"如果有扩展节点，先处理扩展验证\")\nB --\u003e C{\"是否是DDL等\"} \nC --Y--\u003e ends(\"结束\")\nC --N--\u003eD(\"根据不同的Sql语句进行验证\") --\u003eE(\"返回SqlNode\")--\u003eends","id-2":"graph TB\n\nA((\"开始\")) --\u003e B(\"SqlNode重写\") --\u003eC(\"注册查询\")\nX --\u003e Z((\"结束\"))","id-3":"graph TB\n\nA((\"开始\")) --\u003e B(\"如果SqlNode是SqlCall\") --\u003e|是|C(\"获取SqlNode所有子SqlNode(算子)\") --\u003e C1(\"遍历算子，递归调用得到重写的算子,并更新\") --\u003e|递归| B\nC1 --\u003e C2(\"如果SqlNode的操作符是函数\") --\u003e|是|C3(\"查找内部函数并替换\") --\u003e C4(\"如果配置重写，则操作符更新\")\nB --\u003e|否|D{\"是否是SqlNodeList\"} --\u003e|是|E(\"遍历List,递归调用重写，并更新\")--\u003e|递归| B\nC4 --\u003e D\nE --\u003eF{\"判断SqlNode的Kind类型\"}\nF --\u003e|\"VALUES，ORDER_BY等其他关键字\"|G(\"根据不同的关键字规则重写\") --\u003eH(\"返回SqlNode\") --\u003e Z((\"结束\"))\nF --\u003e|\"其他(如Select)\"|H","id-4":"graph TB\n\nA((\"开始\")) --\u003e B(\"区分不同的nodeKind\") --\u003e|SELECT|C(\"创建并注册Select命名空间\") --\u003eD(\"创建Select作用域\")\nD --\u003e E(\"注册where子句\") --\u003e F(\"注册from子句\") --\u003e G(\"创建并注册From Identifier命名空间\") --\u003e H(\"设置TableScope\") --\u003e I(\"Select的SqlNode设置新的From的Node\")\nI --\u003e J(\"如果有聚合方法,需要分别注册groupByScope, HavingScope\") --\u003e K(\"如果有orderby还需要注册OrderByScope\")\nK --\u003e Z((\"结束\"))","id-5":"graph BT\n\nC(\"SelectScope\") --\u003e B(\"CatalogScope\") --\u003e A(\"EmptyScope\")\nE(\"tableA 命名空间\") --\u003e D(\"TableScope\") --\u003e B"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"mermaid":{"themes":["default","dark"]}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
