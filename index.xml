@@ -3,9 +3,17 @@
     <title>Toxi &amp; Alisa</title>
     <link>https://example.com/</link>
     <description>Hugo theme - LoveIt</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 13 Jun 2023 15:18:47 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 15 Jun 2023 16:24:09 &#43;0800</lastBuildDate>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>FlinkSQL验证</title>
+  <link>https://example.com/flink-validate-type/</link>
+  <pubDate>Thu, 15 Jun 2023 16:24:09 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/flink-validate-type/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>UART, I2C, SPI</title>
   <link>https://example.com/transmitter/</link>
   <pubDate>Tue, 13 Jun 2023 15:18:47 &#43;0800</pubDate>
@@ -60,14 +68,6 @@
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/lsm/</guid>
   <description><![CDATA[LSM 树(Log-Structured-Merge-Tree) 不算是树，其实是一种存储结构 利用顺序追加写来提高写性能 内存-文件读取方式会降低读性]]></description>
-</item>
-<item>
-  <title>Torch 预热</title>
-  <link>https://example.com/touch-prefix/</link>
-  <pubDate>Thu, 27 Apr 2023 19:21:47 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/touch-prefix/</guid>
-  <description><![CDATA[Torch123 1 import torch 1 2 3 # 行向量 x = torch.arange(12) x tensor([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) 1 2 # 张量形状 x.shape torch.Size([12]) 1 2 # 元素总数 x.numel() 12 1 2 3 # 改变顺序 X = x.reshape(3, 4) X tensor([[ 0, 1, 2, 3], [ 4, 5, 6, 7], []]></description>
 </item>
 <item>
   <title>Flink AggHandlerCodeGenerator</title>
