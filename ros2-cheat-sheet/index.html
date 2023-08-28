@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ROS2 cli 清单 - Toxi &amp; Alisa</title><meta name="author" content="Toxi &amp; Alisa">
+<meta name="author-link" content="">
+<meta name="description" content="Hugo theme - LoveIt" /><meta name="keywords" content='ros' /><meta itemprop="name" content="ROS2 cli 清单">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-08-09T13:38:15+08:00" />
+<meta itemprop="dateModified" content="2023-08-28T21:43:40+08:00" />
+<meta itemprop="wordCount" content="1555"><meta itemprop="image" content="https://example.com/logo.png"/>
+<meta itemprop="keywords" content="ros," /><meta property="og:title" content="ROS2 cli 清单" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/ros2-cheat-sheet/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-09T13:38:15+08:00" />
+<meta property="article:modified_time" content="2023-08-28T21:43:40+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="ROS2 cli 清单"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/ros2-cheat-sheet/" /><link rel="prev" href="https://example.com/paimon1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ROS2 cli 清单",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/example.com\/ros2-cheat-sheet\/"
+    },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "ros","wordcount":  1555 ,
+    "url": "https:\/\/example.com\/ros2-cheat-sheet\/","datePublished": "2023-08-09T13:38:15+08:00","dateModified": "2023-08-28T21:43:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+        "@type": "Person",
+        "name": "toxi"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/documentation/"
+                
+                
+              >文档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              >关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://github.com/dillonzq/LoveIt"
+                title="GitHub"
+                rel="noopener noreferrer" target="_blank"
+              ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch">
+            <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Toxi &amp; Alisa"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span class="header-title-text">LoveIt</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/documentation/"
+                  
+                  
+                >文档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                >关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/dillonzq/LoveIt"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fab fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span class="menu-system-item language-switch">
+              <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+              <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+            </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>ROS2 cli 清单</span>
+      </h1><p class="single-subtitle animate__animated animate__fadeIn">命令号接口</p></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      toxi</span></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-08-09 13:38:15"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-08-09">2023-08-09</time></span>&nbsp;<span title="更新于 2023-08-28 21:43:40"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-08-28">2023-08-28</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1555 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="/ros2-cheat-sheet/" class="leancloud_visitors comment-visitors" data-flag-title="ROS2 cli 清单">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
+            </span>&nbsp;<span class="comment-count" data-flag-title="ROS2 cli 清单">
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/ros2-cheat-sheet/" class="valine-comment-count">-</span>&nbsp;条评论
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ros2-命令行接口">Ros2 命令行接口</a></li>
+    <li><a href="#指令">指令</a>
+      <ul>
+        <li><a href="#action">action</a>
+          <ul>
+            <li><a href="#动词">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#bag">bag</a>
+          <ul>
+            <li><a href="#动词-1">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#component">component</a>
+          <ul>
+            <li><a href="#动词-2">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#daemon">daemon</a>
+          <ul>
+            <li><a href="#动词-3">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#doctor">doctor</a>
+          <ul>
+            <li><a href="#同义词">同义词</a></li>
+            <li><a href="#参数">参数</a></li>
+          </ul>
+        </li>
+        <li><a href="#extension_points">extension_points</a></li>
+        <li><a href="#extensions">extensions</a></li>
+        <li><a href="#interface">interface</a>
+          <ul>
+            <li><a href="#动词-4">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#launch">launch</a></li>
+        <li><a href="#lifecycle">lifecycle</a>
+          <ul>
+            <li><a href="#动词-5">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#msg弃用">msg(弃用)</a>
+          <ul>
+            <li><a href="#动词-6">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#multicast">multicast</a>
+          <ul>
+            <li><a href="#动词-7">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#node">node</a>
+          <ul>
+            <li><a href="#动词-8">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#param">param</a>
+          <ul>
+            <li><a href="#动词-9">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#pkg">pkg</a>
+          <ul>
+            <li><a href="#动词-10">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#run">run</a></li>
+        <li><a href="#security">security</a>
+          <ul>
+            <li><a href="#动词-11">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#service">service</a>
+          <ul>
+            <li><a href="#动词-12">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#srv弃用">srv(弃用)</a>
+          <ul>
+            <li><a href="#动词-13">动词</a></li>
+          </ul>
+        </li>
+        <li><a href="#test">test</a></li>
+        <li><a href="#topic">topic</a>
+          <ul>
+            <li><a href="#动词-14">动词</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="ros2-命令行接口">Ros2 命令行接口</h2>
+<ul>
+<li>
+<p>所有 ROS2 命令行 开始都要添加前缀 ros2，后面跟一条指令，一个动词，若干参数</p>
+</li>
+<li>
+<p>文档参数</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 指令 --help 
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者 </span>
+</span></span><span class="line"><span class="cl">ros2 指令 -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指令">指令</h2>
+<h3 id="action">action</h3>
+<p>允许手动发送目标并显示关于action的debug信息</p>
+<h4 id="动词">动词</h4>
+<ul>
+<li>info 输出关于action的信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 action info /fibonacci
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出 action的名称列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 action list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>send_goal 发送action目标</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 action send_goal /fibonacci action_tutotials/action/Fibonacci <span class="s2">&#34;order&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>show 输出action的定义</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 action show action_tutorials/action/Fibonacci
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="bag">bag</h3>
+<p>允许从rosbag 里 播放 topic 或者 录制 topic 到 rosbag</p>
+<h4 id="动词-1">动词</h4>
+<ul>
+<li>info 输出bag的信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 info &lt;bag-name&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>play 播放bag</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 play &lt;bag-name&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>record 录制bag</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 record -a 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="component">component</h3>
+<p>各种组件动词</p>
+<h4 id="动词-2">动词</h4>
+<ul>
+<li>list 输出正在运行的容器列表和组件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 component list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>load 载入组件到 容器节点</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 component load /ComponentManager composition composition::Talker
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>standalone 运行组件到它所属的独立容器节点中</p>
+</li>
+<li>
+<p>types 输出在ament索引中注册组件的列表</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 component types
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>unload 从容器节点卸载组件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 component unload /ComponentManager <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="daemon">daemon</h3>
+<p>守护进程的动词</p>
+<h4 id="动词-3">动词</h4>
+<ul>
+<li>start 如果守护进程没有运行就开启</li>
+<li>status 输出守护进程的状态</li>
+<li>stop 如果守护进程运行就停止</li>
+</ul>
+<h3 id="doctor">doctor</h3>
+<p>检查ROS 设置和其他潜在问题(如网络，包版本，rmw中间件等)的工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 doctor
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="同义词">同义词</h4>
+<p>wtf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 wtf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="参数">参数</h4>
+<ul>
+<li>&ndash;report/-r 输出所有检查的报告</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 doctor --report
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>&ndash;report-fail/-rf 只输出失败检查的报告</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 doctor --report-fail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>&ndash;include-warning/-iw 包含失败的检查报告</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rosw doctor --include-warning
+</span></span><span class="line"><span class="cl">ros2 doctor --include-warning --report-fail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="extension_points">extension_points</h3>
+<p>列出 扩展 points</p>
+<h3 id="extensions">extensions</h3>
+<p>列出 扩展</p>
+<h3 id="interface">interface</h3>
+<p>不同ROS接口(action/topic/service)相关动词。接口类型可以通过以下选项过滤掉: &ndash;only-actions, &ndash;only-msgs, &ndash;only-srvs</p>
+<h4 id="动词-4">动词</h4>
+<ul>
+<li>list 列举所有可用的接口类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 interface list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>package 输出包内可用接口类型的列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 interface package std msgs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>packages 输出提供接口的包的列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 interface packages --only-msgs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>proto 打印接口的原型(主体)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 interface proto example interfaces/srv/AddTwoInts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>show 输出接口定义</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 interface show geometry msgs/msg/Pose
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="launch">launch</h3>
+<p>允许在任意一个包里运行一个启动文件，不用 cd 到那个包里</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 launch &lt;package&gt; &lt;launch.file&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ros launch demo.nodes.cpp add_two_ints_launch.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lifecycle">lifecycle</h3>
+<p>生命周期相关动词</p>
+<h4 id="动词-5">动词</h4>
+<ul>
+<li>get 获取一个和多个节点的生命周期状态</li>
+<li>list 输出可用的转换的李彪</li>
+<li>nodes 输出具有生命周期的节点列表</li>
+<li>set 触发生命周期状态转换</li>
+</ul>
+<h3 id="msg弃用">msg(弃用)</h3>
+<p>展示有关消息的调试信息</p>
+<h4 id="动词-6">动词</h4>
+<ul>
+<li>list 输出消息类型列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 msg list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>package 输出给定包的消息列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 msg package std_msgs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>packages 输出包含该消息的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 msg packages
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>show 输出消息定义</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 msg show geometry_msgs/msg/Pose
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="multicast">multicast</h3>
+<p>多播相关的动词</p>
+<h4 id="动词-7">动词</h4>
+<ul>
+<li>receive 接收单个UDP多播包</li>
+<li>send 发送单个UDP多播包</li>
+</ul>
+<h3 id="node">node</h3>
+<h4 id="动词-8">动词</h4>
+<ul>
+<li>info 输出节点信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 node info /talker
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出可用节点列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 node list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="param">param</h3>
+<p>允许操作参数</p>
+<h4 id="动词-9">动词</h4>
+<ul>
+<li>delete 删除参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 param delete /talker /user_sim_time
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>describe 展示已声明参数的描述性信息</p>
+</li>
+<li>
+<p>dump 将给定节点的参数以yaml格式转储到终端或文件中</p>
+</li>
+<li>
+<p>get 获取参数</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 param get /talker /user_sim_time
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出可用参数的列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 param list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>set 设置参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 param <span class="nb">set</span> /talker /user_sim_time <span class="nb">false</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pkg">pkg</h3>
+<p>创建ros2包或者输出 包相关的信息</p>
+<h4 id="动词-10">动词</h4>
+<ul>
+<li>create 创建新的ros2包</li>
+<li>executables 输出指定包的可执行文件列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 pkg executables demo_nodes_cpp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出可用包的列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 pkg list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>prefix 输出包的前缀路径</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 pkg prefix std_msgs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>xml 输出包xml清单列表里的信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 pkg xml -t version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="run">run</h3>
+<p>在任意包中允许运行可执行文件，而不用cd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 run &lt;package&gt; &lt;executable&gt;
+</span></span><span class="line"><span class="cl">ros2 run demo_node_cpp talker
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="security">security</h3>
+<p>安全相关动词</p>
+<h4 id="动词-11">动词</h4>
+<ul>
+<li>create_key 创建key</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 security create_key demo keys /talker 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>create_permission 创建keystore</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 security create_permission demo keys /talker policies/sample policy.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>generate_artifacts 创建权限</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 security_generate artifacts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list_keys 分配key</li>
+<li>create_keystore 从身份和策略文件中生成key和权限文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 security create keystore demo keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>distribute_key 从ros 图数据生成 XML策略文件</li>
+<li>generate_policy 列出key</li>
+</ul>
+<h3 id="service">service</h3>
+<p>允许手动调用服务，并显示有关服务的调试信息</p>
+<h4 id="动词-12">动词</h4>
+<ul>
+<li>call 调用服务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 service call /add two ints example interfaces/AddTwoInts ”a: 1, b: 2”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>find 输出 给定类型的服务列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 service find rcl interfaces/srv/ListParameters
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出 服务名称列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 service list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>type 输出服务类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ros2 service <span class="nb">type</span> /talker/describe parameters
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="srv弃用">srv(弃用)</h3>
+<p>服务相关动词</p>
+<h4 id="动词-13">动词</h4>
+<ul>
+<li>list 输出可用服务类型</li>
+<li>package 输出包中的可用服务类型</li>
+<li>packages 输出包含服务的包</li>
+<li>show 输出服务定义</li>
+</ul>
+<h3 id="test">test</h3>
+<p>运行ros2启动测试</p>
+<h3 id="topic">topic</h3>
+<p>用于显示有关ROS主题的调试信息的工具，包括发布者、订阅者、发布速率和消息。</p>
+<h4 id="动词-14">动词</h4>
+<ul>
+<li>bw 展示 topic的带宽</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic bw /chatter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>delay 从header的时间戳展示topic的延迟</li>
+<li>echo 输出给定topic的消息到屏幕</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic <span class="nb">echo</span> /chatter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>find 查找给定类型的topic类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ros2 topic find rcl interfaces/msg/Log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>hz 展示topic的发布率</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic hz /chatter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>info 输出给定topic的信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic info /chatter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>list 输出 活动的topic列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>pub 发布数据到topic</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic pub /chatter std msgs/msg/String ’data: Hello ROS <span class="m">2</span> world’
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>type 输出topic的类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ros2 topic <span class="nb">type</span> /rosout
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-08-28 21:43:40">更新于 2023-08-28&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/0efc260e92739ee578a55211753bba1db6591fa4" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) 0efc260e92739ee578a55211753bba1db6591fa4: paimon1"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>0efc260</a></span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ros2-cheat-sheet/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/ros2-cheat-sheet/" data-title="ROS2 cli 清单" data-hashtags="ros"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/ros2-cheat-sheet/" data-hashtag="ros"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/ros2-cheat-sheet/" data-title="ROS2 cli 清单"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/ros2-cheat-sheet/" data-title="ROS2 cli 清单"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/ros2-cheat-sheet/" data-title="ROS2 cli 清单"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ros/' class="post-tag">ros</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/paimon1/" class="post-nav-item" rel="prev" title="Paimon"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Paimon</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/" rel="external nofollow noopener noreferrer">Valine</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.111.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.18"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">Toxi & Alisa</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js" async defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{"enable":true,"expired":false,"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"","pageSize":10,"placeholder":"你的评论……","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
