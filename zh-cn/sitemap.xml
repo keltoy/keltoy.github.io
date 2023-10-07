@@ -2,10 +2,8 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>https://example.com/posts/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/ros/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/ros2-cheat-sheet/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/posts/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/tags/"
@@ -14,7 +12,7 @@
           hreflang="zh-cn"
           href="https://example.com/tags/"
           /></url><url>
-      <loc>https://example.com/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/"
@@ -23,9 +21,21 @@
           hreflang="zh-cn"
           href="https://example.com/"
           /></url><url>
-      <loc>https://example.com/tags/flink/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/paimon/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/paimon1/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/life-in-beijing/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E7%BE%8E%E9%A3%9F/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E7%94%9F%E6%B4%BB/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/huluwaniubanjinghutongsifangcai/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E7%81%AB%E9%94%85/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E5%B0%8F%E5%90%83/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E5%B7%9D%E8%8F%9C/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/yibinzhaodaisuo/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E9%A9%BB%E4%BA%AC%E5%8A%9E/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/ros/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://example.com/ros2-cheat-sheet/</loc><lastmod>2023-08-28T21:43:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://example.com/sanyangcai/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/flink/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/paimon/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/paimon1/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://example.com/tags/calcite/</loc><lastmod>2023-07-05T18:22:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/flink-validate-type/</loc><lastmod>2023-07-05T18:22:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/tags/sql/</loc><lastmod>2023-07-05T18:22:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -36,6 +46,12 @@
       <loc>https://example.com/flink-sql-validate/</loc><lastmod>2023-06-15T16:05:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/flink-parsesql/</loc><lastmod>2023-06-06T21:38:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/tags/javacc/</loc><lastmod>2023-06-06T21:38:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://example.com/tags/%E9%9D%A2%E6%9D%A1/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/xingyuancanting/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/hudafanguan/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E5%B0%8F%E9%BE%99%E8%99%BE/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/%E9%97%BD%E8%8F%9C/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/putiancanting/</loc><lastmod>2023-10-07T18:30:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://example.com/calcite-prefix/</loc><lastmod>2023-06-15T16:05:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/flink-sqlquery/</loc><lastmod>2023-06-06T21:38:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/flink-prefix/</loc><lastmod>2023-06-06T21:38:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

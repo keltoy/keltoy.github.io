@@ -3,12 +3,44 @@
     <title>所有文章 - Toxi &amp; Alisa</title>
     <link>https://example.com/posts/</link>
     <description>所有文章 | Toxi &amp; Alisa</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Aug 2023 13:38:15 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Oct 2023 14:34:57 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>吃喝玩乐在北京</title>
+  <link>https://example.com/life-in-beijing/</link>
+  <pubDate>Sat, 07 Oct 2023 14:34:57 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/life-in-beijing/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>葫芦娃牛板筋胡同私房菜</title>
+  <link>https://example.com/huluwaniubanjinghutongsifangcai/</link>
+  <pubDate>Thu, 05 Oct 2023 16:14:12 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/huluwaniubanjinghutongsifangcai/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>宜宾招待所</title>
+  <link>https://example.com/yibinzhaodaisuo/</link>
+  <pubDate>Sat, 26 Aug 2023 16:14:12 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/yibinzhaodaisuo/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>ROS2 cli 清单</title>
   <link>https://example.com/ros2-cheat-sheet/</link>
   <pubDate>Wed, 09 Aug 2023 13:38:15 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/ros2-cheat-sheet/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>三样菜</title>
+  <link>https://example.com/sanyangcai/</link>
+  <pubDate>Sun, 06 Aug 2023 16:14:12 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/sanyangcai/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
@@ -50,38 +82,6 @@
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/flink-parsesql/</guid>
   <description><![CDATA[parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6]]></description>
-</item>
-<item>
-  <title>Calcite 简介</title>
-  <link>https://example.com/calcite-prefix/</link>
-  <pubDate>Thu, 11 May 2023 13:40:06 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/calcite-prefix/</guid>
-  <description><![CDATA[简介 Apache Calcite是一个动态数据管理框架。 它包含构成典型数据库管理系统的许多部分，但省略了一些关键功能:数据存储、处理数据的算法和存储元数]]></description>
-</item>
-<item>
-  <title>FlinkSQL - SQL解析过程</title>
-  <link>https://example.com/flink-sqlquery/</link>
-  <pubDate>Thu, 04 May 2023 23:48:08 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/flink-sqlquery/</guid>
-  <description><![CDATA[sqlQuery sql 进入sqlQuery后，首先就是获取Parser 解析sql语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // TableEnvironmentImpl.java @Override public Table sqlQuery(String query) { List&lt;Operation&gt; operations = getParser().parse(query); if (operations.size() != 1)]]></description>
-</item>
-<item>
-  <title>FlinkSQL - 开始</title>
-  <link>https://example.com/flink-prefix/</link>
-  <pubDate>Sun, 30 Apr 2023 19:08:11 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/flink-prefix/</guid>
-  <description><![CDATA[flink 参数 参数 说明 flink 版本 1.17 java 版本 1.8 测试SQL 1 2 3 select * from tableA where amount &gt; 2 运行环境 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(); final StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env); final DataStream&lt;Order&gt; orderA = env.fromCollection(]]></description>
-</item>
-<item>
-  <title>LSM树</title>
-  <link>https://example.com/lsm/</link>
-  <pubDate>Fri, 28 Apr 2023 13:45:08 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/lsm/</guid>
-  <description><![CDATA[LSM 树(Log-Structured-Merge-Tree) 不算是树，其实是一种存储结构 利用顺序追加写来提高写性能 内存-文件读取方式会降低读性]]></description>
 </item>
 </channel>
 </rss>
