@@ -1,11 +1,12 @@
 ---
-title: FlinkSQL验证
+title: FlinkSQL - 类型验证
 subtitle: getValidatedNodeType
 date: 2023-06-15T16:24:09+08:00
 draft: false
 author: toxi
 license:
 toc: true
+categories: ["Code"]
 tags: ["flink", "calcite", "sql"]
 blog: ["code"]
 

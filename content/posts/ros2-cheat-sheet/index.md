@@ -7,6 +7,7 @@ author: toxi
 license:
 toc: true
 tags: ["ros"]
+categories: ["Code"]
 blog: ["code"]
 
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter

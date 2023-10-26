@@ -7,6 +7,7 @@ author: toxi
 license:
 toc: true
 tags: ["flink", "calcite", "sql", "javacc"]
+categories: ["Code"]
 blog: ["code"]
 ---
 ## parseSqlList

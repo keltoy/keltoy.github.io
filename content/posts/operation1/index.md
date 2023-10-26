@@ -1,5 +1,5 @@
 ---
-title: Flink Operation
+title: FlinkSQL - Operation
 subtitle: 
 date: 2023-07-15T16:24:09+08:00
 draft: true
@@ -8,6 +8,7 @@ license:
 toc: true
 tags: ["flink",  "sql"]
 blog: ["code"]
+categories: ["Code"]
 
 
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter

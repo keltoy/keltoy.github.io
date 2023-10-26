@@ -4,6 +4,7 @@ date: 2023-06-06T22:00:08+08:00
 draft: false
 tags: ["flink", "sql"]
 author: "toxi"
+categories: ["Code"]
 blog: ["code"]
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---

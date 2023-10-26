@@ -5,6 +5,7 @@ draft: false
 tags: ["flink", "sql"]
 author: "toxi"
 blog: ["code"]
+categories: ["Code"]
 ---
 ## sqlQuery 
  

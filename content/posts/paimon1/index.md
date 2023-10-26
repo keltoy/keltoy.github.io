@@ -7,6 +7,7 @@ author: toxi
 license:
 toc: true
 tags: ["flink", "paimon"]
+categories: ["Code"]
 blog: ["code"]
 
 

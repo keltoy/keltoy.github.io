@@ -6,7 +6,8 @@ draft: false
 author: utopiacraft
 license:
 toc: true
-tags: ["美食", "生活", "小吃", "火锅"]
+tags: ["小吃", "火锅"]
+categories: ["生活"]
 blog: ["life"]
 
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter

@@ -1,9 +1,10 @@
 ---
-title: "Flink AggHandlerCodeGenerator"
+title: "FlinkSQL - AggHandlerCodeGenerator"
 date: 2022-09-26T11:38:59+08:00
 draft: false
 tags: ["flink"]
 author: "toxi"
+categories: ["Code"]
 blog: ["code"]
 ---
 # 介绍

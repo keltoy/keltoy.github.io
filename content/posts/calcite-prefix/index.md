@@ -6,6 +6,7 @@ author: toxi
 license:
 toc: true
 tags: ["calcite", "sql"]
+categories: ["Code"]
 blog: ["code"]
 ---
 

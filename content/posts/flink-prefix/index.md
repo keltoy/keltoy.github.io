@@ -4,6 +4,7 @@ date: 2023-04-30T19:08:11+08:00
 draft: false
 tags: ["flink", "sql"]
 author: "toxi"
+categories: ["Code"]
 blog: ["code"]
 ---
 

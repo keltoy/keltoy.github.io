@@ -5,6 +5,7 @@ date: 2023-06-13T15:18:47+08:00
 draft: false
 tags: ["uart", "i2c", "spi"]
 author: "toxi"
+categories: ["Code"]
 blog: ["code"]
 
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
