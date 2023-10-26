@@ -9,14 +9,14 @@
 <meta name="author-link" content="">
 <meta name="description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6" /><meta name="keywords" content='flink, calcite, sql, javacc' /><meta itemprop="name" content="FlinkSQL - SQL语句到SqlNode">
 <meta itemprop="description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6"><meta itemprop="datePublished" content="2023-05-27T01:08:14+08:00" />
-<meta itemprop="dateModified" content="2023-06-06T21:38:53+08:00" />
+<meta itemprop="dateModified" content="2023-10-26T14:01:40+08:00" />
 <meta itemprop="wordCount" content="1914"><meta itemprop="image" content="https://example.com/logo.png"/>
 <meta itemprop="keywords" content="flink,calcite,sql,javacc," /><meta property="og:title" content="FlinkSQL - SQL语句到SqlNode" />
 <meta property="og:description" content="parseSqlList Sql语句从ParseImpl中调用CalciteParser的方法parseSqlList，将SQL语句转换成SqlNode 1 2 3 4 5 6" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/flink-parsesql/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://example.com/flink-parse-sql/" /><meta property="og:image" content="https://example.com/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-05-27T01:08:14+08:00" />
-<meta property="article:modified_time" content="2023-06-06T21:38:53+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta property="article:modified_time" content="2023-10-26T14:01:40+08:00" /><meta property="og:site_name" content="LoveIt" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://example.com/logo.png"/>
 
@@ -25,7 +25,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" data-light="#ffffff" data-dark="#ffffff" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/flink-parsesql/" /><link rel="prev" href="https://example.com/xingyuancanting/" /><link rel="next" href="https://example.com/flink-sql-validate/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://example.com/flink-parse-sql/" /><link rel="prev" href="https://example.com/xingyuancanting/" /><link rel="next" href="https://example.com/flink-sql-validate/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -33,9 +33,9 @@
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/example.com\/flink-parsesql\/"
+      "@id": "https:\/\/example.com\/flink-parse-sql\/"
     },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "flink, calcite, sql, javacc","wordcount":  1914 ,
-    "url": "https:\/\/example.com\/flink-parsesql\/","datePublished": "2023-05-27T01:08:14+08:00","dateModified": "2023-06-06T21:38:53+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/example.com\/flink-parse-sql\/","datePublished": "2023-05-27T01:08:14+08:00","dateModified": "2023-10-26T14:01:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "keltoy","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
         "@type": "Person",
@@ -162,11 +162,12 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>FlinkSQL - SQL语句到SqlNode</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      toxi</span></span></div>
-      <div class="post-meta-line"><span title="发布于 2023-05-27 01:08:14"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-27">2023-05-27</time></span>&nbsp;<span title="更新于 2023-06-06 21:38:53"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-06-06">2023-06-06</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1914 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="/flink-parsesql/" class="leancloud_visitors comment-visitors" data-flag-title="FlinkSQL - SQL语句到SqlNode">
+      toxi</span></span>
+          <span class="post-category">收录于 <a href="/categories/code/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Code</a></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-05-27 01:08:14"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-27">2023-05-27</time></span>&nbsp;<span title="更新于 2023-10-26 14:01:40"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-10-26">2023-10-26</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1914 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="/flink-parse-sql/" class="leancloud_visitors comment-visitors" data-flag-title="FlinkSQL - SQL语句到SqlNode">
               <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span class="leancloud-visitors-count">-</span>&nbsp;次阅读
             </span>&nbsp;<span class="comment-count" data-flag-title="FlinkSQL - SQL语句到SqlNode">
-              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/flink-parsesql/" class="valine-comment-count">-</span>&nbsp;条评论
+              <i class="fa-regular fa-comments fa-fw me-1" aria-hidden="true"></i><span data-xid="/flink-parse-sql/" class="valine-comment-count">-</span>&nbsp;条评论
             </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
@@ -629,16 +630,16 @@ Lex 会将这个语句分解为以下词法单元：</p>
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="更新于 2023-06-06 21:38:53">更新于 2023-06-06&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/02d3ea2683fa7a3b4d1c2e5dade5b6141022f728" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) 02d3ea2683fa7a3b4d1c2e5dade5b6141022f728: flinksql"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>02d3ea2</a></span>
+        <span title="更新于 2023-10-26 14:01:40">更新于 2023-10-26&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/f968839ff113da0390d4737b202568c9878e1d33" rel="external nofollow noopener noreferrer" target="_blank" title="commit by taojie.toxi(taojie.toxi@bytedance.com) f968839ff113da0390d4737b202568c9878e1d33: 修改部分格式"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>f968839</a></span>
       </div></div>
     <div class="post-info-line">
-      <div class="post-info-md"><span><a href="/flink-parsesql/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-md"><span><a href="/flink-parse-sql/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode" data-hashtags="flink,calcite,sql,javacc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/flink-parsesql/" data-hashtag="flink"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/flink-parsesql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/flink-parse-sql/" data-title="FlinkSQL - SQL语句到SqlNode" data-hashtags="flink,calcite,sql,javacc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/flink-parse-sql/" data-hashtag="flink"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/flink-parse-sql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-hacker-news fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/flink-parse-sql/" data-title="FlinkSQL - SQL语句到SqlNode"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.12.0/icons/line.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/flink-parse-sql/" data-title="FlinkSQL - SQL语句到SqlNode"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>

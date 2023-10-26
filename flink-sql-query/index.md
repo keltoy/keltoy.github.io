@@ -240,5 +240,5 @@ select * from tableA where amount > 2
 ---
 
 > 作者: toxi  
-> URL: https://example.com/flink-sqlquery/  
+> URL: https://example.com/flink-sql-query/  
 

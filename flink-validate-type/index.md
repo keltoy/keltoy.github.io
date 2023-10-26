@@ -1,4 +1,4 @@
-# FlinkSQL验证
+# FlinkSQL - 类型验证
 
 
 <!--more-->

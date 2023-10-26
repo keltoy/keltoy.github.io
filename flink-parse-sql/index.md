@@ -256,5 +256,5 @@ I("SQL语句") --> G("parseSqlList") --> F --> H("SqlNode")
 ---
 
 > 作者: toxi  
-> URL: https://example.com/flink-parsesql/  
+> URL: https://example.com/flink-parse-sql/  
 

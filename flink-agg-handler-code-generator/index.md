@@ -1,4 +1,4 @@
-# Flink AggHandlerCodeGenerator
+# FlinkSQL - AggHandlerCodeGenerator
 
 # 介绍
 AggHandlerCodeGenerator 的代码在 flink planner 下，用来生成聚合函数的代码,是scala 代码
@@ -216,5 +216,5 @@ class CodeGeneratorContext(val tableConfig: TableConfig) {
 ---
 
 > 作者: toxi  
-> URL: https://example.com/flink-agghandlercodegenerator/  
+> URL: https://example.com/flink-agg-handler-code-generator/  
 

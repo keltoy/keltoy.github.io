@@ -3,14 +3,30 @@
     <title>Toxi &amp; Alisa</title>
     <link>https://example.com/</link>
     <description>Hugo theme - LoveIt</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 14 Oct 2023 16:14:12 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 26 Oct 2023 13:38:41 &#43;0800</lastBuildDate>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Coding Life</title>
+  <link>https://example.com/coding-life/</link>
+  <pubDate>Thu, 26 Oct 2023 13:38:41 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/coding-life/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>吃喝玩乐在北京</title>
   <link>https://example.com/life-in-beijing/</link>
   <pubDate>Sat, 07 Oct 2023 14:34:57 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/life-in-beijing/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>龙港酒楼</title>
+  <link>https://example.com/longgangjiulou/</link>
+  <pubDate>Sun, 22 Oct 2023 20:14:12 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/longgangjiulou/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
@@ -62,27 +78,11 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
-  <title>FlinkSQL验证</title>
+  <title>FlinkSQL - 类型验证</title>
   <link>https://example.com/flink-validate-type/</link>
   <pubDate>Thu, 15 Jun 2023 16:24:09 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/flink-validate-type/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>UART, I2C, SPI</title>
-  <link>https://example.com/transmitter/</link>
-  <pubDate>Tue, 13 Jun 2023 15:18:47 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/transmitter/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>FlinkSQL - 验证过程</title>
-  <link>https://example.com/flink-sql-validate/</link>
-  <pubDate>Tue, 06 Jun 2023 22:00:08 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/flink-sql-validate/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
