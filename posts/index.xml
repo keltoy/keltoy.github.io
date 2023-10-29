@@ -3,7 +3,7 @@
     <title>所有文章 - Toxi &amp; Alisa</title>
     <link>https://example.com/posts/</link>
     <description>所有文章 | Toxi &amp; Alisa</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 26 Oct 2023 13:38:41 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 29 Oct 2023 12:14:12 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
   <title>Coding Life</title>
   <link>https://example.com/coding-life/</link>
   <pubDate>Thu, 26 Oct 2023 13:38:41 &#43;0800</pubDate>
@@ -17,6 +17,14 @@
   <pubDate>Sat, 07 Oct 2023 14:34:57 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/life-in-beijing/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>湘中缘湖南菜</title>
+  <link>https://example.com/xiangzhongyuan/</link>
+  <pubDate>Sun, 29 Oct 2023 12:14:12 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/xiangzhongyuan/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
@@ -73,14 +81,6 @@
   <pubDate>Sat, 15 Jul 2023 16:24:09 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/paimon1/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>FlinkSQL - 类型验证</title>
-  <link>https://example.com/flink-validate-type/</link>
-  <pubDate>Thu, 15 Jun 2023 16:24:09 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/flink-validate-type/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
