@@ -3,9 +3,17 @@
     <title>Toxi &amp; Alisa</title>
     <link>https://example.com/</link>
     <description>Hugo theme - LoveIt</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 15 Dec 2023 23:23:08 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Apr 2024 16:10:21 &#43;0800</lastBuildDate>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>分享会</title>
+  <link>https://example.com/share/</link>
+  <pubDate>Thu, 18 Apr 2024 16:10:21 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/share/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Coding Life</title>
   <link>https://example.com/coding-life/</link>
   <pubDate>Thu, 26 Oct 2023 13:38:41 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <pubDate>Thu, 05 Oct 2023 16:14:12 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/huluwaniubanjinghutongsifangcai/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>宜宾招待所</title>
-  <link>https://example.com/yibinzhaodaisuo/</link>
-  <pubDate>Sat, 26 Aug 2023 16:14:12 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/yibinzhaodaisuo/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

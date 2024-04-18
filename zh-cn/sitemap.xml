@@ -2,9 +2,10 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
+      <loc>https://example.com/share/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://example.com/coding-life/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/life-in-beijing/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/categories/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/categories/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/categories/"
@@ -13,8 +14,11 @@
           hreflang="zh-cn"
           href="https://example.com/categories/"
           /></url><url>
-      <loc>https://example.com/posts/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/categories/code/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/flink/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/paimon/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/posts/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://example.com/tags/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/tags/"
@@ -23,7 +27,7 @@
           hreflang="zh-cn"
           href="https://example.com/tags/"
           /></url><url>
-      <loc>https://example.com/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+      <loc>https://example.com/</loc><lastmod>2024-04-18T16:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
             rel="alternate"
             hreflang="en"
             href="https://example.com/en/"
@@ -43,7 +47,6 @@
       <loc>https://example.com/tags/%E9%A9%BB%E4%BA%AC%E5%8A%9E/</loc><lastmod>2023-11-26T17:49:31&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/tags/%E6%B9%98%E8%8F%9C/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/xiangzhongyuan/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://example.com/categories/code/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/tags/%E7%9B%AE%E5%BD%95/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://example.com/tags/%E4%B8%9C%E5%8C%97%E8%8F%9C/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/longgangjiulou/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -56,8 +59,6 @@
       <loc>https://example.com/tags/ros/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/ros2-cheat-sheet/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/sanyangcai/</loc><lastmod>2024-04-18T15:24:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://example.com/tags/flink/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://example.com/tags/paimon/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/paimon1/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/tags/calcite/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://example.com/flink-validate-type/</loc><lastmod>2023-10-30T18:43:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
