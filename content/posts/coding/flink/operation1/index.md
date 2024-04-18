@@ -147,6 +147,3 @@ public class SqlNodeToOperationConversion {
 
 ## Q&A 
 1. 为什么 parse 方法返回的是 Operation的集合呢？
-
-
-

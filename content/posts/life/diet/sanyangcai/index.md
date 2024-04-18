@@ -6,7 +6,7 @@ draft: false
 author: utopiacraft
 license:
 toc: true
-tags: ["川菜"]
+tags: ["重庆菜", "川菜"]
 categories: ["生活"]
 blog: ["life"]
 
