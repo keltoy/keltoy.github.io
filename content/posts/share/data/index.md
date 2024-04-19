@@ -1,14 +1,14 @@
 ---
-title: 分享会
-subtitle:
+title: 数据分享会
+subtitle: 关于数据
 date: 2024-04-18T16:10:21+08:00
 draft: false
 weight: 97
 author: utopiacraft
 toc: true
 tags: ["flink", "paimon"]
-categories: ["Code"]
-blog: ["code"]
+categories: ["Share"]
+blog: ["share"]
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
 
@@ -21,7 +21,6 @@ blog: ["code"]
 
 ## 关于技术
 
-### 关于数据
 
 | 标题                           | 分类 | 链接                                                                                                                                                                                                                                                                             | 种类   | 样式 |
 | ------------------------------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
