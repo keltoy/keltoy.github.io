@@ -3,14 +3,22 @@
     <title>Toxi &amp; Alisa</title>
     <link>https://example.com/</link>
     <description>Hugo theme - LoveIt</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Apr 2024 16:10:21 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 19 Apr 2024 15:16:49 &#43;0800</lastBuildDate>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-  <title>分享会</title>
-  <link>https://example.com/share/</link>
+  <title>AI分享会</title>
+  <link>https://example.com/ai/</link>
+  <pubDate>Fri, 19 Apr 2024 15:16:49 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/ai/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>数据分享会</title>
+  <link>https://example.com/data/</link>
   <pubDate>Thu, 18 Apr 2024 16:10:21 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/share/</guid>
+  <guid>https://example.com/data/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
@@ -75,14 +83,6 @@
   <pubDate>Sat, 14 Oct 2023 16:14:12 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/fuzhoubinguan/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>葫芦娃牛板筋胡同私房菜</title>
-  <link>https://example.com/huluwaniubanjinghutongsifangcai/</link>
-  <pubDate>Thu, 05 Oct 2023 16:14:12 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/huluwaniubanjinghutongsifangcai/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
