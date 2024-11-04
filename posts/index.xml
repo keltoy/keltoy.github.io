@@ -3,7 +3,7 @@
     <title>所有文章 - Toxi &amp; Alisa</title>
     <link>https://example.com/posts/</link>
     <description>所有文章 | Toxi &amp; Alisa</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 19 Apr 2024 15:16:49 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 20 Aug 2024 12:18:19 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
   <title>AI分享会</title>
   <link>https://example.com/ai/</link>
   <pubDate>Fri, 19 Apr 2024 15:16:49 &#43;0800</pubDate>
@@ -36,6 +36,22 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>llm intro</title>
+  <link>https://example.com/llm-intro/</link>
+  <pubDate>Tue, 20 Aug 2024 12:18:19 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/llm-intro/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Flink Window</title>
+  <link>https://example.com/flink-window/</link>
+  <pubDate>Tue, 07 May 2024 09:14:09 &#43;0800</pubDate>
+  <author>Toxi &amp; Alisa</author>
+  <guid>https://example.com/flink-window/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>赣人之家</title>
   <link>https://example.com/ganrenzhijia/</link>
   <pubDate>Fri, 15 Dec 2023 23:23:08 &#43;0800</pubDate>
@@ -65,22 +81,6 @@
   <pubDate>Sun, 29 Oct 2023 12:14:12 &#43;0800</pubDate>
   <author>Toxi &amp; Alisa</author>
   <guid>https://example.com/xiangzhongyuan/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>龙港酒楼</title>
-  <link>https://example.com/longgangjiulou/</link>
-  <pubDate>Sun, 22 Oct 2023 20:14:12 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/longgangjiulou/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>福州宾馆</title>
-  <link>https://example.com/fuzhoubinguan/</link>
-  <pubDate>Sat, 14 Oct 2023 16:14:12 &#43;0800</pubDate>
-  <author>Toxi &amp; Alisa</author>
-  <guid>https://example.com/fuzhoubinguan/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
