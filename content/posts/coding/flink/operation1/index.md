@@ -2,7 +2,7 @@
 title: FlinkSQL - Operation
 subtitle: 
 date: 2023-07-15T16:24:09+08:00
-draft: true
+draft: false
 author: toxi
 license:
 toc: true
