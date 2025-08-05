@@ -17,6 +17,9 @@ buildFuture = false
 enableEmoji = true
 
 # googleAnalytics = "G-XXXXXXXXX"
+[caches]
+  [caches.images]
+      dir = ':cacheDir/images'
 
 [pagination]
   pagerSize = 100
