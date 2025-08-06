@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Toxi&#39;s Blog</title>
+    <title>Posts on Toxi&#39;s Blog</title>
     <link>//localhost:1313/posts/</link>
-    <description>Recent content on Toxi&#39;s Blog</description>
+    <description>Recent content in Posts on Toxi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Wed, 06 Aug 2025 01:57:48 +0800</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>My First Post</title>
-      <link>//localhost:1313/posts/my-first-post/</link>
-      <pubDate>Wed, 06 Aug 2025 01:57:48 +0800</pubDate>
-      
-      <guid>//localhost:1313/posts/my-first-post/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>lambda</title>
-      <link>//localhost:1313/posts/lambda/</link>
-      <pubDate>Wed, 15 Mar 2023 15:00:00 +0800</pubDate>
-      
-      <guid>//localhost:1313/posts/lambda/</guid>
-      <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/lambda/featured.png" />
-    </item>
+    <lastBuildDate>Wed, 06 Aug 2025 23:39:45 +0000</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
