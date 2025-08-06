@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda on Toxi&#39;s Blog</title>
+    <link>//localhost:1313/categories/lambda/</link>
+    <description>Recent content in Lambda on Toxi&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Wed, 15 Mar 2023 15:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/categories/lambda/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>lambda</title>
+      <link>//localhost:1313/posts/lambda/</link>
+      <pubDate>Wed, 15 Mar 2023 15:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/posts/lambda/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/lambda/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
