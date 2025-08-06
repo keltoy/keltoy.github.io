@@ -4,7 +4,7 @@
 
   <url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2025-08-07T00:04:17+08:00</lastmod>
+    <lastmod>2025-08-07T00:11:14+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -20,7 +20,13 @@
   </url>
   <url>
     <loc>//localhost:1313/posts/</loc>
-    <lastmod>2025-08-07T00:04:17+08:00</lastmod>
+    <lastmod>2025-08-07T00:11:14+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>//localhost:1313/posts/the-2nd/</loc>
+    <lastmod>2025-08-07T00:11:14+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
