@@ -2,14 +2,14 @@
 author: keltoy
 blog: '[]'
 categories: '[]'
-date: 2025-08-06 23:39:45
+date: 2025-08-07 00:04:17+08:00
 draft: false
 subtitle: null
 tags: null
-title: The One
+title: The one
 toc: 'true'
 ---
 
 <!--more-->
 
-The one test
+The one Test

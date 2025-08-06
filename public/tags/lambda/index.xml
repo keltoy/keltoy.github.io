@@ -7,17 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Wed, 15 Mar 2023 15:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>lambda</title>
-      <link>//localhost:1313/posts/lambda/</link>
-      <pubDate>Wed, 15 Mar 2023 15:00:00 +0800</pubDate>
-      
-      <guid>//localhost:1313/posts/lambda/</guid>
-      <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/lambda/featured.png" />
-    </item>
+    <atom:link href="//localhost:1313/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
