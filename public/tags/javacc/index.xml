@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javacc on Toxi&#39;s Blog</title>
+    <link>//localhost:1313/tags/javacc/</link>
+    <description>Recent content in Javacc on Toxi&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Sat, 27 May 2023 01:08:14 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/javacc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>FlinkSQL - SQL语句到SqlNode</title>
+      <link>//localhost:1313/posts/code/flinksql---sql%E8%AF%AD%E5%8F%A5%E5%88%B0sqlnode/</link>
+      <pubDate>Sat, 27 May 2023 01:08:14 +0800</pubDate>
+      
+      <guid>//localhost:1313/posts/code/flinksql---sql%E8%AF%AD%E5%8F%A5%E5%88%B0sqlnode/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

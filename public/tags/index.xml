@@ -7,7 +7,127 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Aug 2024 12:18:19 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ai</title>
+      <link>//localhost:1313/tags/ai/</link>
+      <pubDate>Tue, 20 Aug 2024 12:18:19 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/ai/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Llm</title>
+      <link>//localhost:1313/tags/llm/</link>
+      <pubDate>Tue, 20 Aug 2024 12:18:19 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/llm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Flink</title>
+      <link>//localhost:1313/tags/flink/</link>
+      <pubDate>Tue, 07 May 2024 09:14:09 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/flink/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Ros</title>
+      <link>//localhost:1313/tags/ros/</link>
+      <pubDate>Wed, 09 Aug 2023 13:38:15 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/ros/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Paimon</title>
+      <link>//localhost:1313/tags/paimon/</link>
+      <pubDate>Sat, 15 Jul 2023 16:24:09 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/paimon/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Sql</title>
+      <link>//localhost:1313/tags/sql/</link>
+      <pubDate>Sat, 15 Jul 2023 16:24:09 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/sql/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Calcite</title>
+      <link>//localhost:1313/tags/calcite/</link>
+      <pubDate>Thu, 15 Jun 2023 16:24:09 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/calcite/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>I2c</title>
+      <link>//localhost:1313/tags/i2c/</link>
+      <pubDate>Tue, 13 Jun 2023 15:18:47 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/i2c/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Spi</title>
+      <link>//localhost:1313/tags/spi/</link>
+      <pubDate>Tue, 13 Jun 2023 15:18:47 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/spi/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Uart</title>
+      <link>//localhost:1313/tags/uart/</link>
+      <pubDate>Tue, 13 Jun 2023 15:18:47 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/uart/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Javacc</title>
+      <link>//localhost:1313/tags/javacc/</link>
+      <pubDate>Sat, 27 May 2023 01:08:14 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/javacc/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Lsm</title>
+      <link>//localhost:1313/tags/lsm/</link>
+      <pubDate>Fri, 28 Apr 2023 13:45:08 +0800</pubDate>
+      
+      <guid>//localhost:1313/tags/lsm/</guid>
+      <description></description>
+      
+    </item>
     
   </channel>
 </rss>

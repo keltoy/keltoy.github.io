@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ros on Toxi&#39;s Blog</title>
+    <link>//localhost:1313/tags/ros/</link>
+    <description>Recent content in Ros on Toxi&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Wed, 09 Aug 2023 13:38:15 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/ros/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ROS2 cli 清单</title>
+      <link>//localhost:1313/posts/code/ros2-cli-%E6%B8%85%E5%8D%95/</link>
+      <pubDate>Wed, 09 Aug 2023 13:38:15 +0800</pubDate>
+      
+      <guid>//localhost:1313/posts/code/ros2-cli-%E6%B8%85%E5%8D%95/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

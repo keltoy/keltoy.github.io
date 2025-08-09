@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spi on Toxi&#39;s Blog</title>
+    <link>//localhost:1313/tags/spi/</link>
+    <description>Recent content in Spi on Toxi&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Tue, 13 Jun 2023 15:18:47 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/spi/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>UART, I2C, SPI</title>
+      <link>//localhost:1313/posts/code/uart-i2c-spi/</link>
+      <pubDate>Tue, 13 Jun 2023 15:18:47 +0800</pubDate>
+      
+      <guid>//localhost:1313/posts/code/uart-i2c-spi/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

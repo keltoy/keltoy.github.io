@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>[] on Toxi&#39;s Blog</title>
+    <title>Categories on Toxi&#39;s Blog</title>
     <link>//localhost:1313/categories/</link>
-    <description>Recent content in [] on Toxi&#39;s Blog</description>
+    <description>Recent content in Categories on Toxi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Thu, 07 Aug 2025 00:11:14 +0800</lastBuildDate><atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Aug 2024 12:18:19 +0800</lastBuildDate><atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>The 2nd</title>
-      <link>//localhost:1313/posts/the-2nd/</link>
-      <pubDate>Thu, 07 Aug 2025 00:11:14 +0800</pubDate>
+      <title>Code</title>
+      <link>//localhost:1313/categories/code/</link>
+      <pubDate>Tue, 20 Aug 2024 12:18:19 +0800</pubDate>
       
-      <guid>//localhost:1313/posts/the-2nd/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>The one</title>
-      <link>//localhost:1313/posts/the-one-/</link>
-      <pubDate>Thu, 07 Aug 2025 00:04:17 +0800</pubDate>
-      
-      <guid>//localhost:1313/posts/the-one-/</guid>
+      <guid>//localhost:1313/categories/code/</guid>
       <description></description>
       
     </item>

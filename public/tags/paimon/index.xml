@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Paimon on Toxi&#39;s Blog</title>
+    <link>//localhost:1313/tags/paimon/</link>
+    <description>Recent content in Paimon on Toxi&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Sat, 15 Jul 2023 16:24:09 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/paimon/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Paimon</title>
+      <link>//localhost:1313/posts/code/paimon/</link>
+      <pubDate>Sat, 15 Jul 2023 16:24:09 +0800</pubDate>
+      
+      <guid>//localhost:1313/posts/code/paimon/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
